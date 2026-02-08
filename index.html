@@ -24,7 +24,18 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Split Layout - Perfect 50/50 */
+        /* Keyframes for animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Split Layout 50/50 */
         .split-container {
             display: flex;
             height: 100vh;
@@ -33,11 +44,11 @@
 
         /* LEFT SIDE: Content & Action */
         .left-side {
-            flex: 1; /* 50% */
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center; /* Centering content relative to each other */
+            align-items: center;
             padding: 0 5vw;
             text-align: center;
             z-index: 10;
@@ -48,6 +59,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
         .app-icon { 
@@ -63,7 +75,7 @@
         .cta-box { width: 100%; margin-top: 1vh; }
         .email-form {
             display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
-            margin-bottom: 4vh; /* Large spacing before store badges */
+            margin-bottom: 4vh; /* Spacing before store badges */
             border: 1px solid rgba(0,0,0,0.03);
         }
         input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1.1rem; outline: none; }
@@ -77,16 +89,16 @@
             width: 100%;
         }
         .badge { 
-            height: 48px; /* Increased size */
+            height: 48px; 
             opacity: 0.9; 
             transition: transform 0.2s;
         }
         .badge:hover { transform: scale(1.05); opacity: 1; }
 
-        /* RIGHT SIDE: BG.jpg and Testimonials */
+        /* RIGHT SIDE: BG_Vertical.png and Testimonials */
         .right-side {
-            flex: 1; /* 50% */
-            background-image: url('BG.jpg'); 
+            flex: 1;
+            background-image: url('BG_Vertical.png'); /* Updated to a vertical background file */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -115,10 +127,12 @@
         .quote { font-size: 1.25rem; font-weight: 500; line-height: 1.5; text-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .author { display: block; margin-top: 15px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Mascot - Smaller and cornered */
+        /* Mascot with Animation */
         .mascot-img {
             position: absolute; bottom: 4vh; right: 3vw;
             width: 100px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+            animation: fadeInRight 1s ease-out 0.5s forwards;
+            opacity: 0;
         }
 
         /* Powered By Footer */
@@ -132,7 +146,6 @@
             .split-container { flex-direction: column; overflow-y: auto; }
             .left-side { padding: 8vh 5vw; flex: none; }
             .right-side { flex: none; height: 50vh; }
-            .footer-branding { position: relative; bottom: auto; left: auto; padding: 3vh 0; }
         }
     </style>
 </head>
