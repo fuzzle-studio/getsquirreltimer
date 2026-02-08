@@ -25,107 +25,106 @@
         }
 
         .header {
-            position: absolute; top: 3vh; left: 4vw;
-            display: flex; align-items: center; gap: 15px;
+            position: absolute; top: 2vh; left: 4vw;
+            display: flex; align-items: center; gap: 12px;
             z-index: 20;
         }
-        .studio-logo { height: clamp(50px, 8vh, 80px); width: auto; }
-        .powered-text { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.4; }
+        .studio-logo { height: clamp(40px, 6vh, 65px); width: auto; }
+        .powered-text { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; opacity: 0.4; }
 
         .container {
             display: flex; flex-direction: column; align-items: center;
-            justify-content: center; height: 100vh; gap: 5vh; padding: 0 5vw;
+            justify-content: center; height: 100vh; gap: 3vh; padding: 0 5vw;
         }
 
-        .hero { text-align: center; }
+        .hero { text-align: center; margin-bottom: -1vh; }
         .app-icon { 
-            width: clamp(80px, 12vh, 110px); height: clamp(80px, 12vh, 110px); 
-            border-radius: 24%; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 20px;
+            width: clamp(70px, 10vh, 95px); height: clamp(70px, 10vh, 95px); 
+            border-radius: 22%; box-shadow: 0 8px 25px rgba(0,0,0,0.05); margin-bottom: 10px;
         }
-        h1 { font-size: clamp(2.2rem, 5vh, 3.2rem); margin: 0; font-weight: 800; }
-        .tagline { font-size: 1.3rem; font-weight: 400; margin-top: 10px; color: var(--text); }
+        h1 { font-size: clamp(1.8rem, 4.5vh, 2.8rem); margin: 0; font-weight: 800; }
+        .tagline { font-size: 1.1rem; font-weight: 400; margin-top: 5px; color: var(--text); }
 
-        /* Child-like Hand-painted Carousel Background */
+        /* Brush Stroke Effect Carousel */
         .carousel-outer {
             width: 100vw;
             background-color: var(--sky-blue);
             position: relative;
-            padding: 6vh 0;
-            
-            /* Rough "Crayon" Edge Mask - Much less wavy, more scratchy */
-            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 L50,18 L100,14 L150,16 L200,12 L250,17 L300,15 L350,13 L400,16 L450,18 L500,14 L550,16 L600,13 L650,17 L700,15 L750,14 L800,17 L850,15 L900,13 L950,16 L1000,15 L1000,85 L950,83 L900,87 L850,84 L800,86 L750,82 L700,85 L650,83 L600,86 L550,84 L500,87 L450,83 L400,85 L350,82 L300,84 L250,87 L200,83 L150,85 L100,82 L50,84 L0,85 Z" fill="black"/></svg>');
+            padding: 5vh 0;
+            /* New Mask: Rounded Brush Stroke Path */
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 C50,5 150,25 250,15 C350,5 450,25 550,15 C650,5 750,25 850,15 C950,5 1000,15 L1000,85 C950,95 850,75 750,85 C650,95 550,75 450,85 C350,95 250,75 150,85 C50,95 0,85 Z" fill="black"/></svg>');
+            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 C50,5 150,25 250,15 C350,5 450,25 550,15 C650,5 750,25 850,15 C950,5 1000,15 L1000,85 C950,95 850,75 750,85 C650,95 550,75 450,85 C350,95 250,75 150,85 C50,95 0,85 Z" fill="black"/></svg>');
             mask-size: 100% 100%;
-            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 L50,18 L100,14 L150,16 L200,12 L250,17 L300,15 L350,13 L400,16 L450,18 L500,14 L550,16 L600,13 L650,17 L700,15 L750,14 L800,17 L850,15 L900,13 L950,16 L1000,15 L1000,85 L950,83 L900,87 L850,84 L800,86 L750,82 L700,85 L650,83 L600,86 L550,84 L500,87 L450,83 L400,85 L350,82 L300,84 L250,87 L200,83 L150,85 L100,82 L50,84 L0,85 Z" fill="black"/></svg>');
             -webkit-mask-size: 100% 100%;
         }
 
-        /* Subtle "coloring outside the lines" overlay */
-        .carousel-outer::before {
+        /* Brush texture overlay to create that "hair" effect at edges */
+        .carousel-outer::after {
             content: '';
             position: absolute;
-            top: -5px; left: 0; right: 0; bottom: -5px;
-            background: inherit;
-            opacity: 0.3;
-            z-index: -1;
-            filter: blur(8px);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png');
+            opacity: 0.15;
+            pointer-events: none;
         }
 
         .testimonials {
-            max-width: 650px; margin: 0 auto; text-align: center; position: relative;
-            min-height: 140px; display: flex; align-items: center; justify-content: center;
+            max-width: 600px; margin: 0 auto; text-align: center; position: relative;
+            min-height: 120px; display: flex; align-items: center; justify-content: center;
             color: white;
         }
 
         .slide {
-            position: absolute; opacity: 0; transition: opacity 0.6s ease;
-            width: 100%; padding: 0 60px;
+            position: absolute; opacity: 0; transition: opacity 0.5s ease;
+            width: 100%; padding: 0 50px;
         }
         .slide.active { opacity: 1; }
-        .quote { font-size: clamp(1rem, 2vh, 1.2rem); font-weight: 600; line-height: 1.5; }
-        .author { display: block; margin-top: 15px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; opacity: 0.8; }
+        .quote { font-size: clamp(0.95rem, 1.9vh, 1.2rem); font-weight: 600; line-height: 1.4; }
+        .author { display: block; margin-top: 10px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; opacity: 0.9; }
 
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: white; border: none; width: 45px; height: 45px;
+            background: white; border: none; width: 40px; height: 40px;
             border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 10;
         }
-        .nav-btn svg { width: 20px; fill: var(--sky-blue); }
+        .nav-btn svg { width: 18px; fill: var(--sky-blue); }
         .prev { left: 10px; } .next { right: 10px; }
 
-        .cta-box { width: 100%; max-width: 480px; text-align: center; }
+        .cta-box { width: 100%; max-width: 440px; text-align: center; }
         .email-form {
-            display: flex; background: var(--soft-gray); padding: 8px; border-radius: 100px;
-            margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            display: flex; background: var(--soft-gray); padding: 6px; border-radius: 100px;
+            margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);
         }
         input {
-            flex: 1; border: none; background: none; padding: 12px 25px;
+            flex: 1; border: none; background: none; padding: 10px 20px;
             font-family: 'Assistant'; font-size: 1rem; outline: none;
         }
         button {
             background: var(--cta); color: white; border: none;
-            padding: 0 30px; border-radius: 100px; font-weight: 800;
-            cursor: pointer; transition: transform 0.2s;
+            padding: 0 25px; border-radius: 100px; font-weight: 800;
+            cursor: pointer; transition: transform 0.2s; font-size: 0.9rem;
         }
         button:hover { transform: scale(1.05); }
 
-        .stores { display: flex; gap: 15px; justify-content: center; }
-        .store-badge { height: 40px; }
+        .stores { display: flex; gap: 12px; justify-content: center; }
+        .store-badge { height: 35px; }
 
         .squirrel-video {
-            position: absolute; bottom: 3vh; right: 4vw;
-            width: clamp(100px, 15vh, 160px); border-radius: 20px;
+            position: absolute; bottom: 2vh; right: 3vw;
+            width: clamp(90px, 13vh, 140px); border-radius: 18px;
             z-index: 5;
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
+            h1 { font-size: 1.8rem; }
             .header { left: 50%; transform: translateX(-50%); }
             .squirrel-video { display: none; }
-            .email-form { flex-direction: column; border-radius: 20px; gap: 10px; background: none; }
+            .email-form { flex-direction: column; border-radius: 18px; gap: 8px; background: none; }
             input { background: var(--soft-gray); border-radius: 100px; text-align: center; }
-            button { padding: 15px; }
-            .carousel-outer { mask-image: none; -webkit-mask-image: none; padding: 4vh 20px; }
+            button { padding: 12px; }
+            .carousel-outer { mask-image: none; -webkit-mask-image: none; padding: 3vh 15px; }
+            .container { justify-content: space-evenly; }
         }
     </style>
 </head>
