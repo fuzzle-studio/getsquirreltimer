@@ -22,10 +22,10 @@
             overflow: hidden;
         }
 
-        /* Top Header */
+        /* Branding */
         .header {
-            position: absolute; top: 2vh; left: 4vw;
-            display: flex; align-items: center; gap: 10px; z-index: 50;
+            position: absolute; top: 3vh; left: 4vw;
+            display: flex; align-items: center; gap: 10px; z-index: 100;
         }
         .studio-logo { height: clamp(40px, 6vh, 60px); }
         .powered-text { font-size: 0.7rem; font-weight: 700; opacity: 0.4; text-transform: uppercase; }
@@ -44,18 +44,18 @@
         h1 { font-size: clamp(2rem, 5vh, 2.8rem); margin: 0; font-weight: 800; }
         .tagline { font-size: 1.1rem; opacity: 0.6; margin-top: 5px; }
 
-        /* The Brush Stroke Carousel */
+        /* The Fixed Brush Stroke Carousel Section */
         .carousel-section {
             width: 100vw;
-            position: relative;
+            min-height: 25vh; /* מבטיח גובה לרצועה הכחולה */
             background-color: var(--sky-blue);
-            min-height: 22vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Mask creates the brush stroke edges */
-            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,10 C50,0 150,20 250,10 C350,0 450,20 550,10 C650,0 750,20 850,10 C950,0 1000,10 L1000,90 C950,100 850,80 750,90 C650,100 550,80 450,90 C350,100 250,80 150,90 C50,100 0,90 Z" fill="black"/></svg>');
-            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,10 C50,0 150,20 250,10 C350,0 450,20 550,10 C650,0 750,20 850,10 C950,0 1000,10 L1000,90 C950,100 850,80 750,90 C650,100 550,80 450,90 C350,100 250,80 150,90 C50,100 0,90 Z" fill="black"/></svg>');
+            position: relative;
+            /* Mask Image for Brush Stroke Effect */
+            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 C50,5 150,25 250,15 C350,5 450,25 550,15 C650,5 750,25 850,15 C950,5 1000,15 L1000,85 C950,95 850,75 750,85 C650,95 550,75 450,85 C350,95 250,75 150,85 C50,95 0,85 Z" fill="black"/></svg>');
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 C50,5 150,25 250,15 C350,5 450,25 550,15 C650,5 750,25 850,15 C950,5 1000,15 L1000,85 C950,95 850,75 750,85 C650,95 550,75 450,85 C350,95 250,75 150,85 C50,95 0,85 Z" fill="black"/></svg>');
             -webkit-mask-size: 100% 100%;
             mask-size: 100% 100%;
         }
@@ -63,11 +63,11 @@
         .testimonials {
             width: 100%; max-width: 600px;
             text-align: center; position: relative;
-            color: white; padding: 0 65px;
+            color: white; z-index: 10; padding: 0 60px;
         }
 
         .slide {
-            position: absolute; opacity: 0; transition: 0.5s ease;
+            position: absolute; opacity: 0; transition: opacity 0.5s ease;
             width: 100%; left: 0; top: 50%; transform: translateY(-50%);
         }
         .slide.active { opacity: 1; position: relative; transform: translateY(0); }
@@ -77,14 +77,14 @@
         /* Nav Buttons */
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: white; border: none; width: 44px; height: 44px;
+            background: white; border: none; width: 42px; height: 42px;
             border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 60;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 20;
         }
         .nav-btn svg { width: 18px; fill: var(--sky-blue); }
         .prev { left: 15px; } .next { right: 15px; }
 
-        /* Signup */
+        /* Signup Area */
         .cta-area { width: 100%; max-width: 440px; text-align: center; }
         .email-form {
             display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
@@ -96,9 +96,10 @@
         .store-badges { display: flex; gap: 12px; justify-content: center; }
         .badge { height: 40px; opacity: 0.9; }
 
+        /* Squirrel Video */
         .squirrel-vid {
             position: absolute; bottom: 3vh; right: 4vw;
-            width: 150px; border-radius: 20px; z-index: 5;
+            width: 140px; border-radius: 20px; z-index: 5;
         }
 
         @media (max-width: 768px) {
