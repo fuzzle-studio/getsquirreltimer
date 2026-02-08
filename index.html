@@ -3,222 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SquirrelTimer | Get Access</title>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>SquirrelTimer | Calm Transitions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #F8F9FA;
-            --text: #1D1E2C;
-            --cta: #FF9F1C;
-            --carousel-yellow: rgba(255, 236, 158, 0.75); /* צהוב 75% שקוף */
+            --soft-blue: #E0F2F1; /* תכלת רך ומרגיע */
+            --vivid-orange: #FF9F1C;
+            --text-dark: #2D3142;
+            --white: #FFFFFF;
         }
 
         * { box-sizing: border-box; }
-
         body, html {
             margin: 0; padding: 0;
             height: 100vh; width: 100vw;
             font-family: 'Assistant', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
+            background-color: var(--white);
+            color: var(--text-dark);
             overflow: hidden;
         }
 
-        /* Top Branding */
-        .powered-by {
+        /* Branding - Clean & Professional */
+        .header {
             position: absolute; top: 3vh; left: 4vw;
             display: flex; align-items: center; gap: 12px;
-            z-index: 20;
         }
-        .powered-by span { font-size: 0.9rem; font-weight: 700; opacity: 0.8; }
-        .studio-logo { height: clamp(50px, 8vh, 90px); width: auto; }
+        .studio-logo { height: clamp(45px, 7vh, 65px); }
+        .powered-text { font-size: 0.75rem; font-weight: 800; opacity: 0.3; letter-spacing: 1px; }
 
-        .main-container {
+        .layout {
             display: flex; flex-direction: column; align-items: center;
-            justify-content: space-evenly; height: 100vh; padding: 2vh 5vw;
-            max-width: 1200px; margin: 0 auto;
+            justify-content: center; height: 100vh; gap: 4vh; padding: 0 5vw;
         }
 
-        /* App Identity */
-        .app-header { text-align: center; flex-shrink: 0; }
+        /* Hero */
+        .hero { text-align: center; }
         .app-icon { 
-            width: clamp(80px, 12vh, 120px); height: clamp(80px, 12vh, 120px); 
-            border-radius: 24%; box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            width: clamp(80px, 12vh, 110px); 
+            border-radius: 24%; box-shadow: 0 12px 25px rgba(0,0,0,0.06);
         }
-        h1 { margin: 1vh 0 0; font-size: clamp(2.2rem, 5vh, 3.2rem); font-weight: 800; }
-        .price-tag { color: #2E7D32; font-weight: 800; font-size: 1.1rem; margin: 0; }
+        h1 { font-size: clamp(2.2rem, 5vh, 3.2rem); margin: 1.5vh 0 0.5vh; font-weight: 800; }
+        .tagline { font-size: 1.2rem; opacity: 0.6; }
 
-        /* Carousel - Clean Yellow Glass Style */
-        .carousel-container {
-            width: 100%; max-width: 650px; 
-            background: var(--carousel-yellow);
-            border-radius: 30px; 
-            padding: 3vh 60px; 
+        /* Testimonial Section - The "Moshi" Style Card */
+        .content-card {
+            width: 100%; max-width: 650px;
+            background: var(--soft-blue);
+            border-radius: 40px;
+            padding: 4vh 50px;
             position: relative;
-            flex-shrink: 1;
-            /* ללא בורדרים */
         }
         .carousel-title {
-            font-size: 1.1rem; font-weight: 800; margin-bottom: 1vh; text-align: center; opacity: 0.7;
+            text-align: center; font-size: 0.9rem; font-weight: 800; 
+            text-transform: uppercase; margin-bottom: 2vh; opacity: 0.5;
         }
-        
-        /* סידור הטקסט למניעת קפיצה למטה */
-        .testimonial-slider { 
-            height: 140px; 
-            display: flex;
-            align-items: center;
-            position: relative; 
-        }
+        .slider { height: 110px; position: relative; display: flex; align-items: center; }
         .slide {
-            position: absolute; width: 100%; opacity: 0; transition: 0.5s ease-in-out;
-            text-align: center; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            position: absolute; opacity: 0; transition: opacity 0.5s ease;
+            text-align: center; width: 100%;
         }
         .slide.active { opacity: 1; }
-        
-        .quote { 
-            font-size: clamp(0.95rem, 2vh, 1.2rem); 
-            line-height: 1.4; 
-            font-weight: 600; 
-            color: #222;
-            max-width: 90%;
-        }
-        .author { font-size: 0.9rem; font-weight: 800; margin-top: 8px; opacity: 0.8; }
+        .quote { font-size: clamp(1rem, 2vh, 1.25rem); font-weight: 600; line-height: 1.4; }
+        .author { display: block; margin-top: 10px; font-size: 0.85rem; font-weight: 800; opacity: 0.4; }
 
-        /* חצים שנראים כמו כפתורים לחיצים */
+        /* Floating Nav Buttons */
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: white; border: none; width: 45px; height: 45px;
-            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 10;
-            transition: all 0.2s ease;
+            background: var(--white); border: none; width: 44px; height: 44px;
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.2s;
         }
         .nav-btn:active { transform: translateY(-50%) scale(0.9); }
-        .nav-btn svg { width: 20px; fill: var(--text); }
-        .prev { left: 8px; } .next { right: 8px; }
+        .prev { left: -22px; } .next { right: -22px; }
 
-        /* Signup & Stores */
-        .bottom-section { width: 100%; max-width: 480px; text-align: center; flex-shrink: 0; }
-        .signup-box {
-            background: white; padding: 8px; border-radius: 20px;
-            display: flex; gap: 10px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); margin-bottom: 2vh;
+        /* Compact Signup */
+        .cta-container { width: 100%; max-width: 450px; text-align: center; }
+        .email-input-group {
+            display: flex; background: #F4F4F4; padding: 6px; border-radius: 100px;
+            margin-bottom: 2.5vh;
         }
-        .signup-box input {
-            flex: 2; border: none; padding: 15px; font-family: 'Assistant'; font-size: 1.1rem; outline: none; border-radius: 15px;
+        input {
+            flex: 1; border: none; background: none; padding: 14px 25px;
+            font-family: 'Assistant'; font-size: 1.05rem; outline: none;
         }
-        .signup-box button {
-            flex: 1; background: var(--cta); color: white; border: none;
-            border-radius: 15px; font-weight: 800; cursor: pointer; transition: 0.2s;
+        .cta-btn {
+            background: var(--vivid-orange); color: white; border: none;
+            padding: 14px 30px; border-radius: 100px; font-weight: 800;
+            cursor: pointer; transition: background 0.2s;
         }
-        .signup-box button:hover { background: #e68a00; }
+        .cta-btn:hover { background: #e68a00; }
 
-        .store-buttons { display: flex; gap: 15px; justify-content: center; align-items: center; }
-        .store-btn { height: clamp(40px, 6vh, 48px); }
-        .ios-soon { position: relative; opacity: 0.7; }
-        .badge {
-            position: absolute; top: -10px; left: -10px; background: var(--cta);
-            color: white; font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; font-weight: 900;
-        }
+        .store-badges { display: flex; gap: 15px; justify-content: center; opacity: 0.8; }
+        .badge { height: 42px; }
 
-        /* וידאו סנאי */
-        .squirrel-video { 
-            height: clamp(80px, 15vh, 130px); position: absolute; bottom: 3vh; right: 4vw; z-index: 5;
-            border-radius: 20px;
+        /* Mascot Video */
+        .squirrel-video {
+            position: absolute; bottom: 4vh; right: 4vw;
+            width: 160px; border-radius: 24px;
         }
 
         @media (max-width: 768px) {
-            .powered-by { top: 2vh; left: 50%; transform: translateX(-50%); width: 100%; justify-content: center; }
-            .studio-logo { height: 50px; }
-            .main-container { padding-top: 10vh; }
-            .signup-box { flex-direction: column; }
-            .signup-box button { width: 100%; padding: 15px; }
+            .header { left: 50%; transform: translateX(-50%); }
+            .content-card { padding: 3vh 30px; border-radius: 30px; }
+            .nav-btn { display: none; } /* במובייל עדיף להחליק או לתת לזה לרוץ לבד */
+            .email-input-group { flex-direction: column; background: none; gap: 10px; }
+            input { background: #F4F4F4; border-radius: 100px; text-align: center; }
+            .cta-btn { width: 100%; }
             .squirrel-video { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="powered-by">
-        <span>Powered by</span>
-        <img src="FuzzleLogo.png" alt="Fuzzle Studio" class="studio-logo">
+    <div class="header">
+        <span class="powered-text">POWERED BY</span>
+        <img src="FuzzleLogo.png" alt="Fuzzle" class="studio-logo">
     </div>
 
-    <div class="main-container">
-        
-        <header class="app-header">
-            <img src="icon.jpg" alt="SquirrelTimer" class="app-icon">
+    <main class="layout">
+        <section class="hero">
+            <img src="icon.jpg" class="app-icon" alt="SquirrelTimer">
             <h1>SquirrelTimer</h1>
-            <p class="price-tag">FREE DURING PRE-LAUNCH</p>
-        </header>
+            <p class="tagline">Transitions made play.</p>
+        </section>
 
-        <section class="carousel-container">
-            <div class="carousel-title">What Families Say</div>
-            
-            <button class="nav-btn prev" onclick="moveSlide(-1)">
-                <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-            </button>
-
-            <div class="testimonial-slider">
+        <section class="content-card">
+            <div class="carousel-title">What parents say</div>
+            <button class="nav-btn prev" onclick="changeSlide(-1)">←</button>
+            <div class="slider">
                 <div class="slide active">
-                    <div style="color: var(--cta); font-size: 1.2rem; margin-bottom: 5px;">★★★★★</div>
-                    <div class="quote">"Nightly screen-time battles were exhausting. With SquirrelTimer, my son actually transitions peacefully because he wants to help the squirrel!"</div>
-                    <div class="author">- Sarah, Mom of a 5-year-old</div>
+                    <span class="quote">"Screen time transitions used to end in tears. Now he actually looks forward to finishing."</span>
+                    <span class="author">SARAH, MOM OF A 5-YEAR-OLD</span>
                 </div>
                 <div class="slide">
-                    <div style="color: var(--cta); font-size: 1.2rem; margin-bottom: 5px;">★★★★★</div>
-                    <div class="quote">"A brilliant visual aid for time-blindness. It reduces anxiety by showing time as a journey. Highly recommended for ADHD families."</div>
-                    <div class="author">- David, Occupational Therapist</div>
-                </div>
-                <div class="slide">
-                    <div style="color: var(--cta); font-size: 1.2rem; margin-bottom: 5px;">★★★★★</div>
-                    <div class="quote">"Finally, a timer that doesn't trigger a meltdown! The gentle design and squirrel character have made our routines so much smoother."</div>
-                    <div class="author">- Michelle, Parenting Coach</div>
+                    <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock."</span>
+                    <span class="author">DAVID, OCCUPATIONAL THERAPIST</span>
                 </div>
             </div>
-
-            <button class="nav-btn next" onclick="moveSlide(1)">
-                <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-            </button>
+            <button class="nav-btn next" onclick="changeSlide(1)">→</button>
         </section>
 
-        <section class="bottom-section">
-            <div class="signup-box">
-                <form action="https://formspree.io/f/YOUR_ID" method="POST" style="display: contents;">
-                    <input type="email" name="email" placeholder="Enter email for early access" required>
-                    <button type="submit">GET ACCESS</button>
-                </form>
+        <section class="cta-container">
+            <div class="email-input-group">
+                <input type="email" placeholder="Email for early access" required>
+                <button class="cta-btn">GET ACCESS</button>
             </div>
-            
-            <div class="store-buttons">
-                <img class="store-btn" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg">
-                <div class="ios-soon">
-                    <span class="badge">SOON</span>
-                    <img class="store-btn" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg">
-                </div>
+            <div class="store-badges">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge" style="opacity: 0.4;">
             </div>
         </section>
+    </main>
 
-        <video class="squirrel-video" autoplay loop muted playsinline>
-            <source src="squirrelanimation.mp4" type="video/mp4">
-        </video>
-
-        <footer style="font-size: 0.7rem; opacity: 0.5;">
-            Designed for Neurodiversity • Fuzzle 2026
-        </footer>
-    </div>
+    <video class="squirrel-video" autoplay loop muted playsinline>
+        <source src="squirrelanimation.mp4" type="video/mp4">
+    </video>
 
     <script>
-        let slideIndex = 0;
+        let slidePos = 0;
         const slides = document.querySelectorAll('.slide');
-
-        function showSlides(n) {
-            slides[slideIndex].classList.remove('active');
-            slideIndex = (n + slides.length) % slides.length;
-            slides[slideIndex].classList.add('active');
+        function changeSlide(n) {
+            slides[slidePos].classList.remove('active');
+            slidePos = (slidePos + n + slides.length) % slides.length;
+            slides[slidePos].classList.add('active');
         }
-
-        function moveSlide(n) { showSlides(slideIndex + n); }
-        setInterval(() => moveSlide(1), 5000); 
+        setInterval(() => changeSlide(1), 5000);
     </script>
 </body>
 </html>
