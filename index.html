@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SquirrelTimer | Calm Transitions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #FFFFFF;
@@ -17,20 +17,20 @@
         body, html {
             margin: 0; padding: 0;
             height: 100vh; width: 100vw;
-            font-family: 'Assistant', sans-serif;
+            font-family: 'Quicksand', sans-serif;
             background-color: var(--bg);
             color: var(--text);
             overflow: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Branding - Ultra-tight Logo */
+        /* Branding - Tight Logo */
         .header {
             position: absolute; top: 3vh; left: 4vw;
             display: flex; align-items: center; gap: 2px; z-index: 100;
         }
         .studio-logo { height: clamp(40px, 6vh, 60px); width: auto; }
-        .powered-text { font-size: 0.7rem; font-weight: 800; opacity: 0.3; text-transform: uppercase; letter-spacing: 0.5px; }
+        .powered-text { font-size: 0.7rem; font-weight: 700; opacity: 0.3; text-transform: uppercase; letter-spacing: 0.5px; }
 
         .main-container {
             display: flex; flex-direction: column; align-items: center;
@@ -43,10 +43,10 @@
             width: clamp(70px, 10vh, 90px); border-radius: 22%; 
             box-shadow: 0 8px 20px rgba(0,0,0,0.05); margin-bottom: 1vh;
         }
-        h1 { font-size: clamp(2rem, 5vh, 2.8rem); margin: 0; font-weight: 800; letter-spacing: -0.5px; }
-        .tagline { font-size: 1.1rem; opacity: 0.6; margin-top: 5px; }
+        h1 { font-size: clamp(2.2rem, 5vh, 3rem); margin: 0; font-weight: 700; letter-spacing: -0.5px; }
+        .tagline { font-size: 1.2rem; opacity: 0.6; margin-top: 5px; font-weight: 400; }
 
-        /* Carousel Section with BG.png */
+        /* Carousel Section with BG.jpg */
         .carousel-section {
             width: 100vw;
             min-height: 35vh;
@@ -63,48 +63,52 @@
 
         .carousel-title {
             color: var(--ref-yellow);
-            font-weight: 800;
-            font-size: clamp(1.1rem, 2.5vh, 1.4rem);
-            margin-bottom: 4vh; /* מרווח כפול מהכותרת */
+            font-weight: 700;
+            font-size: clamp(1.2rem, 2.5vh, 1.5rem);
+            margin-bottom: 4vh;
             text-transform: uppercase;
             letter-spacing: 1px;
             z-index: 10;
         }
 
-        .testimonials-grid {
+        /* Single Testimonial Layout */
+        .testimonials-wrapper {
+            width: 100%;
+            max-width: 320px;
+            height: 120px;
+            position: relative;
             display: flex;
-            gap: 20px;
-            max-width: 1000px;
-            width: 90%;
+            align-items: center;
             justify-content: center;
             z-index: 10;
         }
 
-        /* Testimonial Card - Smaller and Rectangular */
-        .testimonial-card {
-            flex: 1;
-            max-width: 380px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            border-radius: 15px;
-            padding: 20px;
+        .slide {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
             text-align: center;
             color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            width: 100%;
         }
 
-        .quote { font-size: clamp(0.85rem, 1.7vh, 1rem); font-weight: 600; line-height: 1.5; }
-        .author { display: block; margin-top: 12px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; opacity: 0.8; }
+        .slide.active { opacity: 1; }
 
-        /* White Nav Arrows */
+        .quote { font-size: clamp(1.1rem, 2.2vh, 1.3rem); font-weight: 500; line-height: 1.5; }
+        .author { display: block; margin-top: 10px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; opacity: 0.9; }
+
+        /* White Circular Nav Buttons with Hover */
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: none; border: none; width: 50px; height: 50px;
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
-            z-index: 20;
+            background: white; border: none; width: 45px; height: 45px;
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 20;
+            transition: transform 0.2s, background-color 0.2s;
         }
-        .nav-btn svg { width: 24px; fill: #FFFFFF; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
-        .prev { left: 2vw; } .next { right: 2vw; }
+        
+        .nav-btn:hover { transform: translateY(-50%) scale(1.1); background-color: #f8f8f8; }
+        .nav-btn svg { width: 20px; fill: var(--sky-blue); }
+        .prev { left: 10vw; } .next { right: 10vw; }
 
         /* CTA Area */
         .cta-area { width: 100%; max-width: 440px; text-align: center; }
@@ -112,23 +116,21 @@
             display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
             margin-bottom: 2vh;
         }
-        input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: 'Assistant'; font-size: 1.1rem; outline: none; }
-        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 32px; border-radius: 100px; font-weight: 800; cursor: pointer; }
+        input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1.1rem; outline: none; }
+        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 32px; border-radius: 100px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .submit-btn:hover { opacity: 0.9; }
 
         .store-badges { display: flex; gap: 12px; justify-content: center; }
         .badge { height: 40px; }
 
-        /* Mascot */
         .squirrel-vid {
             position: absolute; bottom: 3vh; right: 4vw;
             width: clamp(100px, 14vh, 150px); border-radius: 20px;
         }
 
         @media (max-width: 768px) {
-            .testimonials-grid { flex-direction: column; align-items: center; }
-            .testimonial-card { max-width: 85%; }
-            .carousel-section { background-size: cover; min-height: 45vh; }
-            .nav-btn { display: none; }
+            .prev { left: 4vw; } .next { right: 4vw; }
+            .carousel-section { background-size: cover; }
             .squirrel-vid { display: none; }
             .header { left: 50%; transform: translateX(-50%); width: 100%; justify-content: center; }
             .email-form { flex-direction: column; background: none; gap: 10px; }
@@ -154,22 +156,30 @@
         <section class="carousel-section">
             <div class="carousel-title">What Parents are Saying</div>
             
-            <button class="nav-btn prev">
+            <button class="nav-btn prev" onclick="moveSlide(-1)">
                 <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
             </button>
 
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <span class="quote">"Screen time transitions used to end in tears. Since SquirrelTimer, my son actually looks forward to finishing."</span>
+            <div class="testimonials-wrapper">
+                <div class="slide active">
+                    <span class="quote">"Screen time transitions used to end in tears."</span>
                     <span class="author">Sarah, Mom of a 5-year-old</span>
                 </div>
-                <div class="testimonial-card">
-                    <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock. Highly recommended for ADHD families."</span>
+                <div class="slide">
+                    <span class="quote">"Since SquirrelTimer, he actually looks forward to finishing."</span>
+                    <span class="author">Sarah, Mom of a 5-year-old</span>
+                </div>
+                <div class="slide">
+                    <span class="quote">"Finally, a timer that provides a visual scaffold."</span>
+                    <span class="author">David, Occupational Therapist</span>
+                </div>
+                <div class="slide">
+                    <span class="quote">"Highly recommended for ADHD families."</span>
                     <span class="author">David, Occupational Therapist</span>
                 </div>
             </div>
 
-            <button class="nav-btn next">
+            <button class="nav-btn next" onclick="moveSlide(1)">
                 <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
             </button>
         </section>
@@ -190,5 +200,15 @@
         <source src="squirrelanimation.mp4" type="video/mp4">
     </video>
 
+    <script>
+        let index = 0;
+        const slides = document.querySelectorAll('.slide');
+        function moveSlide(n) {
+            slides[index].classList.remove('active');
+            index = (index + n + slides.length) % slides.length;
+            slides[index].classList.add('active');
+        }
+        setInterval(() => moveSlide(1), 4000);
+    </script>
 </body>
 </html>
