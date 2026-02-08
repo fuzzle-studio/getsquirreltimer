@@ -1,267 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SquirrelTimer | Calm Transitions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #FFFFFF;
-            --text: #2D3142;
-            --cta: #FF9F1C;
-            --sky-blue: #29ABE2;
-            --ref-yellow: #FFD93D;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SquirrelTimer | Calm Transitions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --text: #2D3142;
+            --cta: #FF9F1C;
+            --sky-blue: #29ABE2;
+            --ref-yellow: #FFD93D;
+        }
 
-        body, html {
-            margin: 0; padding: 0;
-            height: 100vh; width: 100vw;
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            overflow: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+        body, html {
+            margin: 0; padding: 0;
+            height: 100vh; width: 100vw;
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-        /* Keyframes for animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* Keyframes for animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
 
-        /* Split Layout - Container holds the full background */
+        /* Split Layout - Container holds the full background */
 /* Split Layout - הגדלת הרקע ללא עיוות */
 /* Split Layout - הזזת הרקע ימינה כדי לחשוף יותר מהענן */
 .split-container {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    background-image: url('cloud_background1.jpg'); 
-    
-    /* חוזרים ל-cover כדי למנוע עיוות ומתיחה לא טבעית */
-    background-size: cover; 
-    
-    /* הזזה ימינה: הערך הראשון (35%) שולט במיקום האופקי */
-    /* ככל שהאחוז נמוך יותר, התמונה "נדחפת" ימינה והצד השמאלי שלה נחשף יותר */
-    background-position: -30% center; 
-    
-    background-repeat: no-repeat;
-    background-color: var(--sky-blue);
-    transition: background-position 0.3s ease; /* אנימציה עדינה בטעינה */
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('cloud_background1.jpg'); 
+    
+    /* חוזרים ל-cover כדי למנוע עיוות ומתיחה לא טבעית */
+    background-size: cover; 
+    
+    /* הזזה ימינה: הערך הראשון (35%) שולט במיקום האופקי */
+    /* ככל שהאחוז נמוך יותר, התמונה "נדחפת" ימינה והצד השמאלי שלה נחשף יותר */
+    background-position: -30% center; 
+    
+    background-repeat: no-repeat;
+    background-color: var(--sky-blue);
+    transition: background-position 0.3s ease; /* אנימציה עדינה בטעינה */
 }
 /* Split Layout - הגדלת הרקע ללא עיוות */
 /* Split Layout - הזזת הענן ימינה מהקצה */
-/* Split Layout - הגדלה ב-20% לרוחב ללא עיוות */
 .split-container {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    background-image: url('cloud_background.jpg'); 
-    
-    /* הגדרה של 120% לרוחב ו-auto לגובה כדי לשמור על פרופורציות */
-    /* זה מגדיל את ה"אורך" של הרקע ב-20% בדיוק */
-    background-size: 120% auto; 
-    
-    /* הזזה ימינה כדי שהענן ייראה טוב ולא ייחתך בשמאל */
-    background-position: 40% center; 
-    
-    background-repeat: no-repeat;
-    background-color: var(--sky-blue);
-    transition: background-position 0.3s ease;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('cloud_background.jpg'); 
+    background-size: cover; 
+    
+    /* העלינו ל-75% - זה דוחף את התמונה שמאלה בתוך המיכל, */
+    /* מה שגורם לענן (שנמצא בצד שמאל של התמונה) לזוז לכיוון מרכז המסך */
+    background-position: 30% center; 
+    
+    background-repeat: no-repeat;
+    background-color: var(--sky-blue);
 }
 
-/* התאמה למובייל */
+/* התאמה למובייל - שם בדרך כלל נרצה את הענן במרכז */
 @media (max-width: 900px) {
-    .split-container { 
-        background-size: cover; /* במובייל עדיף לחזור לכיסוי מלא */
-        background-position: center center; 
-    }
+    .split-container { 
+        background-position: center center; 
+    }
 }
 
-        /* LEFT SIDE: Content & Action */
-        .left-side {
-            width: 45%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 0 2vw 0 5vw;
-            text-align: center;
-            z-index: 10;
-        }
+        /* LEFT SIDE: Content & Action */
+        .left-side {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2vw 0 5vw;
+            text-align: center;
+            z-index: 10;
+        }
 
-        .content-wrap {
-            max-width: 450px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
+        .content-wrap {
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
 
-        .app-icon { 
-            width: 90px; border-radius: 22%; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            margin-bottom: 2vh;
-        }
-        h1 { font-size: clamp(2.5rem, 5vh, 3.5rem); margin: 0; font-weight: 700; letter-spacing: -1px; }
-        .tagline { font-size: 1.4rem; color: var(--sky-blue); font-weight: 600; margin-top: 5px; }
-        .description { font-size: 1.1rem; opacity: 0.7; line-height: 1.5; margin: 2vh 0; }
+        .app-icon { 
+            width: 90px; border-radius: 22%; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            margin-bottom: 2vh;
+        }
+        h1 { font-size: clamp(2.5rem, 5vh, 3.5rem); margin: 0; font-weight: 700; letter-spacing: -1px; }
+        .tagline { font-size: 1.4rem; color: var(--sky-blue); font-weight: 600; margin-top: 5px; }
+        .description { font-size: 1.1rem; opacity: 0.7; line-height: 1.5; margin: 2vh 0; }
 
-        /* Registration Area */
-        .cta-box { width: 100%; margin-top: 1vh; }
-        .email-form {
-            display: flex; background: rgba(245, 245, 245, 0.9); padding: 6px; border-radius: 100px;
-            margin-bottom: 4vh; 
-            border: 1px solid rgba(0,0,0,0.03);
-            backdrop-filter: blur(5px); /* אפקט זכוכית עדין מעל הרקע */
-        }
-        input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1.1rem; outline: none; }
-        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 30px; border-radius: 100px; font-weight: 700; cursor: pointer; }
+        /* Registration Area */
+        .cta-box { width: 100%; margin-top: 1vh; }
+        .email-form {
+            display: flex; background: rgba(245, 245, 245, 0.9); padding: 6px; border-radius: 100px;
+            margin-bottom: 4vh; 
+            border: 1px solid rgba(0,0,0,0.03);
+            backdrop-filter: blur(5px); /* אפקט זכוכית עדין מעל הרקע */
+        }
+        input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1.1rem; outline: none; }
+        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 30px; border-radius: 100px; font-weight: 700; cursor: pointer; }
 
-        /* Store Badges */
-        .store-badges { 
-            display: flex; 
-            gap: 20px; 
-            justify-content: center; 
-            width: 100%;
-        }
-        .badge { 
-            height: 48px; 
-            opacity: 0.9; 
-            transition: transform 0.2s;
-        }
-        .badge:hover { transform: scale(1.05); opacity: 1; }
+        /* Store Badges */
+        .store-badges { 
+            display: flex; 
+            gap: 20px; 
+            justify-content: center; 
+            width: 100%;
+        }
+        .badge { 
+            height: 48px; 
+            opacity: 0.9; 
+            transition: transform 0.2s;
+        }
+        .badge:hover { transform: scale(1.05); opacity: 1; }
 
-        /* RIGHT SIDE: Content Area */
-        .right-side {
-            width: 55%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: visible;
-        }
+        /* RIGHT SIDE: Content Area */
+        .right-side {
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: visible;
+        }
 
-        /* Testimonials positioning */
-        .testimonials-wrapper, .carousel-title {
-            z-index: 10;
-            position: relative;
-            transform: translateX(40px); 
-            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+        /* Testimonials positioning */
+        .testimonials-wrapper, .carousel-title {
+            z-index: 10;
+            position: relative;
+            transform: translateX(40px); 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-        .carousel-title {
-            color: var(--ref-yellow); font-weight: 700; font-size: 1.3rem;
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5vh;
-            text-align: center;
-        }
+        .carousel-title {
+            color: var(--ref-yellow); font-weight: 700; font-size: 1.3rem;
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5vh;
+            text-align: center;
+        }
 
-        .testimonials-wrapper { 
-            width: 80%; max-width: 400px; height: 120px; 
-            display: flex; align-items: center; justify-content: center;
-        }
-        .slide {
-            position: absolute; opacity: 0; transition: opacity 0.6s ease;
-            text-align: center; color: white; width: 100%;
-        }
-        .slide.active { opacity: 1; }
-        .quote { font-size: 1.25rem; font-weight: 500; line-height: 1.5; }
-        .author { display: block; margin-top: 15px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .testimonials-wrapper { 
+            width: 80%; max-width: 400px; height: 120px; 
+            display: flex; align-items: center; justify-content: center;
+        }
+        .slide {
+            position: absolute; opacity: 0; transition: opacity 0.6s ease;
+            text-align: center; color: white; width: 100%;
+        }
+        .slide.active { opacity: 1; }
+        .quote { font-size: 1.25rem; font-weight: 500; line-height: 1.5; }
+        .author { display: block; margin-top: 15px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Mascot positioning */
-        .mascot-img {
-            position: absolute; bottom: 4vh; right: 3vw;
-            width: 110px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
-            animation: fadeInRight 1s ease-out 0.5s forwards;
-            opacity: 0;
-            z-index: 11;
-        }
+        /* Mascot positioning */
+        .mascot-img {
+            position: absolute; bottom: 4vh; right: 3vw;
+            width: 110px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+            animation: fadeInRight 1s ease-out 0.5s forwards;
+            opacity: 0;
+            z-index: 11;
+        }
 
-        /* Footer Branding */
-        .footer-branding {
-            position: absolute; bottom: 3vh; left: 3vw;
-            display: flex; align-items: center; gap: 5px; opacity: 0.4;
-            z-index: 12;
-        }
-        .studio-logo { height: 32px; }
+        /* Footer Branding */
+        .footer-branding {
+            position: absolute; bottom: 3vh; left: 3vw;
+            display: flex; align-items: center; gap: 5px; opacity: 0.4;
+            z-index: 12;
+        }
+        .studio-logo { height: 32px; }
 
-        @media (max-width: 900px) {
-            .split-container { flex-direction: column; overflow-y: auto; background-position: left center; }
-            .left-side, .right-side { width: 100%; flex: none; }
-            .right-side { height: 50vh; }
-            .testimonials-wrapper, .carousel-title { transform: translateX(0); }
-            .footer-branding { position: relative; bottom: auto; left: auto; padding: 3vh 0; justify-content: center; }
-        }
-    </style>
+        @media (max-width: 900px) {
+            .split-container { flex-direction: column; overflow-y: auto; background-position: left center; }
+            .left-side, .right-side { width: 100%; flex: none; }
+            .right-side { height: 50vh; }
+            .testimonials-wrapper, .carousel-title { transform: translateX(0); }
+            .footer-branding { position: relative; bottom: auto; left: auto; padding: 3vh 0; justify-content: center; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="split-container">
-        <div class="left-side">
-            <div class="content-wrap">
-                <img src="icon.jpg" class="app-icon" alt="SquirrelTimer Icon">
-                <div class="text-block">
-                    <h1>SquirrelTimer</h1>
-                    <p class="tagline">Calm transitions. Pure play.</p>
-                    <p class="description">Help your child transition from screen time without the tears. Designed for ADHD and sensitive souls.</p>
-                </div>
+    <div class="split-container">
+        <div class="left-side">
+            <div class="content-wrap">
+                <img src="icon.jpg" class="app-icon" alt="SquirrelTimer Icon">
+                <div class="text-block">
+                    <h1>SquirrelTimer</h1>
+                    <p class="tagline">Calm transitions. Pure play.</p>
+                    <p class="description">Help your child transition from screen time without the tears. Designed for ADHD and sensitive souls.</p>
+                </div>
 
-                <div class="cta-box">
-                    <div class="email-form">
-                        <input type="email" placeholder="Email for early access" required>
-                        <button class="submit-btn">GET ACCESS</button>
-                    </div>
-                    <div class="store-badges">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge" alt="Google Play">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge" alt="App Store">
-                    </div>
-                </div>
-            </div>
+                <div class="cta-box">
+                    <div class="email-form">
+                        <input type="email" placeholder="Email for early access" required>
+                        <button class="submit-btn">GET ACCESS</button>
+                    </div>
+                    <div class="store-badges">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge" alt="Google Play">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge" alt="App Store">
+                    </div>
+                </div>
+            </div>
 
-            <div class="footer-branding">
-                <span style="font-size: 0.65rem; font-weight: 800;">POWERED BY</span>
-                <img src="logo.png" alt="Fuzzle Studio" class="studio-logo">
-            </div>
-        </div>
+            <div class="footer-branding">
+                <span style="font-size: 0.65rem; font-weight: 800;">POWERED BY</span>
+                <img src="logo.png" alt="Fuzzle Studio" class="studio-logo">
+            </div>
+        </div>
 
-        <div class="right-side">
-            <div class="carousel-title">What Parents are Saying</div>
-            
-            <div class="testimonials-wrapper">
-                <div class="slide active">
-                    <span class="quote">"Screen time transitions used to end in tears. Now he looks forward to finishing."</span>
-                    <span class="author">Sarah, Mom of a 5-year-old</span>
-                </div>
-                <div class="slide">
-                    <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock."</span>
-                    <span class="author">David, Occupational Therapist</span>
-                </div>
-                <div class="slide">
-                    <span class="quote">"Highly recommended for ADHD families looking for calm morning routines."</span>
-                    <span class="author">Michelle, Parenting Coach</span>
-                </div>
-            </div>
+        <div class="right-side">
+            <div class="carousel-title">What Parents are Saying</div>
+            
+            <div class="testimonials-wrapper">
+                <div class="slide active">
+                    <span class="quote">"Screen time transitions used to end in tears. Now he looks forward to finishing."</span>
+                    <span class="author">Sarah, Mom of a 5-year-old</span>
+                </div>
+                <div class="slide">
+                    <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock."</span>
+                    <span class="author">David, Occupational Therapist</span>
+                </div>
+                <div class="slide">
+                    <span class="quote">"Highly recommended for ADHD families looking for calm morning routines."</span>
+                    <span class="author">Michelle, Parenting Coach</span>
+                </div>
+            </div>
 
-            <img src="Squirrel.png" class="mascot-img" alt="Squirrel Mascot">
-        </div>
-    </div>
+            <img src="Squirrel.png" class="mascot-img" alt="Squirrel Mascot">
+        </div>
+    </div>
 
-    <script>
-        let index = 0;
-        const slides = document.querySelectorAll('.slide');
-        function moveSlide(n) {
-            slides[index].classList.remove('active');
-            index = (index + n + slides.length) % slides.length;
-            slides[index].classList.add('active');
-        }
-        setInterval(() => moveSlide(1), 5000);
-    </script>
+    <script>
+        let index = 0;
+        const slides = document.querySelectorAll('.slide');
+        function moveSlide(n) {
+            slides[index].classList.remove('active');
+            index = (index + n + slides.length) % slides.length;
+            slides[index].classList.add('active');
+        }
+        setInterval(() => moveSlide(1), 5000);
+    </script>
 </body>
 </html>
+תגדיל לי אורך ב20  אחוז
