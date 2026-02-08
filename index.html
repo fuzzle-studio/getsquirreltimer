@@ -24,7 +24,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Branding - Tight Logo */
+        /* Branding - Ultra-tight Logo */
         .header {
             position: absolute; top: 3vh; left: 4vw;
             display: flex; align-items: center; gap: 2px; z-index: 100;
@@ -37,7 +37,7 @@
             justify-content: space-evenly; height: 100vh; padding: 1vh 0;
         }
 
-        /* Hero */
+        /* Hero Section */
         .hero { text-align: center; }
         .app-icon { 
             width: clamp(70px, 10vh, 90px); border-radius: 22%; 
@@ -49,7 +49,7 @@
         /* Carousel Section with BG.jpg */
         .carousel-section {
             width: 100vw;
-            min-height: 38vh; /* מוגדל מעט כדי לתת מקום לרווחים */
+            min-height: 40vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -65,8 +65,8 @@
             color: var(--ref-yellow);
             font-weight: 700;
             font-size: clamp(1.2rem, 2.5vh, 1.5rem);
-            margin-top: 2vh; /* רווח לפני הכותרת */
-            margin-bottom: 5vh; /* רווח כפול בין הכותרת לתגובות */
+            margin-top: 3vh; /* שורת רווח לפני הכותרת */
+            margin-bottom: 5vh; /* רווח כפול לפני התגובות */
             text-transform: uppercase;
             letter-spacing: 1px;
             z-index: 10;
@@ -78,18 +78,25 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             z-index: 10;
         }
 
+        /* Testimonial Card Layout */
         .testimonials-wrapper {
             width: 100%;
-            max-width: 500px;
-            height: 100px;
+            max-width: 550px;
+            height: 140px;
+            background: rgba(255, 255, 255, 0.15); /* מלבן שקוף למחצה */
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 25px;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .slide {
@@ -98,27 +105,26 @@
             transition: opacity 0.6s ease-in-out;
             text-align: center;
             color: white;
-            width: 100%;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.2); /* לשיפור הקריאות ללא מלבן */
+            width: 90%;
         }
 
         .slide.active { opacity: 1; }
 
-        .quote { font-size: clamp(1.1rem, 2.2vh, 1.3rem); font-weight: 500; line-height: 1.4; }
-        .author { display: block; margin-top: 10px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; opacity: 0.9; }
+        .quote { font-size: clamp(1.05rem, 2vh, 1.25rem); font-weight: 500; line-height: 1.5; }
+        .author { display: block; margin-top: 12px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; opacity: 0.9; }
 
         .nav-btn {
             background: white; border: none; width: 45px; height: 45px;
             border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: transform 0.2s;
-            margin: 0 20px;
+            margin: 0 15px;
         }
         
         .nav-btn:hover { transform: scale(1.1); }
         .nav-btn svg { width: 20px; fill: var(--sky-blue); }
 
-        /* CTA Area - Spacing Adjusted */
+        /* CTA Area - Spacing Tightened */
         .cta-area { width: 100%; max-width: 440px; text-align: center; margin-top: -1vh; }
         .email-form {
             display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
@@ -136,7 +142,8 @@
         }
 
         @media (max-width: 768px) {
-            .nav-btn { width: 35px; height: 35px; margin: 0 10px; }
+            .testimonials-wrapper { max-width: 80%; padding: 20px; height: 160px; }
+            .nav-btn { width: 35px; height: 35px; margin: 0 5px; }
             .carousel-section { background-size: cover; }
             .squirrel-vid { display: none; }
             .header { left: 50%; transform: translateX(-50%); width: 100%; justify-content: center; }
