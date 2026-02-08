@@ -35,7 +35,7 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
-        /* Split Layout 50/50 */
+        /* Split Layout - New Ratio 40/60 to allow bleed */
         .split-container {
             display: flex;
             height: 100vh;
@@ -44,12 +44,12 @@
 
         /* LEFT SIDE: Content & Action */
         .left-side {
-            flex: 1;
+            width: 40%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 0 5vw;
+            padding: 0 2vw 0 5vw;
             text-align: center;
             z-index: 10;
         }
@@ -75,13 +75,13 @@
         .cta-box { width: 100%; margin-top: 1vh; }
         .email-form {
             display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
-            margin-bottom: 4vh; /* Spacing before store badges */
+            margin-bottom: 4vh; 
             border: 1px solid rgba(0,0,0,0.03);
         }
         input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1.1rem; outline: none; }
         .submit-btn { background: var(--cta); color: white; border: none; padding: 0 30px; border-radius: 100px; font-weight: 700; cursor: pointer; }
 
-        /* Enlarged Store Badges */
+        /* Store Badges */
         .store-badges { 
             display: flex; 
             gap: 20px; 
@@ -95,96 +95,88 @@
         }
         .badge:hover { transform: scale(1.05); opacity: 1; }
 
-        /* RIGHT SIDE: BG_Vertical.png and Testimonials */
-.right-side {
-    flex: 1;
-    background-image: url('BGVertical.jpg?v=8'); 
-    /* הגדלה ל-180% כדי להבטיח שהכחול שולט והפייד נדחק רחוק שמאלה */
-    background-size: 180% 100%; 
-    background-repeat: no-repeat;
-    /* הצמדה לימין קיצוני כדי להכניס כמה שיותר מהחלק הכחול לתוך הפריים */
-    background-position: right center; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    background-color: #29ABE2;
-    overflow: hidden;
-}
+        /* RIGHT SIDE: Bleeding background with Smooth Fade */
+        .right-side {
+            width: 60%;
+            background-image: url('BGVertical.jpg?v=9'); 
+            background-size: 200% 100%; 
+            background-repeat: no-repeat;
+            background-position: right center; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: #29ABE2;
+            overflow: visible;
+        }
 
-/* המריחה הלבנה - צומצמה למינימום הכרחי כדי שלא תתקרב לטקסט */
-.right-side::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 12%; /* מעבר חד וקצר יותר ללבן */
-    height: 100%;
-    background: linear-gradient(to right, 
-        rgba(255, 255, 255, 1) 0%, 
-        rgba(255, 255, 255, 0) 100%);
-    z-index: 1;
-    pointer-events: none;
-}
+        /* Improved Smooth Fade - Multi-stop Gradient */
+        .right-side::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150px; /* Start fade before the container */
+            width: 350px;
+            height: 100%;
+            background: linear-gradient(to right, 
+                rgba(255, 255, 255, 1) 0%, 
+                rgba(255, 255, 255, 0.8) 40%, 
+                rgba(255, 255, 255, 0) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
 
-/* מיקום סופי לטקסט ולחצים */
-.testimonials-wrapper, .carousel-title {
-    z-index: 10;
-    position: relative;
-    /* הזזה נוספת ימינה כדי להתרחק מהמפגש עם הצד הלבן */
-    transform: translateX(40px); 
-}
-
-/* התאמת הסנאי לשינוי הרוחב */
-.mascot-img {
-    position: absolute; 
-    bottom: 4vh; 
-    right: 2vw; /* צמוד יותר לימין כדי שלא יפריע לטקסט המורחב */
-    width: 100px;
-    z-index: 11;
-    opacity: 0;
-    animation: fadeInRight 1s ease-out 0.5s forwards;
-}
+        /* Final positioning for testimonials on the blue area */
+        .testimonials-wrapper, .carousel-title {
+            z-index: 10;
+            position: relative;
+            transform: translateX(60px); 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
 
         .carousel-title {
             color: var(--ref-yellow); font-weight: 700; font-size: 1.3rem;
             text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5vh;
             text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .testimonials-wrapper { 
             width: 80%; max-width: 400px; height: 120px; 
-            position: relative; display: flex; align-items: center; justify-content: center;
+            display: flex; align-items: center; justify-content: center;
         }
         .slide {
             position: absolute; opacity: 0; transition: opacity 0.6s ease;
             text-align: center; color: white; width: 100%;
         }
         .slide.active { opacity: 1; }
-        .quote { font-size: 1.25rem; font-weight: 500; line-height: 1.5; text-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .quote { font-size: 1.25rem; font-weight: 500; line-height: 1.5; }
         .author { display: block; margin-top: 15px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
         /* Mascot with Animation */
         .mascot-img {
-            position: absolute; bottom: 4vh; right: 3vw;
+            position: absolute; bottom: 4vh; right: 2vw;
             width: 100px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
             animation: fadeInRight 1s ease-out 0.5s forwards;
             opacity: 0;
+            z-index: 11;
         }
 
-        /* Powered By Footer */
+        /* Footer Branding */
         .footer-branding {
             position: absolute; bottom: 3vh; left: 3vw;
             display: flex; align-items: center; gap: 5px; opacity: 0.4;
+            z-index: 12;
         }
         .studio-logo { height: 32px; }
 
         @media (max-width: 900px) {
             .split-container { flex-direction: column; overflow-y: auto; }
-            .left-side { padding: 8vh 5vw; flex: none; }
-            .right-side { flex: none; height: 50vh; }
+            .left-side, .right-side { width: 100%; flex: none; }
+            .right-side { height: 50vh; background-size: cover; }
+            .right-side::before { left: 0; width: 100%; height: 150px; background: linear-gradient(to bottom, white, transparent); }
+            .testimonials-wrapper, .carousel-title { transform: translateX(0); }
+            .footer-branding { position: relative; bottom: auto; left: auto; padding: 3vh 0; justify-content: center; }
         }
     </style>
 </head>
@@ -194,9 +186,11 @@
         <div class="left-side">
             <div class="content-wrap">
                 <img src="icon.jpg" class="app-icon" alt="SquirrelTimer Icon">
-                <h1>SquirrelTimer</h1>
-                <p class="tagline">Calm transitions. Pure play.</p>
-                <p class="description">Help your child transition from screen time without the tears. Designed for ADHD and sensitive souls.</p>
+                <div class="text-block">
+                    <h1>SquirrelTimer</h1>
+                    <p class="tagline">Calm transitions. Pure play.</p>
+                    <p class="description">Help your child transition from screen time without the tears. Designed for ADHD and sensitive souls.</p>
+                </div>
 
                 <div class="cta-box">
                     <div class="email-form">
@@ -227,6 +221,10 @@
                 <div class="slide">
                     <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock."</span>
                     <span class="author">David, Occupational Therapist</span>
+                </div>
+                <div class="slide">
+                    <span class="quote">"Highly recommended for ADHD families looking for calm morning routines."</span>
+                    <span class="author">Michelle, Parenting Coach</span>
                 </div>
             </div>
 
