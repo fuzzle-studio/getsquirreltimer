@@ -10,8 +10,7 @@
             --bg: #F8F9FA;
             --text: #1D1E2C;
             --cta: #FF9F1C;
-            --carousel-orange: rgba(255, 159, 28, 0.15); /* כתום נוכח אך שקוף למחצה */
-            --border-orange: #FF9F1C;
+            --carousel-yellow: rgba(255, 236, 158, 0.75); /* צהוב 75% שקוף */
         }
 
         * { box-sizing: border-box; }
@@ -31,8 +30,8 @@
             display: flex; align-items: center; gap: 12px;
             z-index: 20;
         }
-        .powered-by span { font-size: 1rem; font-weight: 700; opacity: 0.8; }
-        .studio-logo { height: clamp(60px, 10vh, 110px); width: auto; } /* לוגו מוגדל */
+        .powered-by span { font-size: 0.9rem; font-weight: 700; opacity: 0.8; }
+        .studio-logo { height: clamp(50px, 8vh, 90px); width: auto; }
 
         .main-container {
             display: flex; flex-direction: column; align-items: center;
@@ -47,75 +46,93 @@
             border-radius: 24%; box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
         }
         h1 { margin: 1vh 0 0; font-size: clamp(2.2rem, 5vh, 3.2rem); font-weight: 800; }
-        .price-tag { color: #2E7D32; font-weight: 800; font-size: 1.2rem; margin: 0; }
+        .price-tag { color: #2E7D32; font-weight: 800; font-size: 1.1rem; margin: 0; }
 
-        /* Updated Carousel - Solid/Transparent Orange with Bold Border */
+        /* Carousel - Clean Yellow Glass Style */
         .carousel-container {
-            width: 100%; max-width: 620px; 
-            background: var(--carousel-orange);
-            border-radius: 40px; padding: 3vh 50px; position: relative;
-            border: 4px solid var(--border-orange); /* בורדר עבה וברור */
-            box-shadow: 0 15px 40px rgba(255, 159, 28, 0.15);
+            width: 100%; max-width: 650px; 
+            background: var(--carousel-yellow);
+            border-radius: 30px; 
+            padding: 3vh 60px; 
+            position: relative;
             flex-shrink: 1;
+            /* ללא בורדרים */
         }
         .carousel-title {
-            font-size: 1.2rem; font-weight: 800; margin-bottom: 1.5vh; text-align: center; color: var(--border-orange);
+            font-size: 1.1rem; font-weight: 800; margin-bottom: 1vh; text-align: center; opacity: 0.7;
         }
-        .testimonial-slider { height: clamp(110px, 20vh, 160px); overflow: hidden; position: relative; }
+        
+        /* סידור הטקסט למניעת קפיצה למטה */
+        .testimonial-slider { 
+            height: 140px; 
+            display: flex;
+            align-items: center;
+            position: relative; 
+        }
         .slide {
             position: absolute; width: 100%; opacity: 0; transition: 0.5s ease-in-out;
-            text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            height: 100%;
+            text-align: center; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
         .slide.active { opacity: 1; }
         
-        .quote { font-size: clamp(1rem, 2.2vh, 1.25rem); line-height: 1.5; font-weight: 700; color: #222; }
-        .author { font-size: 0.95rem; font-weight: 800; margin-top: 10px; opacity: 0.9; color: var(--border-orange); }
-
-        .nav-btn {
-            position: absolute; top: 55%; transform: translateY(-50%);
-            background: white; border: 2px solid var(--border-orange); width: 42px; height: 42px;
-            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 10; color: var(--border-orange); font-weight: bold;
+        .quote { 
+            font-size: clamp(0.95rem, 2vh, 1.2rem); 
+            line-height: 1.4; 
+            font-weight: 600; 
+            color: #222;
+            max-width: 90%;
         }
-        .prev { left: 10px; } .next { right: 10px; }
+        .author { font-size: 0.9rem; font-weight: 800; margin-top: 8px; opacity: 0.8; }
+
+        /* חצים שנראים כמו כפתורים לחיצים */
+        .nav-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: white; border: none; width: 45px; height: 45px;
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 10;
+            transition: all 0.2s ease;
+        }
+        .nav-btn:active { transform: translateY(-50%) scale(0.9); }
+        .nav-btn svg { width: 20px; fill: var(--text); }
+        .prev { left: 8px; } .next { right: 8px; }
 
         /* Signup & Stores */
         .bottom-section { width: 100%; max-width: 480px; text-align: center; flex-shrink: 0; }
         .signup-box {
-            background: white; padding: 10px; border-radius: 20px;
+            background: white; padding: 8px; border-radius: 20px;
             display: flex; gap: 10px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); margin-bottom: 2vh;
-            border: 1px solid #EEE;
         }
         .signup-box input {
-            flex: 2; border: none; padding: 15px; font-family: 'Assistant'; font-size: 1.1rem; outline: none;
+            flex: 2; border: none; padding: 15px; font-family: 'Assistant'; font-size: 1.1rem; outline: none; border-radius: 15px;
         }
         .signup-box button {
             flex: 1; background: var(--cta); color: white; border: none;
             border-radius: 15px; font-weight: 800; cursor: pointer; transition: 0.2s;
         }
-        .signup-box button:hover { transform: scale(1.03); background: #e68a00; }
+        .signup-box button:hover { background: #e68a00; }
 
         .store-buttons { display: flex; gap: 15px; justify-content: center; align-items: center; }
-        .store-btn { height: clamp(42px, 6vh, 52px); transition: transform 0.2s; }
-        .store-btn:hover { transform: translateY(-2px); }
+        .store-btn { height: clamp(40px, 6vh, 48px); }
         .ios-soon { position: relative; opacity: 0.7; }
         .badge {
             position: absolute; top: -10px; left: -10px; background: var(--cta);
-            color: white; font-size: 0.7rem; padding: 3px 10px; border-radius: 12px; font-weight: 900;
+            color: white; font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; font-weight: 900;
         }
 
-        .squirrel-anim { 
+        /* וידאו סנאי */
+        .squirrel-video { 
             height: clamp(80px, 15vh, 130px); position: absolute; bottom: 3vh; right: 4vw; z-index: 5;
+            border-radius: 20px;
         }
 
         @media (max-width: 768px) {
-            .powered-by { top: 2vh; left: 50%; transform: translateX(-50%); }
-            .studio-logo { height: 60px; }
+            .powered-by { top: 2vh; left: 50%; transform: translateX(-50%); width: 100%; justify-content: center; }
+            .studio-logo { height: 50px; }
             .main-container { padding-top: 10vh; }
-            .signup-box { flex-direction: column; padding: 15px; }
+            .signup-box { flex-direction: column; }
             .signup-box button { width: 100%; padding: 15px; }
-            .squirrel-anim { display: none; }
+            .squirrel-video { display: none; }
         }
     </style>
 </head>
@@ -123,7 +140,7 @@
 
     <div class="powered-by">
         <span>Powered by</span>
-        <img src="FuzzleLogo.png" alt="Fuzzle Studio" class="studio-logo">
+        <img src="logo.png" alt="Fuzzle Studio" class="studio-logo">
     </div>
 
     <div class="main-container">
@@ -136,7 +153,11 @@
 
         <section class="carousel-container">
             <div class="carousel-title">What Families Say</div>
-            <button class="nav-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+            
+            <button class="nav-btn prev" onclick="moveSlide(-1)">
+                <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+            </button>
+
             <div class="testimonial-slider">
                 <div class="slide active">
                     <div style="color: var(--cta); font-size: 1.2rem; margin-bottom: 5px;">★★★★★</div>
@@ -153,15 +174,18 @@
                     <div class="quote">"Finally, a timer that doesn't trigger a meltdown! The gentle design and squirrel character have made our routines so much smoother."</div>
                     <div class="author">- Michelle, Parenting Coach</div>
                 </div>
-                </div>
-            <button class="nav-btn next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+
+            <button class="nav-btn next" onclick="moveSlide(1)">
+                <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+            </button>
         </section>
 
         <section class="bottom-section">
             <div class="signup-box">
                 <form action="https://formspree.io/f/YOUR_ID" method="POST" style="display: contents;">
                     <input type="email" name="email" placeholder="Enter email for early access" required>
-                    <button type="submit">GET THE BETA</button>
+                    <button type="submit">GET ACCESS</button>
                 </form>
             </div>
             
@@ -174,7 +198,9 @@
             </div>
         </section>
 
-        <img src="squirrel-anim.gif" class="squirrel-anim" alt="Mascot">
+        <video class="squirrel-video" autoplay loop muted playsinline>
+            <source src="squirrelanimation.mp4" type="video/mp4">
+        </video>
 
         <footer style="font-size: 0.7rem; opacity: 0.5;">
             Designed for Neurodiversity • Fuzzle 2026
