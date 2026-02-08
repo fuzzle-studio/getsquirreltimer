@@ -96,17 +96,19 @@
         .badge:hover { transform: scale(1.05); opacity: 1; }
 
         /* RIGHT SIDE: BG_Vertical.png and Testimonials */
-        .right-side {
-            flex: 1;
-            background-image: url('BGVertical.jpg?v=1'); /* ודאי שזה השם המדויק */
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
+.right-side {
+    flex: 1; /* נשאר חצי מסך */
+    background-image: url('BGVertical.jpg?v=2'); 
+    background-size: 130% 100%; /* מותח את הרוחב מעבר לגבולות כדי להבטיח כיסוי, או השתמשי ב-80% אם את רוצה לראות את הקצוות */
+    background-repeat: no-repeat;
+    background-position: right center; /* נצמד לימין כדי שהפייד בצד שמאל ייראה */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: var(--sky-blue); /* צבע גיבוי למקרה שהתמונה לא מכסה הכל */
+}
 
         .carousel-title {
             color: var(--ref-yellow); font-weight: 700; font-size: 1.3rem;
