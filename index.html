@@ -24,7 +24,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Branding - Tight Logo */
+        /* Branding */
         .header {
             position: absolute; top: 3vh; left: 4vw;
             display: flex; align-items: center; gap: 2px; z-index: 100;
@@ -37,19 +37,20 @@
             justify-content: space-evenly; height: 100vh; padding: 1vh 0;
         }
 
-        /* Hero */
-        .hero { text-align: center; }
+        /* Hero with Description */
+        .hero { text-align: center; max-width: 600px; padding: 0 20px; }
         .app-icon { 
             width: clamp(70px, 10vh, 90px); border-radius: 22%; 
             box-shadow: 0 8px 20px rgba(0,0,0,0.05); margin-bottom: 1vh;
         }
         h1 { font-size: clamp(2.2rem, 5vh, 3rem); margin: 0; font-weight: 700; letter-spacing: -0.5px; }
-        .tagline { font-size: 1.2rem; opacity: 0.6; margin-top: 5px; font-weight: 400; }
+        .tagline { font-size: 1.2rem; color: var(--sky-blue); margin-top: 5px; font-weight: 600; }
+        .description { font-size: 1rem; opacity: 0.7; margin-top: 10px; line-height: 1.4; max-width: 450px; margin-left: auto; margin-right: auto; }
 
         /* Carousel Section with BG.jpg */
         .carousel-section {
             width: 100vw;
-            min-height: 38vh; /* מוגדל מעט כדי לתת מקום לרווחים */
+            min-height: 35vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -64,12 +65,14 @@
         .carousel-title {
             color: var(--ref-yellow);
             font-weight: 700;
-            font-size: clamp(1.2rem, 2.5vh, 1.5rem);
-            margin-top: 2vh; /* רווח לפני הכותרת */
-            margin-bottom: 5vh; /* רווח כפול בין הכותרת לתגובות */
+            font-size: clamp(1.1rem, 2.3vh, 1.4rem);
+            margin-top: 2vh;
+            margin-bottom: 4vh;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             z-index: 10;
+            /* Subtle glow to match the reference style */
+            text-shadow: 0 0 10px rgba(255, 217, 61, 0.4);
         }
 
         .testimonials-container {
@@ -99,36 +102,36 @@
             text-align: center;
             color: white;
             width: 100%;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.2); /* לשיפור הקריאות ללא מלבן */
+            text-shadow: 0 1px 4px rgba(0,0,0,0.2);
         }
 
         .slide.active { opacity: 1; }
-
         .quote { font-size: clamp(1.1rem, 2.2vh, 1.3rem); font-weight: 500; line-height: 1.4; }
         .author { display: block; margin-top: 10px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; opacity: 0.9; }
 
         .nav-btn {
-            background: white; border: none; width: 45px; height: 45px;
+            background: white; border: none; width: 42px; height: 42px;
             border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: transform 0.2s;
-            margin: 0 20px;
+            margin: 0 15px;
         }
-        
         .nav-btn:hover { transform: scale(1.1); }
-        .nav-btn svg { width: 20px; fill: var(--sky-blue); }
+        .nav-btn svg { width: 18px; fill: var(--sky-blue); }
 
-        /* CTA Area - Spacing Adjusted */
-        .cta-area { width: 100%; max-width: 440px; text-align: center; margin-top: -1vh; }
+        /* CTA Area */
+        .cta-area { width: 100%; max-width: 440px; text-align: center; }
         .email-form {
             display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
-            margin-bottom: 2vh;
+            margin-bottom: 2.5vh;
         }
         input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1.1rem; outline: none; }
-        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 32px; border-radius: 100px; font-weight: 700; cursor: pointer; }
+        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 32px; border-radius: 100px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(255, 159, 28, 0.3); }
 
-        .store-badges { display: flex; gap: 12px; justify-content: center; }
-        .badge { height: 40px; }
+        .store-badges { display: flex; gap: 15px; justify-content: center; margin-top: 10px; }
+        .badge { height: 38px; opacity: 0.9; transition: opacity 0.2s; }
+        .badge:hover { opacity: 1; }
 
         .squirrel-vid {
             position: absolute; bottom: 3vh; right: 4vw;
@@ -136,13 +139,14 @@
         }
 
         @media (max-width: 768px) {
-            .nav-btn { width: 35px; height: 35px; margin: 0 10px; }
-            .carousel-section { background-size: cover; }
+            .nav-btn { width: 35px; height: 35px; margin: 0 5px; }
+            .carousel-section { background-size: cover; min-height: 40vh; }
             .squirrel-vid { display: none; }
             .header { left: 50%; transform: translateX(-50%); width: 100%; justify-content: center; }
             .email-form { flex-direction: column; background: none; gap: 10px; }
             input { background: #F5F5F5; border-radius: 100px; text-align: center; }
             .submit-btn { padding: 16px; width: 100%; }
+            .description { font-size: 0.95rem; }
         }
     </style>
 </head>
@@ -158,6 +162,7 @@
             <img src="icon.jpg" class="app-icon" alt="SquirrelTimer">
             <h1>SquirrelTimer</h1>
             <p class="tagline">Calm transitions. Pure play.</p>
+            <p class="description">Help your child transition from screen time to real life without the tears. A visual, anxiety-free timer designed for ADHD and sensitive souls.</p>
         </section>
 
         <section class="carousel-section">
@@ -179,7 +184,7 @@
                     </div>
                     <div class="slide">
                         <span class="quote">"Highly recommended for ADHD families looking for calm morning routines."</span>
-                        <span class="author">David, Occupational Therapist</span>
+                        <span class="author">Michelle, Parenting Coach</span>
                     </div>
                 </div>
 
@@ -195,8 +200,8 @@
                 <button class="submit-btn">GET ACCESS</button>
             </div>
             <div class="store-badges">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge" style="opacity: 0.4;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge" alt="Google Play">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge" style="opacity: 0.5;" alt="App Store">
             </div>
         </section>
     </div>
@@ -213,7 +218,7 @@
             index = (index + n + slides.length) % slides.length;
             slides[index].classList.add('active');
         }
-        setInterval(() => moveSlide(1), 4000);
+        setInterval(() => moveSlide(1), 5000);
     </script>
 </body>
 </html>
