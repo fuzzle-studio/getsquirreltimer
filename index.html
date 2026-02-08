@@ -24,171 +24,143 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Fixed Footer Branding */
-        .footer-branding {
-            position: absolute; bottom: 2vh; left: 3vw;
-            display: flex; align-items: center; gap: 4px; z-index: 100;
-        }
-        .studio-logo { height: 35px; width: auto; }
-        .powered-text { font-size: 0.6rem; font-weight: 700; opacity: 0.3; text-transform: uppercase; }
-
-        .main-wrapper {
-            display: flex; flex-direction: column;
-            height: 100vh; width: 100vw;
-        }
-
-        /* Top Section: Aligned Left */
-        .top-section {
-            flex: 1;
+        /* Split Layout Container */
+        .split-container {
             display: flex;
-            align-items: center;
-            padding: 0 10vw;
+            height: 100vh;
+            width: 100vw;
         }
 
-        .content-area {
-            max-width: 550px;
+        /* Left Side: Pitch & Registration */
+        .left-side {
+            flex: 1.1;
             display: flex;
             flex-direction: column;
-            gap: 2.5vh;
+            justify-content: center;
+            padding: 0 6vw;
+            gap: 3vh;
+            z-index: 10;
         }
 
-        /* Brand & Pitch */
         .app-icon { 
-            width: 85px; border-radius: 22%; 
+            width: 80px; border-radius: 22%; 
             box-shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
-        h1 { font-size: clamp(2.5rem, 5vh, 3.5rem); margin: 0; font-weight: 700; letter-spacing: -1px; }
-        .tagline { font-size: 1.4rem; color: var(--sky-blue); font-weight: 600; margin: -1vh 0 0.5vh 0; }
-        .description { font-size: 1.1rem; opacity: 0.7; line-height: 1.5; margin-bottom: 1vh; }
+        h1 { font-size: clamp(2.2rem, 4.5vh, 3.2rem); margin: 0; font-weight: 700; letter-spacing: -1px; }
+        .tagline { font-size: 1.3rem; color: var(--sky-blue); font-weight: 600; margin-top: -1vh; }
+        .description { font-size: 1rem; opacity: 0.7; line-height: 1.5; max-width: 420px; }
 
-        /* Registration Area - Linked to content */
-        .registration-container {
-            display: flex;
-            align-items: flex-end;
-            gap: 20px;
-            position: relative;
-        }
-
-        /* The decorative Mascot - Scaled down */
-        .mascot-img {
-            width: 100px;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
-            margin-bottom: 45px; /* Aligns with the input box */
-        }
-
-        .cta-box { flex: 1; max-width: 400px; }
-        
+        .cta-box { width: 100%; max-width: 380px; margin-top: 1vh; }
         .email-form {
-            display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
+            display: flex; background: #F5F5F5; padding: 5px; border-radius: 100px;
             margin-bottom: 2vh; border: 1px solid rgba(0,0,0,0.03);
         }
-        input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1rem; outline: none; }
+        input { flex: 1; border: none; background: none; padding: 12px 18px; font-family: inherit; font-size: 0.95rem; outline: none; }
         .submit-btn { background: var(--cta); color: white; border: none; padding: 0 25px; border-radius: 100px; font-weight: 700; cursor: pointer; }
 
-        .store-badges { display: flex; gap: 12px; justify-content: flex-start; }
-        .badge { height: 35px; opacity: 0.8; }
+        .store-badges { display: flex; gap: 10px; justify-content: flex-start; }
+        .badge { height: 32px; opacity: 0.8; }
 
-        /* Bottom Section: Testimonials with BG.jpg */
-        .bottom-section {
-            width: 100vw; height: 32vh;
+        /* Right Side: BG.jpg and Testimonials */
+        .right-side {
+            flex: 0.9;
             background-image: url('BG.jpg'); 
-            background-size: 100% 100%; background-repeat: no-repeat;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            /* Creating the brush edge on the left of the image */
+            mask-image: linear-gradient(to right, transparent, black 15%);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%);
         }
 
         .carousel-title {
             color: var(--ref-yellow); font-weight: 700; font-size: 1.1rem;
-            text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 3vh;
+            text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 5vh;
+            text-align: center;
         }
 
-        .testimonials-container {
-            display: flex; align-items: center; justify-content: center; width: 100%;
+        .testimonials-wrapper { 
+            width: 80%; max-width: 350px; height: 150px; 
+            position: relative; display: flex; align-items: center; justify-content: center;
         }
-
-        .testimonials-wrapper { width: 500px; height: 80px; position: relative; }
         .slide {
             position: absolute; opacity: 0; transition: opacity 0.6s ease;
             text-align: center; color: white; width: 100%;
         }
         .slide.active { opacity: 1; }
-        .quote { font-size: 1.1rem; font-weight: 500; line-height: 1.4; }
-        .author { display: block; margin-top: 8px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+        .quote { font-size: 1.1rem; font-weight: 500; line-height: 1.5; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .author { display: block; margin-top: 15px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
-        .nav-btn {
-            background: white; border: none; width: 38px; height: 38px;
-            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: 0 20px;
+        .mascot-img {
+            position: absolute; bottom: 5vh; right: 3vw;
+            width: 90px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
         }
-        .nav-btn svg { width: 18px; fill: var(--sky-blue); }
 
-        @media (max-width: 768px) {
-            .top-section { padding: 5vh 5vw; align-items: flex-start; }
-            .content-area { text-align: center; align-items: center; }
-            .registration-container { flex-direction: column-reverse; align-items: center; gap: 10px; }
-            .mascot-img { margin-bottom: 0; width: 80px; }
+        /* Powered By - Now tucked away */
+        .footer-branding {
+            position: absolute; bottom: 2vh; left: 6vw;
+            display: flex; align-items: center; gap: 4px; opacity: 0.3;
+        }
+        .studio-logo { height: 28px; }
+
+        @media (max-width: 900px) {
+            .split-container { flex-direction: column; overflow-y: auto; }
+            .left-side { padding: 6vh 8vw; align-items: center; text-align: center; flex: none; }
+            .right-side { flex: none; height: 50vh; mask-image: none; -webkit-mask-image: none; }
+            .description { margin: 0 auto; }
             .store-badges { justify-content: center; }
-            .bottom-section { height: 40vh; background-size: cover; }
-            .nav-btn { display: none; }
+            .footer-branding { position: relative; bottom: auto; left: auto; justify-content: center; padding: 2vh 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="main-wrapper">
-        <div class="top-section">
-            <div class="content-area">
-                <img src="icon.jpg" class="app-icon" alt="Icon">
-                
-                <div class="text-block">
-                    <h1>SquirrelTimer</h1>
-                    <p class="tagline">Calm transitions. Pure play.</p>
-                    <p class="description">Help your child transition from screen time to real life without the tears. A visual, anxiety-free timer designed for ADHD and sensitive souls.</p>
-                </div>
+    <div class="split-container">
+        <div class="left-side">
+            <img src="icon.jpg" class="app-icon" alt="Icon">
+            <div class="text-block">
+                <h1>SquirrelTimer</h1>
+                <p class="tagline">Calm transitions. Pure play.</p>
+                <p class="description">Help your child transition from screen time to real life without the tears. A visual, anxiety-free timer designed for ADHD and sensitive souls.</p>
+            </div>
 
-                <div class="registration-container">
-                    <img src="Squirrel.png" class="mascot-img" alt="Mascot">
-                    <div class="cta-box">
-                        <div class="email-form">
-                            <input type="email" placeholder="Email for early access" required>
-                            <button class="submit-btn">GET ACCESS</button>
-                        </div>
-                        <div class="store-badges">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge">
-                        </div>
-                    </div>
+            <div class="cta-box">
+                <div class="email-form">
+                    <input type="email" placeholder="Email for early access" required>
+                    <button class="submit-btn">GET ACCESS</button>
                 </div>
+                <div class="store-badges">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge">
+                </div>
+            </div>
+
+            <div class="footer-branding">
+                <span style="font-size: 0.6rem; font-weight: 700;">POWERED BY</span>
+                <img src="logo.png" alt="Fuzzle" class="studio-logo">
             </div>
         </div>
 
-        <div class="bottom-section">
+        <div class="right-side">
             <div class="carousel-title">What Parents are Saying</div>
-            <div class="testimonials-container">
-                <button class="nav-btn prev" onclick="moveSlide(-1)">
-                    <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-                </button>
-
-                <div class="testimonials-wrapper">
-                    <div class="slide active">
-                        <span class="quote">"Screen time transitions used to end in tears. Now he looks forward to finishing."</span>
-                        <span class="author">Sarah, Mom of a 5-year-old</span>
-                    </div>
-                    <div class="slide">
-                        <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock."</span>
-                        <span class="author">David, Occupational Therapist</span>
-                    </div>
+            
+            <div class="testimonials-wrapper">
+                <div class="slide active">
+                    <span class="quote">"Screen time transitions used to end in tears. Now he looks forward to finishing."</span>
+                    <span class="author">Sarah, Mom of a 5-year-old</span>
                 </div>
-
-                <button class="nav-btn next" onclick="moveSlide(1)">
-                    <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                </button>
+                <div class="slide">
+                    <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock."</span>
+                    <span class="author">David, Occupational Therapist</span>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="footer-branding">
-        <span class="powered-text">POWERED BY</span>
-        <img src="logo.png" alt="Fuzzle" class="studio-logo">
+            <img src="Squirrel.png" class="mascot-img" alt="Mascot">
+        </div>
     </div>
 
     <script>
