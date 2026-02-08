@@ -3,160 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SquirrelTimer | Transitions Made Easy</title>
+    <title>SquirrelTimer | Calm Transitions</title>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-mint: #E8F5E9;
-            --accent-orange: #FF9F1C;
-            --text-dark: #2D3142;
+            --bg: #FFFFFF;
+            --text: #2D3142;
+            --cta: #FF9F1C;
+            --soft-gray: #F8F9FA;
+            --sky-blue: #29ABE2; /* The blue from your reference image */
         }
 
-        * { box-sizing: border-box; }
         body, html {
             margin: 0; padding: 0;
             height: 100vh; width: 100vw;
             font-family: 'Assistant', sans-serif;
-            /* רקע גרדיאנט שנותן חיים */
-            background: linear-gradient(135deg, #E0F2F1 0%, #FFFFFF 100%);
-            color: var(--text-dark);
+            background-color: var(--bg);
+            color: var(--text);
             overflow: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .main-wrapper {
+        /* Top Branding */
+        .header {
+            position: absolute; top: 3vh; left: 4vw;
+            display: flex; align-items: center; gap: 15px;
+            z-index: 20;
+        }
+        .studio-logo { height: clamp(50px, 8vh, 80px); width: auto; }
+        .powered-text { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.4; }
+
+        .container {
             display: flex; flex-direction: column; align-items: center;
-            justify-content: space-around; height: 100vh; padding: 4vh 5vw;
-            text-align: center;
+            justify-content: center; height: 100vh; gap: 5vh; padding: 0 5vw;
         }
 
-        /* Branding - Minimal & Clean */
-        .studio-brand {
-            position: absolute; top: 3vh; left: 50%; transform: translateX(-50%);
-            display: flex; align-items: center; gap: 10px; opacity: 0.6;
+        /* Hero Section */
+        .hero { text-align: center; }
+        .app-icon { 
+            width: clamp(80px, 12vh, 110px); height: clamp(80px, 12vh, 110px); 
+            border-radius: 24%; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 20px;
         }
-        .studio-brand img { height: 45px; }
+        h1 { font-size: clamp(2.2rem, 5vh, 3.2rem); margin: 0; font-weight: 800; }
+        .tagline { font-size: 1.3rem; font-weight: 400; margin-top: 10px; color: var(--text); }
 
-        /* Squirrel Hero */
-        .hero-section { flex-shrink: 0; }
-        .main-video {
-            width: 140px; height: 140px; border-radius: 35px;
-            object-fit: cover; box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-            margin-bottom: 2vh;
-        }
-        h1 { font-size: clamp(2.5rem, 6vh, 3.5rem); margin: 0; font-weight: 800; letter-spacing: -1px; }
-        .tagline { font-size: 1.2rem; opacity: 0.5; font-weight: 400; margin-top: 5px; }
-
-        /* Testimonials - The "Cloud" Card */
-        .review-card {
-            width: 100%; max-width: 600px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 40px; padding: 3vh 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        /* Reference-Matched Carousel (The Blue Wave) */
+        .carousel-outer {
+            width: 100vw;
+            background-color: var(--sky-blue);
             position: relative;
+            padding: 6vh 0;
+            /* Creating the hand-drawn "torn paper" effect from your image */
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 Q50,5 100,20 T200,20 T300,20 T400,20 T500,20 T600,20 T700,20 T800,20 T900,20 T1000,20 L1000,80 Q950,95 900,80 T800,80 T700,80 T600,80 T500,80 T400,80 T300,80 T200,80 T100,80 T0,80 Z" fill="black"/></svg>');
+            mask-size: 100% 100%;
+            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 Q50,5 100,20 T200,20 T300,20 T400,20 T500,20 T600,20 T700,20 T800,20 T900,20 T1000,20 L1000,80 Q950,95 900,80 T800,80 T700,80 T600,80 T500,80 T400,80 T300,80 T200,80 T100,80 T0,80 Z" fill="black"/></svg>');
+            -webkit-mask-size: 100% 100%;
         }
-        .slider-box { height: 100px; display: flex; align-items: center; justify-content: center; }
+
+        .testimonials {
+            max-width: 650px; margin: 0 auto; text-align: center; position: relative;
+            min-height: 140px; display: flex; align-items: center; justify-content: center;
+            color: white;
+        }
+
         .slide {
-            position: absolute; opacity: 0; transition: 0.6s ease;
-            font-size: clamp(1.1rem, 2.2vh, 1.3rem); line-height: 1.4; font-weight: 600;
+            position: absolute; opacity: 0; transition: opacity 0.6s ease;
+            width: 100%; padding: 0 60px;
         }
         .slide.active { opacity: 1; }
-        .author-tag { display: block; margin-top: 10px; font-size: 0.8rem; font-weight: 800; opacity: 0.3; }
+        .quote { font-size: clamp(1rem, 2vh, 1.3rem); font-weight: 600; line-height: 1.5; }
+        .author { display: block; margin-top: 15px; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; opacity: 0.8; }
 
-        /* Custom Nav Buttons */
+        /* Floating Nav Buttons */
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: #2D3142; color: white; border: none;
-            width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+            background: white; border: none; width: 45px; height: 45px;
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 10;
         }
-        .prev { left: -18px; } .next { right: -18px; }
+        .nav-btn svg { width: 20px; fill: var(--sky-blue); }
+        .prev { left: 10px; } .next { right: 10px; }
 
-        /* Action Section */
-        .action-area { width: 100%; max-width: 450px; }
-        .input-group {
-            background: white; padding: 8px; border-radius: 100px;
-            display: flex; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            margin-bottom: 2.5vh;
+        /* CTA Section */
+        .cta-box { width: 100%; max-width: 480px; text-align: center; }
+        .email-form {
+            display: flex; background: var(--soft-gray); padding: 8px; border-radius: 100px;
+            margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
         input {
-            flex: 1; border: none; padding: 15px 25px; font-family: 'Assistant';
-            font-size: 1.1rem; outline: none; background: none;
+            flex: 1; border: none; background: none; padding: 12px 25px;
+            font-family: 'Assistant'; font-size: 1rem; outline: none;
         }
-        .btn-main {
-            background: var(--accent-orange); color: white; border: none;
+        button {
+            background: var(--cta); color: white; border: none;
             padding: 0 30px; border-radius: 100px; font-weight: 800;
             cursor: pointer; transition: transform 0.2s;
         }
-        .btn-main:hover { transform: scale(1.05); }
+        button:hover { transform: scale(1.05); }
 
-        .app-badges { display: flex; gap: 15px; justify-content: center; align-items: center; }
-        .badge-img { height: 42px; opacity: 0.9; }
+        .stores { display: flex; gap: 15px; justify-content: center; }
+        .store-badge { height: 40px; }
 
-        @media (max-width: 600px) {
-            .studio-brand { top: 2vh; }
-            .review-card { padding: 3vh 20px; }
-            .nav-btn { display: none; }
-            .input-group { flex-direction: column; background: none; box-shadow: none; gap: 10px; }
-            input { background: white; border-radius: 100px; text-align: center; }
-            .btn-main { padding: 18px; }
+        /* The Animation Video */
+        .squirrel-video {
+            position: absolute; bottom: 3vh; right: 4vw;
+            width: clamp(100px, 15vh, 160px); border-radius: 20px;
+            z-index: 5;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .header { left: 50%; transform: translateX(-50%); }
+            .squirrel-video { display: none; }
+            .email-form { flex-direction: column; border-radius: 20px; gap: 10px; background: none; }
+            input { background: var(--soft-gray); border-radius: 100px; text-align: center; }
+            button { padding: 15px; }
+            .carousel-outer { mask-image: none; -webkit-mask-image: none; border-radius: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="studio-brand">
-        <img src="FuzzleLogo.png" alt="Fuzzle">
-        <span>Powered by Fuzzle</span>
+    <div class="header">
+        <span class="powered-text">Powered by</span>
+        <img src="logo.png" alt="Fuzzle Studio" class="studio-logo">
     </div>
 
-    <main class="main-wrapper">
-        
-        <section class="hero-section">
-            <video class="main-video" autoplay loop muted playsinline>
-                <source src="squirrelanimation.mp4" type="video/mp4">
-            </video>
+    <div class="container">
+        <header class="hero">
+            <img src="icon.jpg" class="app-icon" alt="SquirrelTimer">
             <h1>SquirrelTimer</h1>
             <p class="tagline">Calm transitions. Pure play.</p>
-        </section>
+        </header>
 
-        <section class="review-card">
-            <button class="nav-btn prev" onclick="move(-1)">←</button>
-            <div class="slider-box">
+        <div class="carousel-outer">
+            <div class="testimonials">
+                <button class="nav-btn prev" onclick="moveSlide(-1)">
+                    <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                </button>
+                
                 <div class="slide active">
-                    "Screen time transitions used to end in tears. Now he actually looks forward to finishing."
-                    <span class="author-tag">SARAH, MOM OF A 5-YEAR-OLD</span>
+                    <span class="quote">"Screen time transitions used to end in tears. Since we started using SquirrelTimer, my son actually looks forward to finishing."</span>
+                    <span class="author">Sarah, Mom of a 5-year-old</span>
                 </div>
                 <div class="slide">
-                    "A brilliant visual aid for time-blindness. Highly recommended for ADHD families."
-                    <span class="author-tag">DAVID, OCCUPATIONAL THERAPIST</span>
+                    <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock. Highly recommended for ADHD families."</span>
+                    <span class="author">David, Occupational Therapist</span>
                 </div>
-            </div>
-            <button class="nav-btn next" onclick="move(1)">→</button>
-        </section>
+                <div class="slide">
+                    <span class="quote">"It turned our chaotic morning routine into a calm, predictable game. The kids love seeing the squirrel reach his goal!"</span>
+                    <span class="author">Michelle, Parenting Coach</span>
+                </div>
 
-        <section class="action-area">
-            <div class="input-group">
-                <input type="email" placeholder="Email for early access" required>
-                <button class="btn-main">GET ACCESS</button>
+                <button class="nav-btn next" onclick="moveSlide(1)">
+                    <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
             </div>
-            <div class="app-badges">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge-img">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge-img" style="opacity: 0.3;">
-            </div>
-        </section>
+        </div>
 
-    </main>
+        <div class="cta-box">
+            <div class="email-form">
+                <form action="https://formspree.io/f/YOUR_ID" method="POST" style="display: contents;">
+                    <input type="email" name="email" placeholder="Email for early access" required>
+                    <button type="submit">Get Access</button>
+                </form>
+            </div>
+            <div class="stores">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="store-badge">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="store-badge" style="opacity: 0.4;">
+            </div>
+        </div>
+    </div>
+
+    <video class="squirrel-video" autoplay loop muted playsinline>
+        <source src="squirrelanimation.mp4" type="video/mp4">
+    </video>
 
     <script>
-        let current = 0;
-        const items = document.querySelectorAll('.slide');
-        function move(n) {
-            items[current].classList.remove('active');
-            current = (current + n + items.length) % items.length;
-            items[current].classList.add('active');
+        let index = 0;
+        const slides = document.querySelectorAll('.slide');
+        function moveSlide(n) {
+            slides[index].classList.remove('active');
+            index = (index + n + slides.length) % slides.length;
+            slides[index].classList.add('active');
         }
-        setInterval(() => move(1), 5000);
+        setInterval(() => moveSlide(1), 5000);
     </script>
 </body>
 </html>
