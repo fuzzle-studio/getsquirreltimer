@@ -98,27 +98,27 @@
         /* RIGHT SIDE: BG_Vertical.png and Testimonials */
 .right-side {
     flex: 1;
-    background-image: url('BGVertical.jpg?v=6'); 
-    /* הגדלה של התמונה ל-140% כדי שהשוליים המרוחים שלה יכנסו פנימה */
-    background-size: 140% 100%; 
+    background-image: url('BGVertical.jpg?v=7'); 
+    /* הגדלה ל-160% כדי להרחיב את טווח הרקע ולדחוק את הפייד שמאלה */
+    background-size: 160% 100%; 
     background-repeat: no-repeat;
-    /* הצמדה לימין קיצוני כדי למשוך את הפייד השמאלי לתוך חצי המסך */
+    /* הצמדה לימין כדי שהחלק ה'נקי' של הקובץ יהיה בצד ימין והפייד יכנס פנימה משמאל */
     background-position: right center; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
-    background-color: #29ABE2; /* צבע גיבוי כחול */
+    background-color: #29ABE2;
 }
 
-/* שכבת המריחה - הפכנו אותה לעדינה יותר (פחות רחבה) כדי שלא תעלה על הטקסט */
+/* המריחה הלבנה - צמצום נוסף כדי להשאיר מקסימום מקום לטקסט על הרקע */
 .right-side::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 20%; /* צמצמנו מ-35% ל-20% כדי שהלבן לא יסתיר את המילים */
+    width: 15%; /* צמצום ל-15% כדי שהמעבר ללבן יהיה קצר ואלגנטי */
     height: 100%;
     background: linear-gradient(to right, 
         rgba(255, 255, 255, 1) 0%, 
@@ -127,6 +127,13 @@
     pointer-events: none;
 }
 
+/* וידוא שהטקסט לא מושפע מהמריחה הלבנה */
+.testimonials-wrapper, .carousel-title {
+    z-index: 10;
+    position: relative;
+    /* מרכוז הטקסט מעט ימינה בתוך החצי שלו אם הוא עדיין קרוב מדי ללבן */
+    transform: translateX(20px); 
+}
 /* הבטחת הקריאות של הטקסט והחצים מעל שכבת המריחה */
 .testimonials-wrapper, .carousel-title {
     z-index: 10;
