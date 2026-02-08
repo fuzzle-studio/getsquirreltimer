@@ -98,11 +98,11 @@
         /* RIGHT SIDE: BG_Vertical.png and Testimonials */
 .right-side {
     flex: 1;
-    background-image: url('BGVertical.jpg?v=7'); 
-    /* הגדלה ל-160% כדי להרחיב את טווח הרקע ולדחוק את הפייד שמאלה */
-    background-size: 160% 100%; 
+    background-image: url('BGVertical.jpg?v=8'); 
+    /* הגדלה ל-180% כדי להבטיח שהכחול שולט והפייד נדחק רחוק שמאלה */
+    background-size: 180% 100%; 
     background-repeat: no-repeat;
-    /* הצמדה לימין כדי שהחלק ה'נקי' של הקובץ יהיה בצד ימין והפייד יכנס פנימה משמאל */
+    /* הצמדה לימין קיצוני כדי להכניס כמה שיותר מהחלק הכחול לתוך הפריים */
     background-position: right center; 
     display: flex;
     flex-direction: column;
@@ -110,15 +110,16 @@
     justify-content: center;
     position: relative;
     background-color: #29ABE2;
+    overflow: hidden;
 }
 
-/* המריחה הלבנה - צמצום נוסף כדי להשאיר מקסימום מקום לטקסט על הרקע */
+/* המריחה הלבנה - צומצמה למינימום הכרחי כדי שלא תתקרב לטקסט */
 .right-side::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 15%; /* צמצום ל-15% כדי שהמעבר ללבן יהיה קצר ואלגנטי */
+    width: 12%; /* מעבר חד וקצר יותר ללבן */
     height: 100%;
     background: linear-gradient(to right, 
         rgba(255, 255, 255, 1) 0%, 
@@ -127,19 +128,23 @@
     pointer-events: none;
 }
 
-/* וידוא שהטקסט לא מושפע מהמריחה הלבנה */
+/* מיקום סופי לטקסט ולחצים */
 .testimonials-wrapper, .carousel-title {
     z-index: 10;
     position: relative;
-    /* מרכוז הטקסט מעט ימינה בתוך החצי שלו אם הוא עדיין קרוב מדי ללבן */
-    transform: translateX(20px); 
+    /* הזזה נוספת ימינה כדי להתרחק מהמפגש עם הצד הלבן */
+    transform: translateX(40px); 
 }
-/* הבטחת הקריאות של הטקסט והחצים מעל שכבת המריחה */
-.testimonials-wrapper, .carousel-title {
-    z-index: 10;
-    position: relative;
-    /* הוספת צל קל לטקסט כדי שיבלוט גם אם הוא נושק לאזור הלבן */
-    text-shadow: 0 2px 8px rgba(0,0,0,0.15); 
+
+/* התאמת הסנאי לשינוי הרוחב */
+.mascot-img {
+    position: absolute; 
+    bottom: 4vh; 
+    right: 2vw; /* צמוד יותר לימין כדי שלא יפריע לטקסט המורחב */
+    width: 100px;
+    z-index: 11;
+    opacity: 0;
+    animation: fadeInRight 1s ease-out 0.5s forwards;
 }
 
         .carousel-title {
