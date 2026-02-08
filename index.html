@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SquirrelTimer | Calm Transitions</title>
+    <title>SquirrelTimer | Transitions Made Easy</title>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --soft-blue: #E0F2F1; /* תכלת רך ומרגיע */
-            --vivid-orange: #FF9F1C;
+            --primary-mint: #E8F5E9;
+            --accent-orange: #FF9F1C;
             --text-dark: #2D3142;
-            --white: #FFFFFF;
         }
 
         * { box-sizing: border-box; }
@@ -18,156 +17,146 @@
             margin: 0; padding: 0;
             height: 100vh; width: 100vw;
             font-family: 'Assistant', sans-serif;
-            background-color: var(--white);
+            /* רקע גרדיאנט שנותן חיים */
+            background: linear-gradient(135deg, #E0F2F1 0%, #FFFFFF 100%);
             color: var(--text-dark);
             overflow: hidden;
         }
 
-        /* Branding - Clean & Professional */
-        .header {
-            position: absolute; top: 3vh; left: 4vw;
-            display: flex; align-items: center; gap: 12px;
-        }
-        .studio-logo { height: clamp(45px, 7vh, 65px); }
-        .powered-text { font-size: 0.75rem; font-weight: 800; opacity: 0.3; letter-spacing: 1px; }
-
-        .layout {
+        .main-wrapper {
             display: flex; flex-direction: column; align-items: center;
-            justify-content: center; height: 100vh; gap: 4vh; padding: 0 5vw;
+            justify-content: space-around; height: 100vh; padding: 4vh 5vw;
+            text-align: center;
         }
 
-        /* Hero */
-        .hero { text-align: center; }
-        .app-icon { 
-            width: clamp(80px, 12vh, 110px); 
-            border-radius: 24%; box-shadow: 0 12px 25px rgba(0,0,0,0.06);
+        /* Branding - Minimal & Clean */
+        .studio-brand {
+            position: absolute; top: 3vh; left: 50%; transform: translateX(-50%);
+            display: flex; align-items: center; gap: 10px; opacity: 0.6;
         }
-        h1 { font-size: clamp(2.2rem, 5vh, 3.2rem); margin: 1.5vh 0 0.5vh; font-weight: 800; }
-        .tagline { font-size: 1.2rem; opacity: 0.6; }
+        .studio-brand img { height: 45px; }
 
-        /* Testimonial Section - The "Moshi" Style Card */
-        .content-card {
-            width: 100%; max-width: 650px;
-            background: var(--soft-blue);
-            border-radius: 40px;
-            padding: 4vh 50px;
+        /* Squirrel Hero */
+        .hero-section { flex-shrink: 0; }
+        .main-video {
+            width: 140px; height: 140px; border-radius: 35px;
+            object-fit: cover; box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            margin-bottom: 2vh;
+        }
+        h1 { font-size: clamp(2.5rem, 6vh, 3.5rem); margin: 0; font-weight: 800; letter-spacing: -1px; }
+        .tagline { font-size: 1.2rem; opacity: 0.5; font-weight: 400; margin-top: 5px; }
+
+        /* Testimonials - The "Cloud" Card */
+        .review-card {
+            width: 100%; max-width: 600px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 40px; padding: 3vh 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
             position: relative;
         }
-        .carousel-title {
-            text-align: center; font-size: 0.9rem; font-weight: 800; 
-            text-transform: uppercase; margin-bottom: 2vh; opacity: 0.5;
-        }
-        .slider { height: 110px; position: relative; display: flex; align-items: center; }
+        .slider-box { height: 100px; display: flex; align-items: center; justify-content: center; }
         .slide {
-            position: absolute; opacity: 0; transition: opacity 0.5s ease;
-            text-align: center; width: 100%;
+            position: absolute; opacity: 0; transition: 0.6s ease;
+            font-size: clamp(1.1rem, 2.2vh, 1.3rem); line-height: 1.4; font-weight: 600;
         }
         .slide.active { opacity: 1; }
-        .quote { font-size: clamp(1rem, 2vh, 1.25rem); font-weight: 600; line-height: 1.4; }
-        .author { display: block; margin-top: 10px; font-size: 0.85rem; font-weight: 800; opacity: 0.4; }
+        .author-tag { display: block; margin-top: 10px; font-size: 0.8rem; font-weight: 800; opacity: 0.3; }
 
-        /* Floating Nav Buttons */
+        /* Custom Nav Buttons */
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: var(--white); border: none; width: 44px; height: 44px;
-            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.2s;
+            background: #2D3142; color: white; border: none;
+            width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
         }
-        .nav-btn:active { transform: translateY(-50%) scale(0.9); }
-        .prev { left: -22px; } .next { right: -22px; }
+        .prev { left: -18px; } .next { right: -18px; }
 
-        /* Compact Signup */
-        .cta-container { width: 100%; max-width: 450px; text-align: center; }
-        .email-input-group {
-            display: flex; background: #F4F4F4; padding: 6px; border-radius: 100px;
+        /* Action Section */
+        .action-area { width: 100%; max-width: 450px; }
+        .input-group {
+            background: white; padding: 8px; border-radius: 100px;
+            display: flex; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             margin-bottom: 2.5vh;
         }
         input {
-            flex: 1; border: none; background: none; padding: 14px 25px;
-            font-family: 'Assistant'; font-size: 1.05rem; outline: none;
+            flex: 1; border: none; padding: 15px 25px; font-family: 'Assistant';
+            font-size: 1.1rem; outline: none; background: none;
         }
-        .cta-btn {
-            background: var(--vivid-orange); color: white; border: none;
-            padding: 14px 30px; border-radius: 100px; font-weight: 800;
-            cursor: pointer; transition: background 0.2s;
+        .btn-main {
+            background: var(--accent-orange); color: white; border: none;
+            padding: 0 30px; border-radius: 100px; font-weight: 800;
+            cursor: pointer; transition: transform 0.2s;
         }
-        .cta-btn:hover { background: #e68a00; }
+        .btn-main:hover { transform: scale(1.05); }
 
-        .store-badges { display: flex; gap: 15px; justify-content: center; opacity: 0.8; }
-        .badge { height: 42px; }
+        .app-badges { display: flex; gap: 15px; justify-content: center; align-items: center; }
+        .badge-img { height: 42px; opacity: 0.9; }
 
-        /* Mascot Video */
-        .squirrel-video {
-            position: absolute; bottom: 4vh; right: 4vw;
-            width: 160px; border-radius: 24px;
-        }
-
-        @media (max-width: 768px) {
-            .header { left: 50%; transform: translateX(-50%); }
-            .content-card { padding: 3vh 30px; border-radius: 30px; }
-            .nav-btn { display: none; } /* במובייל עדיף להחליק או לתת לזה לרוץ לבד */
-            .email-input-group { flex-direction: column; background: none; gap: 10px; }
-            input { background: #F4F4F4; border-radius: 100px; text-align: center; }
-            .cta-btn { width: 100%; }
-            .squirrel-video { display: none; }
+        @media (max-width: 600px) {
+            .studio-brand { top: 2vh; }
+            .review-card { padding: 3vh 20px; }
+            .nav-btn { display: none; }
+            .input-group { flex-direction: column; background: none; box-shadow: none; gap: 10px; }
+            input { background: white; border-radius: 100px; text-align: center; }
+            .btn-main { padding: 18px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <span class="powered-text">POWERED BY</span>
-        <img src="FuzzleLogo.png" alt="Fuzzle" class="studio-logo">
+    <div class="studio-brand">
+        <img src="FuzzleLogo.png" alt="Fuzzle">
+        <span>Powered by Fuzzle</span>
     </div>
 
-    <main class="layout">
-        <section class="hero">
-            <img src="icon.jpg" class="app-icon" alt="SquirrelTimer">
+    <main class="main-wrapper">
+        
+        <section class="hero-section">
+            <video class="main-video" autoplay loop muted playsinline>
+                <source src="squirrelanimation.mp4" type="video/mp4">
+            </video>
             <h1>SquirrelTimer</h1>
-            <p class="tagline">Transitions made play.</p>
+            <p class="tagline">Calm transitions. Pure play.</p>
         </section>
 
-        <section class="content-card">
-            <div class="carousel-title">What parents say</div>
-            <button class="nav-btn prev" onclick="changeSlide(-1)">←</button>
-            <div class="slider">
+        <section class="review-card">
+            <button class="nav-btn prev" onclick="move(-1)">←</button>
+            <div class="slider-box">
                 <div class="slide active">
-                    <span class="quote">"Screen time transitions used to end in tears. Now he actually looks forward to finishing."</span>
-                    <span class="author">SARAH, MOM OF A 5-YEAR-OLD</span>
+                    "Screen time transitions used to end in tears. Now he actually looks forward to finishing."
+                    <span class="author-tag">SARAH, MOM OF A 5-YEAR-OLD</span>
                 </div>
                 <div class="slide">
-                    <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock."</span>
-                    <span class="author">DAVID, OCCUPATIONAL THERAPIST</span>
+                    "A brilliant visual aid for time-blindness. Highly recommended for ADHD families."
+                    <span class="author-tag">DAVID, OCCUPATIONAL THERAPIST</span>
                 </div>
             </div>
-            <button class="nav-btn next" onclick="changeSlide(1)">→</button>
+            <button class="nav-btn next" onclick="move(1)">→</button>
         </section>
 
-        <section class="cta-container">
-            <div class="email-input-group">
+        <section class="action-area">
+            <div class="input-group">
                 <input type="email" placeholder="Email for early access" required>
-                <button class="cta-btn">GET ACCESS</button>
+                <button class="btn-main">GET ACCESS</button>
             </div>
-            <div class="store-badges">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge" style="opacity: 0.4;">
+            <div class="app-badges">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge-img">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge-img" style="opacity: 0.3;">
             </div>
         </section>
+
     </main>
 
-    <video class="squirrel-video" autoplay loop muted playsinline>
-        <source src="squirrelanimation.mp4" type="video/mp4">
-    </video>
-
     <script>
-        let slidePos = 0;
-        const slides = document.querySelectorAll('.slide');
-        function changeSlide(n) {
-            slides[slidePos].classList.remove('active');
-            slidePos = (slidePos + n + slides.length) % slides.length;
-            slides[slidePos].classList.add('active');
+        let current = 0;
+        const items = document.querySelectorAll('.slide');
+        function move(n) {
+            items[current].classList.remove('active');
+            current = (current + n + items.length) % items.length;
+            items[current].classList.add('active');
         }
-        setInterval(() => changeSlide(1), 5000);
+        setInterval(() => move(1), 5000);
     </script>
 </body>
 </html>
