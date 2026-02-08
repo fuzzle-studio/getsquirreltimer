@@ -10,7 +10,6 @@
             --bg: #FFFFFF;
             --text: #2D3142;
             --cta: #FF9F1C;
-            --soft-gray: #F8F9FA;
             --sky-blue: #29ABE2;
         }
 
@@ -21,161 +20,127 @@
             background-color: var(--bg);
             color: var(--text);
             overflow: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
+        /* Header */
         .header {
-            position: absolute; top: 2vh; left: 4vw;
-            display: flex; align-items: center; gap: 12px;
-            z-index: 20;
+            position: absolute; top: 3vh; left: 4vw;
+            display: flex; align-items: center; gap: 12px; z-index: 20;
         }
-        .studio-logo { height: clamp(40px, 6vh, 65px); width: auto; }
-        .powered-text { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.4; }
+        .studio-logo { height: clamp(40px, 6vh, 60px); }
 
         .container {
             display: flex; flex-direction: column; align-items: center;
-            justify-content: center; height: 100vh; gap: 3vh; padding: 0 5vw;
+            justify-content: center; height: 100vh; gap: 4vh; padding: 0 5vw;
         }
 
-        .hero { text-align: center; margin-bottom: -1vh; }
+        /* Hero */
+        .hero { text-align: center; }
         .app-icon { 
-            width: clamp(70px, 10vh, 95px); height: clamp(70px, 10vh, 95px); 
-            border-radius: 22%; box-shadow: 0 8px 25px rgba(0,0,0,0.05); margin-bottom: 10px;
+            width: clamp(70px, 10vh, 90px); border-radius: 22%; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05); margin-bottom: 10px;
         }
-        h1 { font-size: clamp(1.8rem, 4.5vh, 2.8rem); margin: 0; font-weight: 800; }
-        .tagline { font-size: 1.1rem; font-weight: 400; margin-top: 5px; color: var(--text); }
+        h1 { font-size: clamp(2rem, 5vh, 2.8rem); margin: 0; font-weight: 800; }
+        .tagline { font-size: 1.2rem; opacity: 0.7; margin-top: 5px; }
 
-        /* Brush Stroke Effect Carousel */
+        /* Carousel with REAL Brush Stroke Background */
         .carousel-outer {
             width: 100vw;
-            background-color: var(--sky-blue);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            padding: 5vh 0;
-            /* Brush Stroke Mask */
-            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 C50,5 150,25 250,15 C350,5 450,25 550,15 C650,5 750,25 850,15 C950,5 1000,15 L1000,85 C950,95 850,75 750,85 C650,95 550,75 450,85 C350,95 250,75 150,85 C50,95 0,85 Z" fill="black"/></svg>');
-            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 C50,5 150,25 250,15 C350,5 450,25 550,15 C650,5 750,25 850,15 C950,5 1000,15 L1000,85 C950,95 850,75 750,85 C650,95 550,75 450,85 C350,95 250,75 150,85 C50,95 0,85 Z" fill="black"/></svg>');
-            mask-size: 100% 100%;
-            -webkit-mask-size: 100% 100%;
-        }
-
-        .carousel-outer::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png');
-            opacity: 0.1;
-            pointer-events: none;
+            /* שימוש בתמונה אמיתית של מברשת כדי להשיג את האפקט של מריחה */
+            background-image: url('https://www.transparentpng.com/download/brush-stroke/blue-brush-stroke-png-free-download-2.png');
+            background-size: 110% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .testimonials {
-            max-width: 600px; margin: 0 auto; text-align: center; position: relative;
-            min-height: 120px; display: flex; align-items: center; justify-content: center;
-            color: white; z-index: 5;
+            width: 100%; max-width: 600px;
+            text-align: center; position: relative;
+            color: white; padding: 0 60px;
         }
 
         .slide {
-            position: absolute; opacity: 0; transition: opacity 0.5s ease;
-            width: 100%; padding: 0 50px;
+            position: absolute; opacity: 0; transition: 0.5s;
+            width: 100%; left: 0; top: 50%; transform: translateY(-50%);
         }
-        .slide.active { opacity: 1; }
-        .quote { font-size: clamp(0.95rem, 1.9vh, 1.2rem); font-weight: 600; line-height: 1.4; }
-        .author { display: block; margin-top: 10px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; opacity: 0.9; }
+        .slide.active { opacity: 1; position: relative; transform: translateY(0); }
+        .quote { font-size: clamp(1rem, 2vh, 1.2rem); font-weight: 600; line-height: 1.4; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .author { display: block; margin-top: 10px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; }
 
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
             background: white; border: none; width: 40px; height: 40px;
             border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 10;
         }
-        .nav-btn svg { width: 18px; fill: var(--sky-blue); }
         .prev { left: 10px; } .next { right: 10px; }
 
+        /* CTA */
         .cta-box { width: 100%; max-width: 440px; text-align: center; }
         .email-form {
-            display: flex; background: var(--soft-gray); padding: 6px; border-radius: 100px;
-            margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            display: flex; background: #F8F9FA; padding: 6px; border-radius: 100px;
+            margin-bottom: 2vh;
         }
-        input {
-            flex: 1; border: none; background: none; padding: 10px 20px;
-            font-family: 'Assistant'; font-size: 1rem; outline: none;
-        }
-        button {
-            background: var(--cta); color: white; border: none;
-            padding: 0 25px; border-radius: 100px; font-weight: 800;
-            cursor: pointer; transition: transform 0.2s; font-size: 0.9rem;
-        }
-        button:hover { transform: scale(1.05); }
+        input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: 'Assistant'; font-size: 1rem; outline: none; }
+        button { background: var(--cta); color: white; border: none; padding: 0 25px; border-radius: 100px; font-weight: 800; cursor: pointer; }
 
-        .stores { display: flex; gap: 12px; justify-content: center; }
-        .store-badge { height: 35px; }
+        .store-badge { height: 35px; margin: 0 5px; opacity: 0.9; }
 
         .squirrel-video {
-            position: absolute; bottom: 2vh; right: 3vw;
-            width: clamp(90px, 13vh, 140px); border-radius: 18px;
-            z-index: 5;
+            position: absolute; bottom: 3vh; right: 4vw;
+            width: 130px; border-radius: 15px;
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 1.8rem; }
-            .header { left: 50%; transform: translateX(-50%); }
+            .carousel-outer { background-size: 150% 100%; }
             .squirrel-video { display: none; }
-            .email-form { flex-direction: column; border-radius: 18px; gap: 8px; background: none; }
-            input { background: var(--soft-gray); border-radius: 100px; text-align: center; }
-            button { padding: 12px; }
-            .carousel-outer { mask-image: none; -webkit-mask-image: none; padding: 3vh 15px; }
-            .container { justify-content: space-evenly; }
+            .email-form { flex-direction: column; background: none; gap: 10px; }
+            input { background: #F8F9FA; border-radius: 100px; text-align: center; }
+            button { padding: 15px; }
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <span class="powered-text">Powered by</span>
-        <img src="logo.png" alt="Fuzzle Studio" class="studio-logo">
+        <span style="font-size: 0.7rem; font-weight: 800; opacity: 0.3;">POWERED BY</span>
+        <img src="logo.png" alt="Logo" class="studio-logo">
     </div>
 
     <div class="container">
         <header class="hero">
-            <img src="icon.jpg" class="app-icon" alt="SquirrelTimer">
+            <img src="icon.jpg" class="app-icon" alt="Icon">
             <h1>SquirrelTimer</h1>
             <p class="tagline">Calm transitions. Pure play.</p>
         </header>
 
         <div class="carousel-outer">
             <div class="testimonials">
-                <button class="nav-btn prev" onclick="moveSlide(-1)">
-                    <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-                </button>
-                
+                <button class="nav-btn prev" onclick="moveSlide(-1)">←</button>
                 <div class="slide active">
                     <span class="quote">"Screen time transitions used to end in tears. Since we started using SquirrelTimer, my son actually looks forward to finishing."</span>
                     <span class="author">Sarah, Mom of a 5-year-old</span>
                 </div>
                 <div class="slide">
                     <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock. Highly recommended for ADHD families."</span>
+                    <span class="author">David, Occupational Therapist</span>
                 </div>
-                <div class="slide">
-                    <span class="quote">"It turned our chaotic morning routine into a calm, predictable game. The kids love seeing the squirrel reach his goal!"</span>
-                    <span class="author">Michelle, Parenting Coach</span>
-                </div>
-
-                <button class="nav-btn next" onclick="moveSlide(1)">
-                    <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                </button>
+                <button class="nav-btn next" onclick="moveSlide(1)">→</button>
             </div>
         </div>
 
         <div class="cta-box">
             <div class="email-form">
-                <form action="https://formspree.io/f/YOUR_ID" method="POST" style="display: contents;">
-                    <input type="email" name="email" placeholder="Email for early access" required>
-                    <button type="submit">Get Access</button>
-                </form>
+                <input type="email" placeholder="Email for early access" required>
+                <button>Get Access</button>
             </div>
-            <div class="stores">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="store-badge">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="store-badge" style="opacity: 0.4;">
-            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="store-badge">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="store-badge" style="opacity: 0.4;">
         </div>
     </div>
 
