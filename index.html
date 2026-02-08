@@ -36,16 +36,41 @@
         }
 
         /* Split Layout - Container holds the full background */
-        .split-container {
-            display: flex;
-            height: 100vh;
-            width: 100vw;
-            /* החלפת הרקע לתמונה החדשה עם הענן והפייד */
-            background-image: url('cloud_background.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+/* Split Layout - הגדלת הרקע ללא עיוות */
+.split-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('cloud_background.jpg'); 
+    
+    /* כאן קורה הקסם: */
+    /* 152% לרוחב (100+52) ו-120% לגובה (100+20) */
+    background-size: 152% 120%; 
+    
+    /* ממקם את הענן במרכז כדי שההגדלה תהיה שווה מכל הצדדים */
+    background-position: center; 
+    background-repeat: no-repeat;
+    
+    /* מבטיח שגם אם המסך קטן, התמונה תכסה הכל */
+    background-color: var(--sky-blue); 
+}/* Split Layout - הגדלת הרקע ללא עיוות */
+.split-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('cloud_background.jpg'); 
+    
+    /* כאן קורה הקסם: */
+    /* 152% לרוחב (100+52) ו-120% לגובה (100+20) */
+    background-size: 152% 120%; 
+    
+    /* ממקם את הענן במרכז כדי שההגדלה תהיה שווה מכל הצדדים */
+    background-position: center; 
+    background-repeat: no-repeat;
+    
+    /* מבטיח שגם אם המסך קטן, התמונה תכסה הכל */
+    background-color: var(--sky-blue); 
+}
 
         /* LEFT SIDE: Content & Action */
         .left-side {
