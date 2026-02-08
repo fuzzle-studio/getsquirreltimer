@@ -30,7 +30,7 @@
             z-index: 20;
         }
         .studio-logo { height: clamp(40px, 6vh, 65px); width: auto; }
-        .powered-text { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; opacity: 0.4; }
+        .powered-text { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.4; }
 
         .container {
             display: flex; flex-direction: column; align-items: center;
@@ -51,27 +51,26 @@
             background-color: var(--sky-blue);
             position: relative;
             padding: 5vh 0;
-            /* New Mask: Rounded Brush Stroke Path */
+            /* Brush Stroke Mask */
             mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 C50,5 150,25 250,15 C350,5 450,25 550,15 C650,5 750,25 850,15 C950,5 1000,15 L1000,85 C950,95 850,75 750,85 C650,95 550,75 450,85 C350,95 250,75 150,85 C50,95 0,85 Z" fill="black"/></svg>');
             -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 C50,5 150,25 250,15 C350,5 450,25 550,15 C650,5 750,25 850,15 C950,5 1000,15 L1000,85 C950,95 850,75 750,85 C650,95 550,75 450,85 C350,95 250,75 150,85 C50,95 0,85 Z" fill="black"/></svg>');
             mask-size: 100% 100%;
             -webkit-mask-size: 100% 100%;
         }
 
-        /* Brush texture overlay to create that "hair" effect at edges */
         .carousel-outer::after {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png');
-            opacity: 0.15;
+            opacity: 0.1;
             pointer-events: none;
         }
 
         .testimonials {
             max-width: 600px; margin: 0 auto; text-align: center; position: relative;
             min-height: 120px; display: flex; align-items: center; justify-content: center;
-            color: white;
+            color: white; z-index: 5;
         }
 
         .slide {
@@ -154,7 +153,6 @@
                 </div>
                 <div class="slide">
                     <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock. Highly recommended for ADHD families."</span>
-                    <span class="author">David, Occupational Therapist</span>
                 </div>
                 <div class="slide">
                     <span class="quote">"It turned our chaotic morning routine into a calm, predictable game. The kids love seeing the squirrel reach his goal!"</span>
