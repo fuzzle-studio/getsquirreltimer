@@ -11,7 +11,7 @@
             --text: #2D3142;
             --cta: #FF9F1C;
             --soft-gray: #F8F9FA;
-            --sky-blue: #29ABE2; /* The blue from your reference image */
+            --sky-blue: #29ABE2;
         }
 
         body, html {
@@ -24,7 +24,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Top Branding */
         .header {
             position: absolute; top: 3vh; left: 4vw;
             display: flex; align-items: center; gap: 15px;
@@ -38,7 +37,6 @@
             justify-content: center; height: 100vh; gap: 5vh; padding: 0 5vw;
         }
 
-        /* Hero Section */
         .hero { text-align: center; }
         .app-icon { 
             width: clamp(80px, 12vh, 110px); height: clamp(80px, 12vh, 110px); 
@@ -47,17 +45,29 @@
         h1 { font-size: clamp(2.2rem, 5vh, 3.2rem); margin: 0; font-weight: 800; }
         .tagline { font-size: 1.3rem; font-weight: 400; margin-top: 10px; color: var(--text); }
 
-        /* Reference-Matched Carousel (The Blue Wave) */
+        /* Child-like Hand-painted Carousel Background */
         .carousel-outer {
             width: 100vw;
             background-color: var(--sky-blue);
             position: relative;
             padding: 6vh 0;
-            /* Creating the hand-drawn "torn paper" effect from your image */
-            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 Q50,5 100,20 T200,20 T300,20 T400,20 T500,20 T600,20 T700,20 T800,20 T900,20 T1000,20 L1000,80 Q950,95 900,80 T800,80 T700,80 T600,80 T500,80 T400,80 T300,80 T200,80 T100,80 T0,80 Z" fill="black"/></svg>');
+            
+            /* Rough "Crayon" Edge Mask - Much less wavy, more scratchy */
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 L50,18 L100,14 L150,16 L200,12 L250,17 L300,15 L350,13 L400,16 L450,18 L500,14 L550,16 L600,13 L650,17 L700,15 L750,14 L800,17 L850,15 L900,13 L950,16 L1000,15 L1000,85 L950,83 L900,87 L850,84 L800,86 L750,82 L700,85 L650,83 L600,86 L550,84 L500,87 L450,83 L400,85 L350,82 L300,84 L250,87 L200,83 L150,85 L100,82 L50,84 L0,85 Z" fill="black"/></svg>');
             mask-size: 100% 100%;
-            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 Q50,5 100,20 T200,20 T300,20 T400,20 T500,20 T600,20 T700,20 T800,20 T900,20 T1000,20 L1000,80 Q950,95 900,80 T800,80 T700,80 T600,80 T500,80 T400,80 T300,80 T200,80 T100,80 T0,80 Z" fill="black"/></svg>');
+            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 L50,18 L100,14 L150,16 L200,12 L250,17 L300,15 L350,13 L400,16 L450,18 L500,14 L550,16 L600,13 L650,17 L700,15 L750,14 L800,17 L850,15 L900,13 L950,16 L1000,15 L1000,85 L950,83 L900,87 L850,84 L800,86 L750,82 L700,85 L650,83 L600,86 L550,84 L500,87 L450,83 L400,85 L350,82 L300,84 L250,87 L200,83 L150,85 L100,82 L50,84 L0,85 Z" fill="black"/></svg>');
             -webkit-mask-size: 100% 100%;
+        }
+
+        /* Subtle "coloring outside the lines" overlay */
+        .carousel-outer::before {
+            content: '';
+            position: absolute;
+            top: -5px; left: 0; right: 0; bottom: -5px;
+            background: inherit;
+            opacity: 0.3;
+            z-index: -1;
+            filter: blur(8px);
         }
 
         .testimonials {
@@ -71,10 +81,9 @@
             width: 100%; padding: 0 60px;
         }
         .slide.active { opacity: 1; }
-        .quote { font-size: clamp(1rem, 2vh, 1.3rem); font-weight: 600; line-height: 1.5; }
-        .author { display: block; margin-top: 15px; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; opacity: 0.8; }
+        .quote { font-size: clamp(1rem, 2vh, 1.2rem); font-weight: 600; line-height: 1.5; }
+        .author { display: block; margin-top: 15px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; opacity: 0.8; }
 
-        /* Floating Nav Buttons */
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
             background: white; border: none; width: 45px; height: 45px;
@@ -84,7 +93,6 @@
         .nav-btn svg { width: 20px; fill: var(--sky-blue); }
         .prev { left: 10px; } .next { right: 10px; }
 
-        /* CTA Section */
         .cta-box { width: 100%; max-width: 480px; text-align: center; }
         .email-form {
             display: flex; background: var(--soft-gray); padding: 8px; border-radius: 100px;
@@ -104,7 +112,6 @@
         .stores { display: flex; gap: 15px; justify-content: center; }
         .store-badge { height: 40px; }
 
-        /* The Animation Video */
         .squirrel-video {
             position: absolute; bottom: 3vh; right: 4vw;
             width: clamp(100px, 15vh, 160px); border-radius: 20px;
@@ -118,7 +125,7 @@
             .email-form { flex-direction: column; border-radius: 20px; gap: 10px; background: none; }
             input { background: var(--soft-gray); border-radius: 100px; text-align: center; }
             button { padding: 15px; }
-            .carousel-outer { mask-image: none; -webkit-mask-image: none; border-radius: 0; }
+            .carousel-outer { mask-image: none; -webkit-mask-image: none; padding: 4vh 20px; }
         }
     </style>
 </head>
