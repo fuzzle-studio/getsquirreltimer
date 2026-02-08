@@ -11,7 +11,7 @@
             --text: #2D3142;
             --cta: #FF9F1C;
             --sky-blue: #29ABE2;
-            --ref-yellow: #FFD93D; /* הצהוב מהרפרנס */
+            --ref-yellow: #FFD93D; /* הצהוב המדויק מהרפרנס */
         }
 
         body, html {
@@ -21,19 +21,20 @@
             background-color: var(--bg);
             color: var(--text);
             overflow: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Branding - Adjusted Logo Proximity */
+        /* Branding - Logo closer to 'By' */
         .header {
             position: absolute; top: 3vh; left: 4vw;
-            display: flex; align-items: center; gap: 5px; z-index: 100;
+            display: flex; align-items: center; gap: 4px; z-index: 100;
         }
         .studio-logo { height: clamp(40px, 6vh, 60px); width: auto; }
-        .powered-text { font-size: 0.7rem; font-weight: 700; opacity: 0.4; text-transform: uppercase; margin-right: 2px; }
+        .powered-text { font-size: 0.7rem; font-weight: 800; opacity: 0.3; text-transform: uppercase; letter-spacing: 0.5px; }
 
         .main-container {
             display: flex; flex-direction: column; align-items: center;
-            justify-content: space-evenly; height: 100vh; padding: 2vh 0;
+            justify-content: space-evenly; height: 100vh; padding: 1vh 0;
         }
 
         /* Hero */
@@ -42,20 +43,20 @@
             width: clamp(70px, 10vh, 90px); border-radius: 22%; 
             box-shadow: 0 8px 20px rgba(0,0,0,0.05); margin-bottom: 1vh;
         }
-        h1 { font-size: clamp(2rem, 5vh, 2.8rem); margin: 0; font-weight: 800; }
+        h1 { font-size: clamp(2rem, 5vh, 2.8rem); margin: 0; font-weight: 800; letter-spacing: -0.5px; }
         .tagline { font-size: 1.1rem; opacity: 0.6; margin-top: 5px; }
 
-        /* Carousel Section with Uploaded Image Background */
+        /* Carousel Section with the Exact Background */
         .carousel-section {
             width: 100vw;
-            min-height: 30vh;
+            min-height: 32vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
-            /* שימוש בתמונה שהעלית כרקע */
-            background-image: url('https://r.jina.ai/i/157d6928929e46a188f638f37648f572'); 
+            /* שימוש בתמונה המדויקת של הרצועה הכחולה כרקע */
+            background-image: url('https://r.jina.ai/i/05825a0753a44c33a9202534f3b5f903'); 
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-position: center;
@@ -64,64 +65,64 @@
         .carousel-title {
             color: var(--ref-yellow);
             font-weight: 800;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
+            font-size: clamp(1.1rem, 2.5vh, 1.4rem);
+            margin-bottom: 2vh;
             text-transform: uppercase;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            letter-spacing: 1px;
         }
 
-        .testimonials-container {
+        .testimonials-grid {
             display: flex;
             gap: 40px;
-            max-width: 900px;
-            width: 90%;
+            max-width: 950px;
+            width: 85%;
             justify-content: center;
-            align-items: stretch;
         }
 
-        .testimonial-item {
+        .testimonial-card {
             flex: 1;
             text-align: center;
             color: white;
-            padding: 0 10px;
+            padding: 0 15px;
         }
 
         .quote { font-size: clamp(0.9rem, 1.8vh, 1.1rem); font-weight: 600; line-height: 1.4; }
-        .author { display: block; margin-top: 8px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; opacity: 0.9; }
+        .author { display: block; margin-top: 10px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; opacity: 0.8; }
 
         /* Signup Area */
         .cta-area { width: 100%; max-width: 440px; text-align: center; }
         .email-form {
             display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
-            margin-bottom: 2vh;
+            margin-bottom: 2vh; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
         input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: 'Assistant'; font-size: 1.1rem; outline: none; }
-        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 30px; border-radius: 100px; font-weight: 800; cursor: pointer; }
+        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 32px; border-radius: 100px; font-weight: 800; cursor: pointer; transition: 0.2s; }
+        .submit-btn:hover { transform: scale(1.03); }
 
-        .store-badges { display: flex; gap: 12px; justify-content: center; }
+        .store-badges { display: flex; gap: 12px; justify-content: center; align-items: center; }
         .badge { height: 40px; opacity: 0.9; }
 
-        /* Squirrel Video */
+        /* Mascot Position */
         .squirrel-vid {
             position: absolute; bottom: 3vh; right: 4vw;
-            width: 140px; border-radius: 20px; z-index: 5;
+            width: clamp(100px, 14vh, 150px); border-radius: 20px;
         }
 
         @media (max-width: 768px) {
-            .testimonials-container { flex-direction: column; gap: 15px; }
-            .carousel-section { background-size: cover; min-height: 35vh; }
+            .testimonials-grid { flex-direction: column; gap: 15px; }
+            .carousel-section { background-size: cover; min-height: 40vh; padding: 4vh 0; }
             .squirrel-vid { display: none; }
             .header { left: 50%; transform: translateX(-50%); width: 100%; justify-content: center; }
             .email-form { flex-direction: column; background: none; gap: 10px; }
             input { background: #F5F5F5; border-radius: 100px; text-align: center; }
-            .submit-btn { padding: 15px; width: 100%; }
+            .submit-btn { padding: 16px; width: 100%; }
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <span class="powered-text">Powered by</span>
+        <span class="powered-text">POWERED BY</span>
         <img src="logo.png" alt="Logo" class="studio-logo">
     </div>
 
@@ -134,12 +135,12 @@
 
         <section class="carousel-section">
             <div class="carousel-title">What Parents are Saying</div>
-            <div class="testimonials-container">
-                <div class="testimonial-item">
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
                     <span class="quote">"Screen time transitions used to end in tears. Since SquirrelTimer, my son actually looks forward to finishing."</span>
                     <span class="author">Sarah, Mom of a 5-year-old</span>
                 </div>
-                <div class="testimonial-item">
+                <div class="testimonial-card">
                     <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock. Highly recommended for ADHD families."</span>
                     <span class="author">David, Occupational Therapist</span>
                 </div>
