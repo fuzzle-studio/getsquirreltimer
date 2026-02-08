@@ -11,7 +11,7 @@
             --text: #2D3142;
             --cta: #FF9F1C;
             --sky-blue: #29ABE2;
-            --ref-yellow: #FFD93D; /* הצהוב המדויק מהרפרנס */
+            --ref-yellow: #FFD93D;
         }
 
         body, html {
@@ -24,10 +24,10 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Branding - Logo closer to 'By' */
+        /* Branding - Ultra-tight Logo Proximity */
         .header {
             position: absolute; top: 3vh; left: 4vw;
-            display: flex; align-items: center; gap: 4px; z-index: 100;
+            display: flex; align-items: center; gap: 2px; z-index: 100;
         }
         .studio-logo { height: clamp(40px, 6vh, 60px); width: auto; }
         .powered-text { font-size: 0.7rem; font-weight: 800; opacity: 0.3; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -46,7 +46,7 @@
         h1 { font-size: clamp(2rem, 5vh, 2.8rem); margin: 0; font-weight: 800; letter-spacing: -0.5px; }
         .tagline { font-size: 1.1rem; opacity: 0.6; margin-top: 5px; }
 
-        /* Carousel Section with the Exact Background */
+        /* Carousel Section with BG.png */
         .carousel-section {
             width: 100vw;
             min-height: 32vh;
@@ -55,8 +55,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            /* שימוש בתמונה המדויקת של הרצועה הכחולה כרקע */
-            background-image: url('https://r.jina.ai/i/05825a0753a44c33a9202534f3b5f903'); 
+            background-image: url('BG.png'); 
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-position: center;
@@ -66,28 +65,30 @@
             color: var(--ref-yellow);
             font-weight: 800;
             font-size: clamp(1.1rem, 2.5vh, 1.4rem);
-            margin-bottom: 2vh;
+            margin-bottom: 1.5vh;
             text-transform: uppercase;
             letter-spacing: 1px;
+            z-index: 10;
         }
 
         .testimonials-grid {
             display: flex;
-            gap: 40px;
-            max-width: 950px;
+            gap: clamp(20px, 4vw, 50px);
+            max-width: 1000px;
             width: 85%;
             justify-content: center;
+            z-index: 10;
         }
 
         .testimonial-card {
             flex: 1;
             text-align: center;
             color: white;
-            padding: 0 15px;
+            padding: 0 10px;
         }
 
-        .quote { font-size: clamp(0.9rem, 1.8vh, 1.1rem); font-weight: 600; line-height: 1.4; }
-        .author { display: block; margin-top: 10px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; opacity: 0.8; }
+        .quote { font-size: clamp(0.85rem, 1.8vh, 1.1rem); font-weight: 600; line-height: 1.4; }
+        .author { display: block; margin-top: 8px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; opacity: 0.8; }
 
         /* Signup Area */
         .cta-area { width: 100%; max-width: 440px; text-align: center; }
@@ -109,8 +110,9 @@
         }
 
         @media (max-width: 768px) {
-            .testimonials-grid { flex-direction: column; gap: 15px; }
-            .carousel-section { background-size: cover; min-height: 40vh; padding: 4vh 0; }
+            .testimonials-grid { flex-direction: column; gap: 12px; }
+            .carousel-section { background-size: cover; min-height: 40vh; padding: 5vh 0; }
+            .carousel-title { margin-bottom: 1vh; }
             .squirrel-vid { display: none; }
             .header { left: 50%; transform: translateX(-50%); width: 100%; justify-content: center; }
             .email-form { flex-direction: column; background: none; gap: 10px; }
