@@ -97,33 +97,34 @@
 
         /* RIGHT SIDE: BG_Vertical.png and Testimonials */
 .right-side {
-    flex: 1;
-    background-image: url('BGVertical.jpg?v=4'); 
-    /* הגדרה שמבטיחה שהתמונה תהיה גדולה מהשטח שלה כדי שהפייד ייכנס פנימה */
-    background-size: 120% 100%; 
+    flex: 1; /* נשאר 50% מהמסך הכללי */
+    background-image: url('BGVertical.jpg?v=5'); 
+    /* הגדרת התמונה כך שתתפוס 80% מרוחב האלמנט */
+    background-size: 80% 100%; 
     background-repeat: no-repeat;
-    /* הצמדה לימין קיצוני - זה ימשוך את הפייד השמאלי לתוך חצי המסך */
+    /* הצמדה לימין כדי שהרווח הלבן של ה-20% יהיה בצד שמאל */
     background-position: right center; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
-    background-color: #29ABE2; /* צבע רקע תואם למקרה של רווחים */
+    background-color: transparent; /* מבטיח שמה שלא תמונה יהיה שקוף/לבן */
 }
 
-/* פתרון "ביטוח" - יצירת מריחה מלאכותית שמתמזגת עם הלבן של צד שמאל */
+/* הוספת הדרגת צבע (Gradient) שתמלא את ה-20% הנותרים במריחה מושלמת */
 .right-side::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 35%; /* השטח שבו יתבצע המעבר ללבן */
+    width: 35%; /* חופף מעט את התמונה כדי ליצור מריחה חלקה */
     height: 100%;
     background: linear-gradient(to right, 
         rgba(255, 255, 255, 1) 0%, 
+        rgba(255, 255, 255, 0.8) 20%, 
         rgba(255, 255, 255, 0) 100%);
-    z-index: 1; /* מוודא שהמריחה מעל הרקע */
+    z-index: 1;
     pointer-events: none;
 }
 
