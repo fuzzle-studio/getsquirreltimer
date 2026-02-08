@@ -96,36 +96,43 @@
         .badge:hover { transform: scale(1.05); opacity: 1; }
 
         /* RIGHT SIDE: BG_Vertical.png and Testimonials */
-.right-side {
-    flex: 1; /* נשאר 50% מהמסך הכללי */
-    background-image: url('BGVertical.jpg?v=5'); 
-    /* הגדרת התמונה כך שתתפוס 80% מרוחב האלמנט */
-    background-size: 80% 100%; 
+..right-side {
+    flex: 1;
+    background-image: url('BGVertical.jpg?v=6'); 
+    /* הגדלה של התמונה ל-140% כדי שהשוליים המרוחים שלה יכנסו פנימה */
+    background-size: 140% 100%; 
     background-repeat: no-repeat;
-    /* הצמדה לימין כדי שהרווח הלבן של ה-20% יהיה בצד שמאל */
+    /* הצמדה לימין קיצוני כדי למשוך את הפייד השמאלי לתוך חצי המסך */
     background-position: right center; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
-    background-color: transparent; /* מבטיח שמה שלא תמונה יהיה שקוף/לבן */
+    background-color: #29ABE2; /* צבע גיבוי כחול */
 }
 
-/* הוספת הדרגת צבע (Gradient) שתמלא את ה-20% הנותרים במריחה מושלמת */
+/* שכבת המריחה - הפכנו אותה לעדינה יותר (פחות רחבה) כדי שלא תעלה על הטקסט */
 .right-side::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 35%; /* חופף מעט את התמונה כדי ליצור מריחה חלקה */
+    width: 20%; /* צמצמנו מ-35% ל-20% כדי שהלבן לא יסתיר את המילים */
     height: 100%;
     background: linear-gradient(to right, 
         rgba(255, 255, 255, 1) 0%, 
-        rgba(255, 255, 255, 0.8) 20%, 
         rgba(255, 255, 255, 0) 100%);
     z-index: 1;
     pointer-events: none;
+}
+
+/* הבטחת הקריאות של הטקסט והחצים מעל שכבת המריחה */
+.testimonials-wrapper, .carousel-title {
+    z-index: 10;
+    position: relative;
+    /* הוספת צל קל לטקסט כדי שיבלוט גם אם הוא נושק לאזור הלבן */
+    text-shadow: 0 2px 8px rgba(0,0,0,0.15); 
 }
 
         .carousel-title {
