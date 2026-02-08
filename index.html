@@ -24,150 +24,131 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Branding */
-        .header {
-            position: absolute; top: 3vh; left: 4vw;
-            display: flex; align-items: center; gap: 2px; z-index: 100;
+        /* Fixed Footer Branding */
+        .footer-branding {
+            position: absolute; bottom: 2vh; left: 3vw;
+            display: flex; align-items: center; gap: 4px; z-index: 100;
         }
-        .studio-logo { height: clamp(40px, 6vh, 60px); width: auto; }
-        .powered-text { font-size: 0.7rem; font-weight: 700; opacity: 0.3; text-transform: uppercase; letter-spacing: 0.5px; }
+        .studio-logo { height: 35px; width: auto; }
+        .powered-text { font-size: 0.6rem; font-weight: 700; opacity: 0.3; text-transform: uppercase; }
 
-        .main-container {
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: space-evenly; height: 100vh; padding: 1vh 0;
+        .main-wrapper {
+            display: flex; flex-direction: column;
+            height: 100vh; width: 100vw;
         }
 
-        /* Hero with Description */
-        .hero { text-align: center; max-width: 600px; padding: 0 20px; }
+        /* Top Section: Split Layout */
+        .top-section {
+            display: flex; flex: 1;
+            align-items: center; justify-content: center;
+            padding: 0 8vw; gap: 5vw;
+        }
+
+        /* Left Side: Content */
+        .content-side { flex: 1.2; text-align: left; }
         .app-icon { 
-            width: clamp(70px, 10vh, 90px); border-radius: 22%; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05); margin-bottom: 1vh;
+            width: 85px; border-radius: 22%; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05); margin-bottom: 2vh;
         }
-        h1 { font-size: clamp(2.2rem, 5vh, 3rem); margin: 0; font-weight: 700; letter-spacing: -0.5px; }
-        .tagline { font-size: 1.2rem; color: var(--sky-blue); margin-top: 5px; font-weight: 600; }
-        .description { font-size: 1rem; opacity: 0.7; margin-top: 10px; line-height: 1.4; max-width: 450px; margin-left: auto; margin-right: auto; }
+        h1 { font-size: clamp(2.5rem, 5vh, 3.5rem); margin: 0; font-weight: 700; letter-spacing: -1px; }
+        .tagline { font-size: 1.4rem; color: var(--sky-blue); font-weight: 600; margin: 1vh 0; }
+        .description { font-size: 1.1rem; opacity: 0.7; line-height: 1.5; max-width: 480px; }
 
-        /* Carousel Section with BG.jpg */
-        .carousel-section {
-            width: 100vw;
-            min-height: 35vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+        /* Right Side: Registration */
+        .action-side { 
+            flex: 0.8; display: flex; flex-direction: column; 
+            align-items: center; position: relative;
+        }
+        
+        /* The decorative Squirrel image - Scaled down 20% */
+        .mascot-img {
+            width: 120px; /* Reduced size */
+            margin-bottom: -15px; z-index: 2;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+        }
+
+        .cta-box { width: 100%; text-align: center; z-index: 1; }
+        .email-form {
+            display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
+            margin-bottom: 2.5vh; border: 1px solid rgba(0,0,0,0.03);
+        }
+        input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1rem; outline: none; }
+        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 25px; border-radius: 100px; font-weight: 700; cursor: pointer; }
+
+        .store-badges { display: flex; gap: 12px; justify-content: center; }
+        .badge { height: 35px; opacity: 0.8; }
+
+        /* Bottom Section: Testimonials with BG.jpg */
+        .bottom-section {
+            width: 100vw; height: 32vh;
             background-image: url('BG.jpg'); 
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            background-position: center;
+            background-size: 100% 100%; background-repeat: no-repeat;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
 
         .carousel-title {
-            color: var(--ref-yellow);
-            font-weight: 700;
-            font-size: clamp(1.1rem, 2.3vh, 1.4rem);
-            margin-top: 2vh;
-            margin-bottom: 4vh;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            z-index: 10;
-            /* Subtle glow to match the reference style */
-            text-shadow: 0 0 10px rgba(255, 217, 61, 0.4);
+            color: var(--ref-yellow); font-weight: 700; font-size: 1.1rem;
+            text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 3vh;
         }
 
         .testimonials-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 800px;
-            z-index: 10;
+            display: flex; align-items: center; justify-content: center; width: 100%;
         }
 
-        .testimonials-wrapper {
-            width: 100%;
-            max-width: 500px;
-            height: 100px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
+        .testimonials-wrapper { width: 500px; height: 80px; position: relative; }
         .slide {
-            position: absolute;
-            opacity: 0;
-            transition: opacity 0.6s ease-in-out;
-            text-align: center;
-            color: white;
-            width: 100%;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+            position: absolute; opacity: 0; transition: opacity 0.6s ease;
+            text-align: center; color: white; width: 100%;
         }
-
         .slide.active { opacity: 1; }
-        .quote { font-size: clamp(1.1rem, 2.2vh, 1.3rem); font-weight: 500; line-height: 1.4; }
-        .author { display: block; margin-top: 10px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; opacity: 0.9; }
+        .quote { font-size: 1.1rem; font-weight: 500; line-height: 1.4; }
+        .author { display: block; margin-top: 8px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
         .nav-btn {
-            background: white; border: none; width: 42px; height: 42px;
+            background: white; border: none; width: 38px; height: 38px;
             border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-            margin: 0 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: 0 20px;
         }
-        .nav-btn:hover { transform: scale(1.1); }
         .nav-btn svg { width: 18px; fill: var(--sky-blue); }
 
-        /* CTA Area */
-        .cta-area { width: 100%; max-width: 440px; text-align: center; }
-        .email-form {
-            display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
-            margin-bottom: 2.5vh;
-        }
-        input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1.1rem; outline: none; }
-        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 32px; border-radius: 100px; font-weight: 700; cursor: pointer; transition: 0.2s; }
-        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(255, 159, 28, 0.3); }
-
-        .store-badges { display: flex; gap: 15px; justify-content: center; margin-top: 10px; }
-        .badge { height: 38px; opacity: 0.9; transition: opacity 0.2s; }
-        .badge:hover { opacity: 1; }
-
-        .squirrel-vid {
-            position: absolute; bottom: 3vh; right: 4vw;
-            width: clamp(100px, 14vh, 150px); border-radius: 20px;
-        }
-
         @media (max-width: 768px) {
-            .nav-btn { width: 35px; height: 35px; margin: 0 5px; }
-            .carousel-section { background-size: cover; min-height: 40vh; }
-            .squirrel-vid { display: none; }
-            .header { left: 50%; transform: translateX(-50%); width: 100%; justify-content: center; }
-            .email-form { flex-direction: column; background: none; gap: 10px; }
-            input { background: #F5F5F5; border-radius: 100px; text-align: center; }
-            .submit-btn { padding: 16px; width: 100%; }
-            .description { font-size: 0.95rem; }
+            .top-section { flex-direction: column; text-align: center; padding-top: 5vh; }
+            .content-side { text-align: center; }
+            .description { margin: 0 auto; }
+            .bottom-section { height: 40vh; background-size: cover; }
+            .nav-btn { display: none; }
+            .mascot-img { width: 90px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <span class="powered-text">POWERED BY</span>
-        <img src="logo.png" alt="Logo" class="studio-logo">
-    </div>
+    <div class="main-wrapper">
+        <div class="top-section">
+            <div class="content-side">
+                <img src="icon.jpg" class="app-icon" alt="Icon">
+                <h1>SquirrelTimer</h1>
+                <p class="tagline">Calm transitions. Pure play.</p>
+                <p class="description">Help your child transition from screen time to real life without the tears. A visual, anxiety-free timer designed for ADHD and sensitive souls.</p>
+            </div>
 
-    <div class="main-container">
-        <section class="hero">
-            <img src="icon.jpg" class="app-icon" alt="SquirrelTimer">
-            <h1>SquirrelTimer</h1>
-            <p class="tagline">Calm transitions. Pure play.</p>
-            <p class="description">Help your child transition from screen time to real life without the tears. A visual, anxiety-free timer designed for ADHD and sensitive souls.</p>
-        </section>
+            <div class="action-side">
+                <img src="Squirrel.png" class="mascot-img" alt="Mascot">
+                <div class="cta-box">
+                    <div class="email-form">
+                        <input type="email" placeholder="Email for early access" required>
+                        <button class="submit-btn">GET ACCESS</button>
+                    </div>
+                    <div class="store-badges">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <section class="carousel-section">
+        <div class="bottom-section">
             <div class="carousel-title">What Parents are Saying</div>
-            
             <div class="testimonials-container">
                 <button class="nav-btn prev" onclick="moveSlide(-1)">
                     <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
@@ -182,33 +163,19 @@
                         <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock."</span>
                         <span class="author">David, Occupational Therapist</span>
                     </div>
-                    <div class="slide">
-                        <span class="quote">"Highly recommended for ADHD families looking for calm morning routines."</span>
-                        <span class="author">Michelle, Parenting Coach</span>
-                    </div>
                 </div>
 
                 <button class="nav-btn next" onclick="moveSlide(1)">
                     <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
                 </button>
             </div>
-        </section>
-
-        <section class="cta-area">
-            <div class="email-form">
-                <input type="email" placeholder="Email for early access" required>
-                <button class="submit-btn">GET ACCESS</button>
-            </div>
-            <div class="store-badges">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge" alt="Google Play">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge" style="opacity: 0.5;" alt="App Store">
-            </div>
-        </section>
+        </div>
     </div>
 
-    <video class="squirrel-vid" autoplay loop muted playsinline>
-        <source src="squirrelanimation.mp4" type="video/mp4">
-    </video>
+    <div class="footer-branding">
+        <span class="powered-text">POWERED BY</span>
+        <img src="logo.png" alt="Fuzzle" class="studio-logo">
+    </div>
 
     <script>
         let index = 0;
