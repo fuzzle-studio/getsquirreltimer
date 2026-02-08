@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SquirrelTimer | Calm Transitions</title>
+    <title>SquirrelTimer | Get Early Access</title>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #F8F9FA;
+            --bg: #F0F7F9;
+            --primary: #B8E1DD;
             --text: #2D3142;
-            --accent: #FF9F1C;
+            --cta: #FF9F1C; /* כתום בולט לכפתור */
+            --carousel-bg: #E3F2FD; /* תכלת לקרוסלה */
         }
 
         body, html {
@@ -18,89 +20,81 @@
             font-family: 'Assistant', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
-        /* סטודיו - פינה עליונה */
+        /* סטודיו - פינה עליונה - לוגו גדול */
         .studio-tag {
-            position: absolute; top: 15px; left: 20px;
-            font-size: 0.8rem; opacity: 0.8; display: flex; align-items: center; gap: 8px;
+            position: absolute; top: 20px; right: 20px;
+            font-size: 1.1rem; display: flex; align-items: center; gap: 15px;
+            font-weight: 600;
         }
-        .studio-logo { height: 20px; width: auto; }
+        .studio-logo { height: 60px; width: auto; } /* פי 6 יותר גדול */
 
         .main-container {
             display: flex; flex-direction: column; align-items: center;
-            justify-content: space-around; height: 100vh; padding: 15px; box-sizing: border-box;
+            justify-content: space-between; min-height: 100vh; padding: 40px 20px; box-sizing: border-box;
         }
 
-        /* חלק עליון - אייקון וכותרת */
-        .app-header { text-align: center; }
-        .app-icon {
-            width: 90px; height: 90px; border-radius: 20%;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12); margin-bottom: 10px;
-        }
-        h1 { margin: 0; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.5px; }
-        .subtitle { font-size: 1.1rem; margin-top: 5px; opacity: 0.9; font-weight: 400; }
+        .app-header { text-align: center; margin-top: 40px; }
+        .app-icon { width: 110px; height: 110px; border-radius: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h1 { margin: 15px 0 5px; font-size: 2.8rem; }
+        .price-tag { color: #2E7D32; font-weight: 700; font-size: 1.2rem; margin-bottom: 20px; }
 
-        /* טופס הרשמה - דגש גבוה */
-        .signup-container {
-            width: 100%; max-width: 420px; text-align: center;
+        /* קרוסלה תכלת עם חצים */
+        .carousel-container {
+            width: 100%; max-width: 550px; background: var(--carousel-bg);
+            border-radius: 25px; padding: 25px; position: relative;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05); margin: 20px 0;
         }
-        .signup-box {
-            background: #ffffff; padding: 10px; border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06); display: flex; gap: 8px;
-        }
-        .signup-box input {
-            flex: 2; padding: 12px; border: 1px solid #E0E0E0; border-radius: 10px; 
-            font-family: 'Assistant'; font-size: 1rem; outline: none;
-        }
-        .signup-box button {
-            flex: 1; padding: 12px; border: none; background: var(--text); color: white;
-            border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.9rem;
-        }
-
-        /* מרכז - הסבר והמלצות */
-        .content-center {
-            text-align: center; width: 100%; max-width: 500px;
-        }
-        .description-text {
-            font-size: 1rem; line-height: 1.4; margin-bottom: 20px; padding: 0 15px;
-        }
-        
-        /* קרוסלה משופרת */
-        .testimonial-wrapper {
-            height: 110px; position: relative; display: flex; align-items: center; justify-content: center;
-        }
+        .testimonial-slider { height: 120px; overflow: hidden; position: relative; }
         .slide {
-            position: absolute; width: 90%; opacity: 0; transition: opacity 0.6s ease-in-out;
-            background: rgba(255,255,255,0.4); padding: 15px; border-radius: 12px;
+            position: absolute; width: 100%; opacity: 0; transition: 0.6s;
+            text-align: center; display: flex; flex-direction: column; align-items: center;
         }
         .slide.active { opacity: 1; }
-        .stars { color: var(--accent); font-size: 1rem; margin-bottom: 5px; }
-        .quote { font-size: 0.95rem; font-weight: 600; line-height: 1.3; margin-bottom: 5px; }
-        .author { font-size: 0.8rem; opacity: 0.7; }
-
-        /* כפתורי חנויות מקוריים */
-        .store-buttons { 
-            display: flex; gap: 12px; justify-content: center; align-items: center; width: 100%;
+        .nav-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: white; border: none; width: 35px; height: 35px;
+            border-radius: 50%; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 1.2rem; display: flex; align-items: center; justify-content: center; z-index: 10;
         }
-        .store-btn { height: 45px; cursor: pointer; transition: transform 0.2s; }
-        .store-btn:hover { transform: scale(1.03); }
-        
-        .ios-wrap { position: relative; opacity: 0.6; cursor: not-allowed; }
-        .badge-soon {
-            position: absolute; top: -8px; right: -5px; background: var(--accent);
-            color: white; font-size: 0.65rem; padding: 2px 8px; border-radius: 20px;
-            font-weight: 800; transform: rotate(10deg); z-index: 10;
+        .prev { right: -15px; } .next { left: -15px; }
+
+        /* אזור הרשמה - בולט וצבעוני */
+        .signup-section { width: 100%; max-width: 450px; margin: 20px 0; }
+        .signup-box {
+            background: white; padding: 10px; border-radius: 20px;
+            display: flex; gap: 10px; box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+        .signup-box input {
+            flex: 2; border: none; padding: 15px; font-family: 'Assistant'; font-size: 1.1rem; outline: none; border-radius: 15px;
+        }
+        .signup-box button {
+            flex: 1; background: var(--cta); color: white; border: none;
+            border-radius: 15px; font-weight: 800; font-size: 1.1rem; cursor: pointer;
+            transition: 0.2s;
+        }
+        .signup-box button:hover { background: #e68a00; transform: scale(1.02); }
+
+        /* סנאי ואגוזים - דקורציה */
+        .squirrel-anim { width: 80px; position: absolute; bottom: 15%; right: 5%; transform: rotate(-10deg); }
+
+        /* כפתורי חנויות */
+        .store-buttons { display: flex; gap: 15px; margin-top: 10px; }
+        .store-btn { height: 48px; }
+        .ios-soon { position: relative; opacity: 0.7; }
+        .badge {
+            position: absolute; top: -10px; left: -10px; background: var(--cta);
+            color: white; font-size: 0.7rem; padding: 3px 10px; border-radius: 15px; font-weight: 900;
         }
 
-        .footer-info { font-size: 0.75rem; opacity: 0.6; text-align: center; }
-
-        @media (max-height: 650px) {
-            h1 { font-size: 1.8rem; }
-            .description-text { font-size: 0.9rem; margin-bottom: 10px; }
-            .app-icon { width: 70px; height: 70px; }
-            .testimonial-wrapper { height: 90px; }
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .studio-tag { top: 10px; right: 10px; font-size: 0.8rem; }
+            .studio-logo { height: 35px; }
+            .signup-box { flex-direction: column; padding: 15px; }
+            .signup-box button { width: 100%; }
         }
     </style>
 </head>
@@ -116,72 +110,71 @@
         <div class="app-header">
             <img src="icon.jpg" alt="SquirrelTimer" class="app-icon">
             <h1>SquirrelTimer</h1>
-            <p class="subtitle">הטיימר הויזואלי שילדים (והורים) אוהבים</p>
+            <p class="price-tag">הורדה בחינם לזמן מוגבל</p>
+            <p style="font-size: 1.2rem; max-width: 400px; margin: 0 auto;">הטיימר הויזואלי שהופך "עוד דקה מסיימים" למשחק חיובי.</p>
         </div>
 
-        <div class="content-center">
-            <p class="description-text">
-                הופכים את סוף זמן המסך והמעבר למקלחת למשחק מהנה. <br>
-                <strong>בלי צרחות, בלי לחץ, רק סנאי אחד חמוד.</strong>
-            </p>
-
-            <div class="testimonial-wrapper">
+        <div class="carousel-container">
+            <button class="nav-btn prev" onclick="moveSlide(-1)">&#10095;</button>
+            <div class="testimonial-slider">
                 <div class="slide active">
-                    <div class="stars">★★★★★</div>
-                    <div class="quote">"הפסיק את הצרחות בסוף זמן המסך. פשוט קסם."</div>
-                    <div class="author">דנה, אמא לילד עם ADHD</div>
+                    <div style="color:var(--cta); margin-bottom:10px;">★★★★★</div>
+                    <div style="font-weight:700; font-size:1.1rem;">"סוף סוף שקט בסוף זמן המסך!"</div>
+                    <div style="font-size:0.9rem; margin-top:5px;">- דנה, תל אביב</div>
                 </div>
                 <div class="slide">
-                    <div class="stars">★★★★★</div>
-                    <div class="quote">"המעבר למקלחת הפך למשחק במקום למלחמה."</div>
-                    <div class="author">נועם, אבא לבת על הרצף</div>
+                    <div style="color:var(--cta); margin-bottom:10px;">★★★★★</div>
+                    <div style="font-weight:700; font-size:1.1rem;">"הסנאי הפך לחבר הכי טוב במקלחת."</div>
+                    <div style="font-size:0.9rem; margin-top:5px;">- יובל, חיפה</div>
                 </div>
                 <div class="slide">
-                    <div class="stars">★★★★★</div>
-                    <div class="quote">"סוף סוף טיימר שלא מלחיץ את הילד שלי."</div>
-                    <div class="author">מיכל, מרפאה בעיסוק</div>
+                    <div style="color:var(--cta); margin-bottom:10px;">★★★★★</div>
+                    <div style="font-weight:700; font-size:1.1rem;">"חובה לכל הורה לילדי ADHD."</div>
+                    <div style="font-size:0.9rem; margin-top:5px;">- ד"ר לוי, פסיכולוגית ילדים</div>
                 </div>
             </div>
+            <button class="nav-btn next" onclick="moveSlide(1)">&#10094;</button>
         </div>
 
-        <div class="signup-container">
+        <div class="signup-section">
             <div class="signup-box">
                 <form action="https://formspree.io/f/YOUR_ID" method="POST" style="display: contents;">
-                    <input type="email" name="email" placeholder="אימייל לעדכון על השקה" required>
-                    <button type="submit">עדכנו אותי</button>
+                    <input type="email" name="email" placeholder="אימייל לקבלת גישה מוקדמת" required>
+                    <button type="submit">אני רוצה להצטרף</button>
                 </form>
             </div>
+            <p style="text-align:center; font-size:0.8rem; margin-top:10px; opacity:0.7;">הצטרפו ל-200+ הורים שכבר נרשמו לבטא</p>
         </div>
 
-        <div class="app-header">
-            <div class="store-buttons">
-                <a href="#"><img class="store-btn" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play"></a>
-                
-                <div class="ios-wrap">
-                    <span class="badge-soon">בקרוב</span>
-                    <img class="store-btn" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on App Store">
-                </div>
+        <div class="store-buttons">
+            <img class="store-btn" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg">
+            <div class="ios-soon">
+                <span class="badge">בקרוב</span>
+                <img class="store-btn" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg">
             </div>
-            <p class="footer-info">תומך באנדרואיד, טאבלטים ו-iOS בקרוב</p>
         </div>
 
-        <footer style="font-size: 0.65rem; opacity: 0.4;">
+        <img src="squirrel-anim.gif" class="squirrel-anim" alt="Cute Squirrel">
+
+        <footer style="font-size: 0.7rem; opacity: 0.5; margin-top: 20px;">
             Designed for Neurodiversity • Fuzzle 2026
         </footer>
     </div>
 
     <script>
-        // קרוסלה אוטומטית חלקה
-        let currentSlide = 0;
+        let slideIndex = 0;
         const slides = document.querySelectorAll('.slide');
-        
-        function showNextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
+
+        function showSlides(n) {
+            slides[slideIndex].classList.remove('active');
+            slideIndex = (n + slides.length) % slides.length;
+            slides[slideIndex].classList.add('active');
         }
 
-        setInterval(showNextSlide, 4000); 
+        function moveSlide(n) { showSlides(slideIndex + n); }
+
+        // מעבר אוטומטי כל 4 שניות
+        setInterval(() => moveSlide(1), 4000);
     </script>
 </body>
 </html>
