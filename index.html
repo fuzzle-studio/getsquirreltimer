@@ -37,45 +37,55 @@
             height: 100vh; width: 100vw;
         }
 
-        /* Top Section: Split Layout */
+        /* Top Section: Aligned Left */
         .top-section {
-            display: flex; flex: 1;
-            align-items: center; justify-content: center;
-            padding: 0 8vw; gap: 5vw;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 0 10vw;
         }
 
-        /* Left Side: Content */
-        .content-side { flex: 1.2; text-align: left; }
+        .content-area {
+            max-width: 550px;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5vh;
+        }
+
+        /* Brand & Pitch */
         .app-icon { 
             width: 85px; border-radius: 22%; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05); margin-bottom: 2vh;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
         h1 { font-size: clamp(2.5rem, 5vh, 3.5rem); margin: 0; font-weight: 700; letter-spacing: -1px; }
-        .tagline { font-size: 1.4rem; color: var(--sky-blue); font-weight: 600; margin: 1vh 0; }
-        .description { font-size: 1.1rem; opacity: 0.7; line-height: 1.5; max-width: 480px; }
+        .tagline { font-size: 1.4rem; color: var(--sky-blue); font-weight: 600; margin: -1vh 0 0.5vh 0; }
+        .description { font-size: 1.1rem; opacity: 0.7; line-height: 1.5; margin-bottom: 1vh; }
 
-        /* Right Side: Registration */
-        .action-side { 
-            flex: 0.8; display: flex; flex-direction: column; 
-            align-items: center; position: relative;
+        /* Registration Area - Linked to content */
+        .registration-container {
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+            position: relative;
         }
-        
-        /* The decorative Squirrel image - Scaled down 20% */
+
+        /* The decorative Mascot - Scaled down */
         .mascot-img {
-            width: 120px; /* Reduced size */
-            margin-bottom: -15px; z-index: 2;
+            width: 100px;
             filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+            margin-bottom: 45px; /* Aligns with the input box */
         }
 
-        .cta-box { width: 100%; text-align: center; z-index: 1; }
+        .cta-box { flex: 1; max-width: 400px; }
+        
         .email-form {
             display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
-            margin-bottom: 2.5vh; border: 1px solid rgba(0,0,0,0.03);
+            margin-bottom: 2vh; border: 1px solid rgba(0,0,0,0.03);
         }
         input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1rem; outline: none; }
         .submit-btn { background: var(--cta); color: white; border: none; padding: 0 25px; border-radius: 100px; font-weight: 700; cursor: pointer; }
 
-        .store-badges { display: flex; gap: 12px; justify-content: center; }
+        .store-badges { display: flex; gap: 12px; justify-content: flex-start; }
         .badge { height: 35px; opacity: 0.8; }
 
         /* Bottom Section: Testimonials with BG.jpg */
@@ -112,12 +122,13 @@
         .nav-btn svg { width: 18px; fill: var(--sky-blue); }
 
         @media (max-width: 768px) {
-            .top-section { flex-direction: column; text-align: center; padding-top: 5vh; }
-            .content-side { text-align: center; }
-            .description { margin: 0 auto; }
+            .top-section { padding: 5vh 5vw; align-items: flex-start; }
+            .content-area { text-align: center; align-items: center; }
+            .registration-container { flex-direction: column-reverse; align-items: center; gap: 10px; }
+            .mascot-img { margin-bottom: 0; width: 80px; }
+            .store-badges { justify-content: center; }
             .bottom-section { height: 40vh; background-size: cover; }
             .nav-btn { display: none; }
-            .mascot-img { width: 90px; }
         }
     </style>
 </head>
@@ -125,23 +136,26 @@
 
     <div class="main-wrapper">
         <div class="top-section">
-            <div class="content-side">
+            <div class="content-area">
                 <img src="icon.jpg" class="app-icon" alt="Icon">
-                <h1>SquirrelTimer</h1>
-                <p class="tagline">Calm transitions. Pure play.</p>
-                <p class="description">Help your child transition from screen time to real life without the tears. A visual, anxiety-free timer designed for ADHD and sensitive souls.</p>
-            </div>
+                
+                <div class="text-block">
+                    <h1>SquirrelTimer</h1>
+                    <p class="tagline">Calm transitions. Pure play.</p>
+                    <p class="description">Help your child transition from screen time to real life without the tears. A visual, anxiety-free timer designed for ADHD and sensitive souls.</p>
+                </div>
 
-            <div class="action-side">
-                <img src="Squirrel.png" class="mascot-img" alt="Mascot">
-                <div class="cta-box">
-                    <div class="email-form">
-                        <input type="email" placeholder="Email for early access" required>
-                        <button class="submit-btn">GET ACCESS</button>
-                    </div>
-                    <div class="store-badges">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge">
+                <div class="registration-container">
+                    <img src="Squirrel.png" class="mascot-img" alt="Mascot">
+                    <div class="cta-box">
+                        <div class="email-form">
+                            <input type="email" placeholder="Email for early access" required>
+                            <button class="submit-btn">GET ACCESS</button>
+                        </div>
+                        <div class="store-badges">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge">
+                        </div>
                     </div>
                 </div>
             </div>
