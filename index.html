@@ -57,24 +57,29 @@
 }
 /* Split Layout - הגדלת הרקע ללא עיוות */
 /* Split Layout - הזזת הענן ימינה מהקצה */
+/* Split Layout - הגדלה ב-20% לרוחב ללא עיוות */
 .split-container {
     display: flex;
     height: 100vh;
     width: 100vw;
     background-image: url('cloud_background.jpg'); 
-    background-size: cover; 
     
-    /* העלינו ל-75% - זה דוחף את התמונה שמאלה בתוך המיכל, */
-    /* מה שגורם לענן (שנמצא בצד שמאל של התמונה) לזוז לכיוון מרכז המסך */
-    background-position: 30% center; 
+    /* הגדרה של 120% לרוחב ו-auto לגובה כדי לשמור על פרופורציות */
+    /* זה מגדיל את ה"אורך" של הרקע ב-20% בדיוק */
+    background-size: 120% auto; 
+    
+    /* הזזה ימינה כדי שהענן ייראה טוב ולא ייחתך בשמאל */
+    background-position: 40% center; 
     
     background-repeat: no-repeat;
     background-color: var(--sky-blue);
+    transition: background-position 0.3s ease;
 }
 
-/* התאמה למובייל - שם בדרך כלל נרצה את הענן במרכז */
+/* התאמה למובייל */
 @media (max-width: 900px) {
     .split-container { 
+        background-size: cover; /* במובייל עדיף לחזור לכיסוי מלא */
         background-position: center center; 
     }
 }
