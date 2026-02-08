@@ -49,7 +49,7 @@
         /* Carousel Section with BG.jpg */
         .carousel-section {
             width: 100vw;
-            min-height: 35vh;
+            min-height: 38vh; /* מוגדל מעט כדי לתת מקום לרווחים */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -65,26 +65,26 @@
             color: var(--ref-yellow);
             font-weight: 700;
             font-size: clamp(1.2rem, 2.5vh, 1.5rem);
-            margin-bottom: 4vh;
+            margin-top: 2vh; /* רווח לפני הכותרת */
+            margin-bottom: 5vh; /* רווח כפול בין הכותרת לתגובות */
             text-transform: uppercase;
             letter-spacing: 1px;
             z-index: 10;
         }
 
-        /* Testimonials Slider Wrapper */
         .testimonials-container {
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            max-width: 800px; /* רחב יותר כדי לאפשר שורה וחצי */
+            max-width: 800px;
             z-index: 10;
         }
 
         .testimonials-wrapper {
             width: 100%;
-            max-width: 500px; /* רוחב שמאפשר טקסט ארוך יותר */
+            max-width: 500px;
             height: 100px;
             position: relative;
             display: flex;
@@ -99,6 +99,7 @@
             text-align: center;
             color: white;
             width: 100%;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2); /* לשיפור הקריאות ללא מלבן */
         }
 
         .slide.active { opacity: 1; }
@@ -106,27 +107,25 @@
         .quote { font-size: clamp(1.1rem, 2.2vh, 1.3rem); font-weight: 500; line-height: 1.4; }
         .author { display: block; margin-top: 10px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; opacity: 0.9; }
 
-        /* Nav Buttons - Positioned close to text */
         .nav-btn {
             background: white; border: none; width: 45px; height: 45px;
             border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.2s, background-color 0.2s;
-            margin: 0 20px; /* מרחק קטן מהטקסט */
+            transition: transform 0.2s;
+            margin: 0 20px;
         }
         
-        .nav-btn:hover { transform: scale(1.1); background-color: #f8f8f8; }
+        .nav-btn:hover { transform: scale(1.1); }
         .nav-btn svg { width: 20px; fill: var(--sky-blue); }
 
-        /* CTA Area */
-        .cta-area { width: 100%; max-width: 440px; text-align: center; }
+        /* CTA Area - Spacing Adjusted */
+        .cta-area { width: 100%; max-width: 440px; text-align: center; margin-top: -1vh; }
         .email-form {
             display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
             margin-bottom: 2vh;
         }
         input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1.1rem; outline: none; }
-        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 32px; border-radius: 100px; font-weight: 700; cursor: pointer; transition: 0.2s; }
-        .submit-btn:hover { opacity: 0.9; }
+        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 32px; border-radius: 100px; font-weight: 700; cursor: pointer; }
 
         .store-badges { display: flex; gap: 12px; justify-content: center; }
         .badge { height: 40px; }
@@ -137,14 +136,13 @@
         }
 
         @media (max-width: 768px) {
-            .testimonials-container { flex-direction: row; }
             .nav-btn { width: 35px; height: 35px; margin: 0 10px; }
             .carousel-section { background-size: cover; }
             .squirrel-vid { display: none; }
             .header { left: 50%; transform: translateX(-50%); width: 100%; justify-content: center; }
             .email-form { flex-direction: column; background: none; gap: 10px; }
             input { background: #F5F5F5; border-radius: 100px; text-align: center; }
-            .submit-btn { padding: 16px; }
+            .submit-btn { padding: 16px; width: 100%; }
         }
     </style>
 </head>
