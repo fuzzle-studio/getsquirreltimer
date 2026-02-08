@@ -11,6 +11,7 @@
             --text: #2D3142;
             --cta: #FF9F1C;
             --sky-blue: #29ABE2;
+            --ref-yellow: #FFD93D; /* הצהוב מהרפרנס */
         }
 
         body, html {
@@ -22,13 +23,13 @@
             overflow: hidden;
         }
 
-        /* Branding */
+        /* Branding - Adjusted Logo Proximity */
         .header {
             position: absolute; top: 3vh; left: 4vw;
-            display: flex; align-items: center; gap: 10px; z-index: 100;
+            display: flex; align-items: center; gap: 5px; z-index: 100;
         }
-        .studio-logo { height: clamp(40px, 6vh, 60px); }
-        .powered-text { font-size: 0.7rem; font-weight: 700; opacity: 0.4; text-transform: uppercase; }
+        .studio-logo { height: clamp(40px, 6vh, 60px); width: auto; }
+        .powered-text { font-size: 0.7rem; font-weight: 700; opacity: 0.4; text-transform: uppercase; margin-right: 2px; }
 
         .main-container {
             display: flex; flex-direction: column; align-items: center;
@@ -44,45 +45,49 @@
         h1 { font-size: clamp(2rem, 5vh, 2.8rem); margin: 0; font-weight: 800; }
         .tagline { font-size: 1.1rem; opacity: 0.6; margin-top: 5px; }
 
-        /* The Fixed Brush Stroke Carousel Section */
+        /* Carousel Section with Uploaded Image Background */
         .carousel-section {
             width: 100vw;
-            min-height: 25vh; /* מבטיח גובה לרצועה הכחולה */
-            background-color: var(--sky-blue);
+            min-height: 30vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
-            /* Mask Image for Brush Stroke Effect */
-            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 C50,5 150,25 250,15 C350,5 450,25 550,15 C650,5 750,25 850,15 C950,5 1000,15 L1000,85 C950,95 850,75 750,85 C650,95 550,75 450,85 C350,95 250,75 150,85 C50,95 0,85 Z" fill="black"/></svg>');
-            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,15 C50,5 150,25 250,15 C350,5 450,25 550,15 C650,5 750,25 850,15 C950,5 1000,15 L1000,85 C950,95 850,75 750,85 C650,95 550,75 450,85 C350,95 250,75 150,85 C50,95 0,85 Z" fill="black"/></svg>');
-            -webkit-mask-size: 100% 100%;
-            mask-size: 100% 100%;
+            /* שימוש בתמונה שהעלית כרקע */
+            background-image: url('https://r.jina.ai/i/157d6928929e46a188f638f37648f572'); 
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
-        .testimonials {
-            width: 100%; max-width: 600px;
-            text-align: center; position: relative;
-            color: white; z-index: 10; padding: 0 60px;
+        .carousel-title {
+            color: var(--ref-yellow);
+            font-weight: 800;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
-        .slide {
-            position: absolute; opacity: 0; transition: opacity 0.5s ease;
-            width: 100%; left: 0; top: 50%; transform: translateY(-50%);
+        .testimonials-container {
+            display: flex;
+            gap: 40px;
+            max-width: 900px;
+            width: 90%;
+            justify-content: center;
+            align-items: stretch;
         }
-        .slide.active { opacity: 1; position: relative; transform: translateY(0); }
-        .quote { font-size: clamp(1rem, 2.2vh, 1.25rem); font-weight: 600; line-height: 1.4; }
-        .author { display: block; margin-top: 10px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; opacity: 0.9; }
 
-        /* Nav Buttons */
-        .nav-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: white; border: none; width: 42px; height: 42px;
-            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 20;
+        .testimonial-item {
+            flex: 1;
+            text-align: center;
+            color: white;
+            padding: 0 10px;
         }
-        .nav-btn svg { width: 18px; fill: var(--sky-blue); }
-        .prev { left: 15px; } .next { right: 15px; }
+
+        .quote { font-size: clamp(0.9rem, 1.8vh, 1.1rem); font-weight: 600; line-height: 1.4; }
+        .author { display: block; margin-top: 8px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; opacity: 0.9; }
 
         /* Signup Area */
         .cta-area { width: 100%; max-width: 440px; text-align: center; }
@@ -103,6 +108,8 @@
         }
 
         @media (max-width: 768px) {
+            .testimonials-container { flex-direction: column; gap: 15px; }
+            .carousel-section { background-size: cover; min-height: 35vh; }
             .squirrel-vid { display: none; }
             .header { left: 50%; transform: translateX(-50%); width: 100%; justify-content: center; }
             .email-form { flex-direction: column; background: none; gap: 10px; }
@@ -126,23 +133,16 @@
         </section>
 
         <section class="carousel-section">
-            <div class="testimonials">
-                <button class="nav-btn prev" onclick="moveSlide(-1)">
-                    <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-                </button>
-                
-                <div class="slide active">
+            <div class="carousel-title">What Parents are Saying</div>
+            <div class="testimonials-container">
+                <div class="testimonial-item">
                     <span class="quote">"Screen time transitions used to end in tears. Since SquirrelTimer, my son actually looks forward to finishing."</span>
                     <span class="author">Sarah, Mom of a 5-year-old</span>
                 </div>
-                <div class="slide">
-                    <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock. Highly recommended."</span>
+                <div class="testimonial-item">
+                    <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock. Highly recommended for ADHD families."</span>
                     <span class="author">David, Occupational Therapist</span>
                 </div>
-
-                <button class="nav-btn next" onclick="moveSlide(1)">
-                    <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                </button>
             </div>
         </section>
 
@@ -162,15 +162,5 @@
         <source src="squirrelanimation.mp4" type="video/mp4">
     </video>
 
-    <script>
-        let index = 0;
-        const slides = document.querySelectorAll('.slide');
-        function moveSlide(n) {
-            slides[index].classList.remove('active');
-            index = (index + n + slides.length) % slides.length;
-            slides[index].classList.add('active');
-        }
-        setInterval(() => moveSlide(1), 5000);
-    </script>
 </body>
 </html>
