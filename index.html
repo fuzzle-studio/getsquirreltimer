@@ -71,16 +71,25 @@
             z-index: 10;
         }
 
-        /* Single Testimonial Layout */
-        .testimonials-wrapper {
-            width: 100%;
-            max-width: 320px;
-            height: 120px;
+        /* Testimonials Slider Wrapper */
+        .testimonials-container {
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 100%;
+            max-width: 800px; /* רחב יותר כדי לאפשר שורה וחצי */
             z-index: 10;
+        }
+
+        .testimonials-wrapper {
+            width: 100%;
+            max-width: 500px; /* רוחב שמאפשר טקסט ארוך יותר */
+            height: 100px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .slide {
@@ -94,21 +103,20 @@
 
         .slide.active { opacity: 1; }
 
-        .quote { font-size: clamp(1.1rem, 2.2vh, 1.3rem); font-weight: 500; line-height: 1.5; }
+        .quote { font-size: clamp(1.1rem, 2.2vh, 1.3rem); font-weight: 500; line-height: 1.4; }
         .author { display: block; margin-top: 10px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; opacity: 0.9; }
 
-        /* White Circular Nav Buttons with Hover */
+        /* Nav Buttons - Positioned close to text */
         .nav-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
             background: white; border: none; width: 45px; height: 45px;
             border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 20;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: transform 0.2s, background-color 0.2s;
+            margin: 0 20px; /* מרחק קטן מהטקסט */
         }
         
-        .nav-btn:hover { transform: translateY(-50%) scale(1.1); background-color: #f8f8f8; }
+        .nav-btn:hover { transform: scale(1.1); background-color: #f8f8f8; }
         .nav-btn svg { width: 20px; fill: var(--sky-blue); }
-        .prev { left: 10vw; } .next { right: 10vw; }
 
         /* CTA Area */
         .cta-area { width: 100%; max-width: 440px; text-align: center; }
@@ -129,7 +137,8 @@
         }
 
         @media (max-width: 768px) {
-            .prev { left: 4vw; } .next { right: 4vw; }
+            .testimonials-container { flex-direction: row; }
+            .nav-btn { width: 35px; height: 35px; margin: 0 10px; }
             .carousel-section { background-size: cover; }
             .squirrel-vid { display: none; }
             .header { left: 50%; transform: translateX(-50%); width: 100%; justify-content: center; }
@@ -156,32 +165,30 @@
         <section class="carousel-section">
             <div class="carousel-title">What Parents are Saying</div>
             
-            <button class="nav-btn prev" onclick="moveSlide(-1)">
-                <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-            </button>
+            <div class="testimonials-container">
+                <button class="nav-btn prev" onclick="moveSlide(-1)">
+                    <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                </button>
 
-            <div class="testimonials-wrapper">
-                <div class="slide active">
-                    <span class="quote">"Screen time transitions used to end in tears."</span>
-                    <span class="author">Sarah, Mom of a 5-year-old</span>
+                <div class="testimonials-wrapper">
+                    <div class="slide active">
+                        <span class="quote">"Screen time transitions used to end in tears. Now he looks forward to finishing."</span>
+                        <span class="author">Sarah, Mom of a 5-year-old</span>
+                    </div>
+                    <div class="slide">
+                        <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock."</span>
+                        <span class="author">David, Occupational Therapist</span>
+                    </div>
+                    <div class="slide">
+                        <span class="quote">"Highly recommended for ADHD families looking for calm morning routines."</span>
+                        <span class="author">David, Occupational Therapist</span>
+                    </div>
                 </div>
-                <div class="slide">
-                    <span class="quote">"Since SquirrelTimer, he actually looks forward to finishing."</span>
-                    <span class="author">Sarah, Mom of a 5-year-old</span>
-                </div>
-                <div class="slide">
-                    <span class="quote">"Finally, a timer that provides a visual scaffold."</span>
-                    <span class="author">David, Occupational Therapist</span>
-                </div>
-                <div class="slide">
-                    <span class="quote">"Highly recommended for ADHD families."</span>
-                    <span class="author">David, Occupational Therapist</span>
-                </div>
+
+                <button class="nav-btn next" onclick="moveSlide(1)">
+                    <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
             </div>
-
-            <button class="nav-btn next" onclick="moveSlide(1)">
-                <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-            </button>
         </section>
 
         <section class="cta-area">
