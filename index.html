@@ -2,168 +2,169 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Squirrel Timer | Making Transitions Calm & Fun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SquirrelTimer | Calm Transitions</title>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-soft: #B8E1DD; /* Mint soft */
-            --secondary-soft: #FDE2E4; /* Peach/Pink soft */
-            --accent-warm: #FFF1E6; /* Cream background */
-            --text-main: #4A4E69;
-            --button-color: #98C1D9;
+            --bg: #F8F9FA;
+            --primary: #B8E1DD;
+            --text: #2D3142;
+            --accent: #FF9F1C;
         }
 
-        body {
+        body, html {
+            margin: 0; padding: 0;
+            height: 100%; width: 100%;
             font-family: 'Assistant', sans-serif;
-            background-color: var(--accent-warm);
-            color: var(--text-main);
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow: hidden; /* מבטל גלילה במסכים סטנדרטיים */
         }
 
-        header {
-            padding: 60px 20px;
-            text-align: center;
-            max-width: 800px;
+        /* פינת הסטודיו */
+        .studio-tag {
+            position: absolute; top: 15px; left: 20px;
+            font-size: 0.8rem; opacity: 0.6; display: flex; align-items: center; gap: 5px;
         }
 
-        .logo-container img {
-            width: 150px;
-            border-radius: 40px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
+        .main-container {
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: space-between; height: 100vh; padding: 20px; box-sizing: border-box;
         }
 
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            color: #22223B;
+        .hero-section { text-align: center; width: 100%; }
+
+        .app-icon {
+            width: 100px; height: 100px; border-radius: 22%;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1); margin-bottom: 10px;
         }
 
-        .tagline {
-            font-size: 1.4rem;
-            font-weight: 300;
-            color: #4A4E69;
-            margin-bottom: 30px;
+        h1 { margin: 5px 0; font-size: 2rem; color: #2D3142; }
+        .subtitle { font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8; }
+
+        /* טופס הרשמה בולט */
+        .signup-box {
+            background: white; padding: 15px; border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); width: 100%; max-width: 400px;
+            margin-bottom: 15px;
         }
 
-        .hero-card {
-            background: white;
-            padding: 40px;
-            border-radius: 50px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
-            max-width: 600px;
-            text-align: center;
-            margin: 0 20px;
+        .signup-box input {
+            width: 60%; padding: 12px; border: 1px solid #ddd; border-radius: 12px; font-family: 'Assistant';
         }
 
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 40px 0;
-            width: 90%;
-            max-width: 800px;
+        .signup-box button {
+            width: 35%; padding: 12px; border: none; background: var(--text); color: white;
+            border-radius: 12px; font-weight: bold; cursor: pointer;
         }
 
-        .feature-box {
-            background: rgba(255, 255, 255, 0.6);
-            padding: 20px;
-            border-radius: 30px;
-            border: 1px solid rgba(0,0,0,0.05);
+        /* קרוסלה */
+        .testimonial-slider {
+            width: 100%; max-width: 450px; height: 100px; position: relative;
+            overflow: hidden; margin: 10px 0;
         }
 
-        .feature-box h3 { margin-top: 0; color: #444; }
-
-        .cta-section {
-            background: var(--primary-soft);
-            width: 100%;
-            padding: 80px 20px;
-            text-align: center;
-            margin-top: 60px;
+        .slide {
+            position: absolute; width: 100%; opacity: 0; transition: 0.8s;
+            text-align: center; font-style: italic; font-size: 0.95rem;
         }
 
-        input[type="email"] {
-            padding: 15px 25px;
-            border-radius: 30px;
-            border: none;
-            width: 250px;
-            font-family: 'Assistant';
-            font-size: 1rem;
-            outline: none;
+        .slide.active { opacity: 1; }
+        .stars { color: var(--accent); margin-bottom: 5px; }
+
+        /* כפתורי הורדה */
+        .download-buttons { display: flex; gap: 10px; justify-content: center; width: 100%; }
+        
+        .btn-fake {
+            position: relative; background: #222; color: white; padding: 10px 20px;
+            border-radius: 8px; font-size: 0.8rem; display: flex; align-items: center; gap: 8px;
+            text-decoration: none; width: 140px; justify-content: center;
         }
 
-        button {
-            padding: 15px 35px;
-            border-radius: 30px;
-            border: none;
-            background-color: var(--text-main);
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.2s;
-            font-weight: 600;
+        .btn-fake.disabled { background: #555; cursor: not-allowed; }
+
+        .badge {
+            position: absolute; top: -10px; right: -10px; background: var(--accent);
+            color: white; font-size: 0.6rem; padding: 2px 6px; border-radius: 10px;
+            font-weight: bold; transform: rotate(15deg); box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        button:hover {
-            transform: scale(1.05);
-        }
+        .support-text { font-size: 0.75rem; margin-top: 10px; opacity: 0.6; }
 
-        footer {
-            padding: 40px;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            .features { grid-template-columns: 1fr; }
-            h1 { font-size: 2rem; }
+        @media (max-height: 600px) {
+            h1 { font-size: 1.5rem; }
+            .app-icon { width: 70px; height: 70px; }
+            .testimonial-slider { display: none; } /* מוריד את ההמלצות במסכים קטנים מאוד כדי למנוע גלילה */
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-container">
-            <img src="icon.jpg" alt="Fuzzle Squirrel Logo">
-        </div>
-        <h1>Squirrel Timer</h1>
-        <p class="tagline">הופכים מעברים קשים לרגעים של משחק ורוגע</p>
-    </header>
-
-    <div class="hero-card">
-        <h2>פחות חיכוך, יותר חיוכים</h2>
-        <p>הורים לילדים נוירו-דייברסיטי יודעים שמעברים הם האתגר הגדול של היום. Squirrel Timer הוא לא רק שעון עצר – הוא חבר ויזואלי שעוזר לילדים להבין "כמה זמן נשאר" בלי הלחץ של שעון רגיל.</p>
+    <div class="studio-tag">
+        <span>Powered by</span> <strong>Fuzzle Studio</strong>
     </div>
 
-    <div class="features">
-        <div class="feature-box">
-            <h3>🎨 עיצוב מרגיע</h3>
-            <p>ללא צפצופים מלחיצים או עומס ויזואלי. רק ויסות חושי רך.</p>
+    <div class="main-container">
+        
+        <div class="hero-section">
+            <img src="icon.jpg" alt="SquirrelTimer" class="app-icon">
+            <h1>SquirrelTimer</h1>
+            <p class="subtitle">הופכים מעברים קשים לזמן רגוע של משחק</p>
+            
+            <div class="signup-box">
+                <form action="https://formspree.io/f/YOUR_ID" method="POST">
+                    <input type="email" name="email" placeholder="אימייל לעדכון על השקה" required>
+                    <button type="submit">עדכנו אותי</button>
+                </form>
+            </div>
         </div>
-        <div class="feature-box">
-            <h3>🐿️ סנאי מלווה</h3>
-            <p>הדמות של פאזל הסנאי עוברת עם הילד את התהליך ומעודדת הצלחה.</p>
+
+        <div class="testimonial-slider">
+            <div class="slide active">
+                <div class="stars">★★★★★</div>
+                "הפסיק את הצרחות בסוף זמן המסך. פשוט קסם."<br><strong>- דנה, אמא לילד עם ADHD</strong>
+            </div>
+            <div class="slide">
+                <div class="stars">★★★★★</div>
+                "המעבר למקלחת הפך למשחק במקום למלחמה."<br><strong>- נועם, אבא לבת על הרצף</strong>
+            </div>
+            <div class="slide">
+                <div class="stars">★★★★★</div>
+                "סוף סוף טיימר שלא מלחיץ את הילד שלי."<br><strong>- מיכל, מרפאה בעיסוק</strong>
+            </div>
         </div>
+
+        <div class="hero-section">
+            <div class="download-buttons">
+                <div class="btn-fake">
+                    <span>Google Play</span>
+                </div>
+                <div class="btn-fake disabled">
+                    <span class="badge">בקרוב</span>
+                    <span>App Store</span>
+                </div>
+            </div>
+            <p class="support-text">תומך באנדרואיד, טאבלטים ו-iOS בקרוב</p>
+        </div>
+
+        <footer style="font-size: 0.7rem; opacity: 0.5; padding-bottom: 10px;">
+            Designed for Neurodiversity • Fuzzle 2026
+        </footer>
     </div>
 
-    <div class="cta-section">
-        <h2>רוצה לדעת מתי אנחנו משיקים?</h2>
-        <p>אנחנו בונים את זה באהבה. הצטרפו לרשימת ההמתנה לגרסת הבטא.</p>
-        <form action="#" method="POST">
-            <input type="email" placeholder="האימייל שלך..." required>
-            <button type="submit">אני רוצה גישה מוקדמת</button>
-        </form>
-    </div>
+    <script>
+        // לוגיקה פשוטה לקרוסלה
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showNextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
 
-    <footer>
-        <p>&copy; 2026 Fuzzle Studio | Designing for a Kind Future</p>
-    </footer>
-
+        setInterval(showNextSlide, 3500); // מחליף כל 3.5 שניות
+    </script>
 </body>
 </html>
