@@ -24,7 +24,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Keyframes for animations */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -35,7 +34,6 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
-        /* Layout */
         .split-container {
             display: flex;
             height: 100vh;
@@ -43,7 +41,6 @@
             background-color: #FFFFFF;
         }
 
-        /* LEFT SIDE */
         .left-side {
             width: 45%;
             display: flex;
@@ -72,32 +69,29 @@
         .tagline { font-size: 1.4rem; color: var(--sky-blue); font-weight: 600; margin-top: 5px; }
         .description { font-size: 1.1rem; opacity: 0.7; line-height: 1.5; margin: 2vh 0; }
 
-        /* Registration */
+        /* Registration Form Styles */
         .cta-box { width: 100%; margin-top: 1vh; }
         .email-form {
             display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
-            margin-bottom: 4vh; 
+            margin-bottom: 3vh; 
             border: 1px solid rgba(0,0,0,0.03);
         }
-        input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1.1rem; outline: none; }
-        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 30px; border-radius: 100px; font-weight: 700; cursor: pointer; }
+        .email-form input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1.1rem; outline: none; }
+        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 30px; border-radius: 100px; font-weight: 700; cursor: pointer; transition: transform 0.2s; }
+        .submit-btn:hover { transform: scale(1.05); }
 
-        /* Store Badges - FIXED EQUAL SIZE */
+        /* Coming Soon Badges */
+        .coming-soon-label { font-size: 0.85rem; color: #888; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .store-badges { 
             display: flex; 
             gap: 15px; 
             justify-content: center; 
             width: 100%;
             align-items: center;
+            opacity: 0.5; /* Indicates not yet available */
+            pointer-events: none;
         }
-        .badge { 
-            height: 42px; /* גובה אחיד לשניהם */
-            width: auto;  /* שומר על פרופורציה */
-            opacity: 0.9; 
-            transition: transform 0.2s;
-            display: block;
-        }
-        .badge:hover { transform: scale(1.05); opacity: 1; }
+        .badge { height: 40px; width: auto; display: block; }
 
         /* RIGHT SIDE */
         .right-side {
@@ -114,7 +108,6 @@
             background-position: 85% center; 
         }
 
-        /* Social Proof */
         .testimonials-wrapper, .carousel-title {
             z-index: 10;
             position: relative;
@@ -122,44 +115,34 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .carousel-title {
-            color: var(--ref-yellow); font-weight: 700; font-size: 1.3rem;
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5vh;
-        }
-
-        .testimonials-wrapper { 
-            width: 80%; max-width: 400px; height: 120px; 
-            display: flex; align-items: center; justify-content: center;
-        }
-        .slide {
-            position: absolute; opacity: 0; transition: opacity 0.6s ease;
-            text-align: center; color: white; width: 100%;
-        }
+        .carousel-title { color: var(--ref-yellow); font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5vh; }
+        .testimonials-wrapper { width: 80%; max-width: 400px; height: 120px; display: flex; align-items: center; justify-content: center; }
+        .slide { position: absolute; opacity: 0; transition: opacity 0.6s ease; text-align: center; color: white; width: 100%; }
         .slide.active { opacity: 1; }
         .quote { font-size: 1.25rem; font-weight: 500; line-height: 1.5; }
         .author { display: block; margin-top: 15px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        .mascot-img {
-            position: absolute; bottom: 4vh; right: 3vw;
-            width: 110px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
-            animation: fadeInRight 1s ease-out 0.5s forwards;
-            opacity: 0;
-            z-index: 11;
-        }
+        .mascot-img { position: absolute; bottom: 4vh; right: 3vw; width: 110px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1)); animation: fadeInRight 1s ease-out 0.5s forwards; opacity: 0; z-index: 11; }
 
-        .footer-branding {
-            position: absolute; bottom: 3vh; left: 3vw;
-            display: flex; align-items: center; gap: 5px; opacity: 0.4;
-            z-index: 12;
-        }
-        .studio-logo { height: 32px; }
+        /* Footer & Privacy */
+        .footer-branding { position: absolute; bottom: 3vh; left: 3vw; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; z-index: 12; }
+        .footer-top { display: flex; align-items: center; gap: 5px; opacity: 0.5; }
+        .studio-logo { height: 28px; }
+        .footer-links { display: flex; gap: 15px; font-size: 0.75rem; font-weight: 600; }
+        .footer-links a, .footer-links span { color: var(--text); opacity: 0.6; text-decoration: none; cursor: pointer; }
+        .footer-links a:hover { opacity: 1; }
+
+        /* Privacy Modal */
+        #privacyModal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); }
+        .modal-content { background: white; margin: 10% auto; padding: 30px; border-radius: 20px; width: 80%; max-width: 600px; max-height: 70vh; overflow-y: auto; text-align: left; }
+        .close-modal { float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
 
         @media (max-width: 900px) {
             .split-container { flex-direction: column; overflow-y: auto; }
             .left-side, .right-side { width: 100%; flex: none; }
             .right-side { height: 50vh; background-position: center center; }
             .testimonials-wrapper, .carousel-title { transform: translateX(0); }
-            .footer-branding { position: relative; bottom: auto; left: auto; padding: 3vh 0; justify-content: center; }
+            .footer-branding { position: relative; bottom: auto; left: auto; padding: 3vh 0; align-items: center; }
         }
     </style>
 </head>
@@ -176,10 +159,12 @@
                 </div>
 
                 <div class="cta-box">
-                    <div class="email-form">
-                        <input type="email" placeholder="Email for early access" required>
-                        <button class="submit-btn">GET ACCESS</button>
-                    </div>
+                    <form name="submit-to-google-sheet" class="email-form">
+                        <input name="Email" type="email" placeholder="Enter email for early access..." required>
+                        <button type="submit" class="submit-btn">GET ACCESS</button>
+                    </form>
+                    
+                    <p class="coming-soon-label">Coming Soon</p>
                     <div class="store-badges">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge" alt="App Store">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge" alt="Google Play">
@@ -188,8 +173,14 @@
             </div>
 
             <div class="footer-branding">
-                <span style="font-size: 0.65rem; font-weight: 800;">POWERED BY</span>
-                <img src="logo.png" alt="Fuzzle Studio" class="studio-logo">
+                <div class="footer-top">
+                    <span style="font-size: 0.6rem; font-weight: 800;">POWERED BY</span>
+                    <img src="logo.png" alt="Fuzzle Studio" class="studio-logo">
+                </div>
+                <div class="footer-links">
+                    <span onclick="document.getElementById('privacyModal').style.display='block'">Privacy Policy</span>
+                    <a href="mailto:fuzzlestudios.app@gmail.com">Contact Us</a>
+                </div>
             </div>
         </div>
 
@@ -213,7 +204,24 @@
         </div>
     </div>
 
+    <div id="privacyModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="document.getElementById('privacyModal').style.display='none'">&times;</span>
+            <h2>Privacy Policy for Squirrel Timer</h2>
+            <p><strong>Last Updated: 2026</strong></p>
+            <p>At Squirrel Timer, we take the privacy of our users, especially children, very seriously.</p>
+            <ul>
+                <li><strong>Data Collection:</strong> We do not collect, store, or share any personal information.</li>
+                <li><strong>Third Parties:</strong> We do not share data with third-party services.</li>
+                <li><strong>Children's Privacy:</strong> Our app is fully compliant with COPPA (Children's Online Privacy Protection Act) and does not track users.</li>
+                <li><strong>Permissions:</strong> The app only requests necessary local device permissions required for timer functionality and does not access personal files or contacts.</li>
+            </ul>
+            <p>For any questions, contact us at: <a href="mailto:fuzzlestudios.app@gmail.com">fuzzlestudios.app@gmail.com</a></p>
+        </div>
+    </div>
+
     <script>
+        // Testimonials Logic
         let index = 0;
         const slides = document.querySelectorAll('.slide');
         function moveSlide(n) {
@@ -222,6 +230,31 @@
             slides[index].classList.add('active');
         }
         setInterval(() => moveSlide(1), 5000);
+
+        // Google Sheets Logic
+        // Note: You must deploy your Apps Script as a Web App and paste the URL below
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbz_YOUR_WEBAPP_ID/exec';
+        const form = document.forms['submit-to-google-sheet'];
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const btn = form.querySelector('.submit-btn');
+            btn.innerHTML = 'Sending...';
+            btn.disabled = true;
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    alert("Success! You'll receive an email update when the app launches.");
+                    form.reset();
+                    btn.innerHTML = 'GET ACCESS';
+                    btn.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    btn.innerHTML = 'GET ACCESS';
+                    btn.disabled = false;
+                });
+        });
     </script>
 </body>
 </html>
