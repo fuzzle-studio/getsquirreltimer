@@ -112,11 +112,6 @@
         .powered-by-wrap { display: flex; align-items: center; gap: 6px; opacity: 0.5; }
         .studio-logo { height: 24px; vertical-align: middle; }
 
-        /* Privacy Modal */
-        #privacyModal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); }
-        .modal-content { background: white; margin: 10% auto; padding: 30px; border-radius: 20px; width: 85%; max-width: 600px; max-height: 70vh; overflow-y: auto; text-align: left; position: relative; }
-        .close-modal { position: absolute; right: 20px; top: 15px; font-size: 28px; font-weight: bold; cursor: pointer; color: #aaa; }
-
         @media (max-width: 900px) {
             .split-container { flex-direction: column; overflow-y: auto; }
             .left-side, .right-side { width: 100%; flex: none; }
@@ -155,7 +150,7 @@
             </div>
 
             <div class="footer-branding">
-                <span class="footer-link" onclick="document.getElementById('privacyModal').style.display='block'">Privacy Policy</span>
+                <a href="privacypolicy.html" target="_blank" class="footer-link">Privacy Policy</a>
                 <div class="footer-divider"></div>
                 <a href="mailto:fuzzlestudios.app@gmail.com" class="footer-link">Contact Us</a>
                 <div class="footer-divider"></div>
@@ -183,22 +178,6 @@
                 </div>
             </div>
             <img src="Squirrel.png" class="mascot-img" alt="Squirrel Mascot">
-        </div>
-    </div>
-
-    <div id="privacyModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="document.getElementById('privacyModal').style.display='none'">&times;</span>
-            <h2 style="margin-top:0">Privacy Policy for Squirrel Timer</h2>
-            <p><strong>Last Updated: 2026</strong></p>
-            <p>At Squirrel Timer, we take the privacy of our users, especially children, very seriously.</p>
-            <ul>
-                <li><strong>Data Collection:</strong> We do not collect, store, or share any personal information.</li>
-                <li><strong>Third Parties:</strong> We do not share data with third-party services.</li>
-                <li><strong>Children's Privacy:</strong> Our app is fully compliant with COPPA (Children's Online Privacy Protection Act) and does not track users.</li>
-                <li><strong>Permissions:</strong> The app only requests necessary device functions to operate the timer and does not access personal data.</li>
-            </ul>
-            <p>For any questions, contact us at: <a href="mailto:fuzzlestudios.app@gmail.com">fuzzlestudios.app@gmail.com</a></p>
         </div>
     </div>
 
