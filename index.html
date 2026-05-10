@@ -98,9 +98,18 @@
         .quote { font-size: 1.25rem; font-weight: 500; line-height: 1.5; }
         .author { display: block; margin-top: 15px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        .mascot-img { position: absolute; bottom: 4vh; right: 3vw; width: 110px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1)); animation: fadeInRight 1s ease-out 0.5s forwards; opacity: 0; z-index: 11; }
+        /* Mascot GIF Styles - Updated */
+        .mascot-img { 
+            position: absolute; 
+            bottom: 4vh; 
+            right: 3vw; 
+            width: 140px; 
+            filter: none; /* No shadow for clean GIF edges */
+            animation: fadeInRight 1s ease-out 0.5s forwards; 
+            opacity: 0; 
+            z-index: 11; 
+        }
 
-        /* FOOTER BRANDING UPDATED */
         .footer-branding {
             position: absolute; bottom: 3vh; left: 3vw;
             display: flex; align-items: center; gap: 12px;
@@ -177,7 +186,7 @@
                     <span class="author">Michelle, Parenting Coach</span>
                 </div>
             </div>
-            <img src="Squirrel.png" class="mascot-img" alt="Squirrel Mascot">
+            <img src="Hello.gif" class="mascot-img" alt="Squirrel Mascot">
         </div>
     </div>
 
@@ -191,6 +200,7 @@
         }
         setInterval(() => moveSlide(1), 5000);
 
+        // Replace the URL below with your Google Apps Script Web App URL
         const scriptURL = 'https://script.google.com/macros/s/AKfycbz_YOUR_SCRIPT_ID/exec';
         const form = document.forms['submit-to-google-sheet'];
 
