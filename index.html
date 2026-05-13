@@ -101,10 +101,10 @@
         /* Mascot GIF Styles - Updated */
         .mascot-img { 
             position: absolute; 
-            bottom: 4vh; 
-            right: 3vw; 
-            width: 280px; /* שינוי מ-140 ל-280 */ 
-            filter: none; /* No shadow for clean GIF edges */
+            bottom: 0; /* הורד משמעותית */
+            right: 0; /* נצמד לפינה הימנית */
+            width: 140px; /* הוקטן פי 2 מ-280 */ 
+            filter: none; 
             animation: fadeInRight 1s ease-out 0.5s forwards; 
             opacity: 0; 
             z-index: 11; 
@@ -127,6 +127,9 @@
             .right-side { height: 50vh; background-position: center center; }
             .testimonials-wrapper, .carousel-title { transform: translateX(0); }
             .footer-branding { position: relative; bottom: auto; left: auto; padding: 4vh 0; justify-content: center; flex-wrap: wrap; }
+            
+            /* התאמה נוספת למובייל כדי שהסנאי המוקטן לא יעלה על טקסטים */
+            .mascot-img { width: 100px; bottom: 0; right: 0; }
         }
     </style>
 </head>
