@@ -1,237 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SquirrelTimer | Calm Transitions.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #FFFFFF;
-            --text: #2D3142;
-            --cta: #FF9F1C;
-            --sky-blue: #29ABE2;
-            --ref-yellow: #FFD93D;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SquirrelTimer | Calm Transitions.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --text: #2D3142;
+            --cta: #FF9F1C;
+            --sky-blue: #29ABE2;
+            --ref-yellow: #FFD93D;
+        }
 
-        body, html {
-            margin: 0; padding: 0;
-            height: 100vh; width: 100vw;
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            overflow: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+        body, html {
+            margin: 0; padding: 0;
+            height: 100vh; width: 100vw;
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
 
-        .split-container {
-            display: flex;
-            height: 100vh; width: 100vw;
-            background-color: #FFFFFF;
-        }
+        .split-container {
+            display: flex;
+            height: 100vh; width: 100vw;
+            background-color: #FFFFFF;
+        }
 
-        .left-side {
-            width: 45%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 0 2vw 0 5vw;
-            text-align: center;
-            z-index: 10;
-        }
+        .left-side {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2vw 0 5vw;
+            text-align: center;
+            z-index: 10;
+        }
 
-        .content-wrap {
-            max-width: 450px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
+        .content-wrap {
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
 
-        .app-icon { 
-            width: 90px; border-radius: 22%; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            margin-bottom: 2vh;
-        }
-        h1 { font-size: clamp(2.5rem, 5vh, 3.5rem); margin: 0; font-weight: 700; letter-spacing: -1px; }
-        .tagline { font-size: 1.4rem; color: var(--sky-blue); font-weight: 600; margin-top: 5px; }
-        .description { font-size: 1.1rem; opacity: 0.7; line-height: 1.5; margin: 2vh 0; }
+        .app-icon { 
+            width: 90px; border-radius: 22%; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            margin-bottom: 2vh;
+        }
+        h1 { font-size: clamp(2.5rem, 5vh, 3.5rem); margin: 0; font-weight: 700; letter-spacing: -1px; }
+        .tagline { font-size: 1.4rem; color: var(--sky-blue); font-weight: 600; margin-top: 5px; }
+        .description { font-size: 1.1rem; opacity: 0.7; line-height: 1.5; margin: 2vh 0; }
 
-        .cta-box { width: 100%; margin-top: 1vh; }
-        .email-form {
-            display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
-            margin-bottom: 3vh; border: 1px solid rgba(0,0,0,0.03);
-        }
-        .email-form input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1.1rem; outline: none; }
-        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 30px; border-radius: 100px; font-weight: 700; cursor: pointer; transition: transform 0.2s; }
-        .submit-btn:hover { transform: scale(1.05); }
+        .cta-box { width: 100%; margin-top: 1vh; }
+        .email-form {
+            display: flex; background: #F5F5F5; padding: 6px; border-radius: 100px;
+            margin-bottom: 3vh; border: 1px solid rgba(0,0,0,0.03);
+        }
+        .email-form input { flex: 1; border: none; background: none; padding: 12px 20px; font-family: inherit; font-size: 1.1rem; outline: none; }
+        .submit-btn { background: var(--cta); color: white; border: none; padding: 0 30px; border-radius: 100px; font-weight: 700; cursor: pointer; transition: transform 0.2s; }
+        .submit-btn:hover { transform: scale(1.05); }
 
-        .coming-soon-container { text-align: center; margin-top: 10px; }
-        .coming-soon-text { font-size: 0.85rem; color: #888; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .store-badges { display: flex; gap: 15px; justify-content: center; align-items: center; opacity: 0.6; pointer-events: none; }
-        .badge { height: 42px; width: auto; display: block; }
+        .coming-soon-container { text-align: center; margin-top: 10px; }
+        .coming-soon-text { font-size: 0.85rem; color: #888; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .store-badges { display: flex; gap: 15px; justify-content: center; align-items: center; opacity: 0.6; pointer-events: none; }
+        .badge { height: 42px; width: auto; display: block; }
 
-        .right-side {
-            width: 55%;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            position: relative; background-color: var(--sky-blue);
-            background-image: url('cloud_background.jpg');
-            background-repeat: no-repeat; background-size: cover; background-position: 85% center; 
-        }
+        .right-side {
+            width: 55%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            position: relative; background-color: var(--sky-blue);
+            background-image: url('cloud_background.jpg');
+            background-repeat: no-repeat; background-size: cover; background-position: 85% center; 
+        }
 
-        .testimonials-wrapper, .carousel-title { z-index: 10; position: relative; transform: translateX(40px); text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .carousel-title { color: var(--ref-yellow); font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5vh; }
-        .testimonials-wrapper { width: 80%; max-width: 400px; height: 120px; display: flex; align-items: center; justify-content: center; }
-        .slide { position: absolute; opacity: 0; transition: opacity 0.6s ease; text-align: center; color: white; width: 100%; }
-        .slide.active { opacity: 1; }
-        .quote { font-size: 1.25rem; font-weight: 500; line-height: 1.5; }
-        .author { display: block; margin-top: 15px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .testimonials-wrapper, .carousel-title { z-index: 10; position: relative; transform: translateX(40px); text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .carousel-title { color: var(--ref-yellow); font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5vh; }
+        .testimonials-wrapper { width: 80%; max-width: 400px; height: 120px; display: flex; align-items: center; justify-content: center; }
+        .slide { position: absolute; opacity: 0; transition: opacity 0.6s ease; text-align: center; color: white; width: 100%; }
+        .slide.active { opacity: 1; }
+        .quote { font-size: 1.25rem; font-weight: 500; line-height: 1.5; }
+        .author { display: block; margin-top: 15px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Mascot GIF Styles - Updated */
-        .mascot-img { 
-            position: absolute; 
-            bottom: 0; /* הורד משמעותית */
-            right: 0; /* נצמד לפינה הימנית */
-            width: 140px; /* הוקטן פי 2 מ-280 */ 
-            filter: none; 
-            animation: fadeInRight 1s ease-out 0.5s forwards; 
-            opacity: 0; 
-            z-index: 11; 
-        }
+        /* Mascot GIF Styles - Updated */
+        .mascot-img { 
+            position: absolute; 
+            bottom: 4vh; 
+            right: 3vw; 
+            width: 230px; /* שינוי מ-140 ל-280 */ 
+            filter: none; /* No shadow for clean GIF edges */
+            animation: fadeInRight 1s ease-out 0.5s forwards; 
+            opacity: 0; 
+            z-index: 11; 
+        }
 
-        .footer-branding {
-            position: absolute; bottom: 3vh; left: 3vw;
-            display: flex; align-items: center; gap: 12px;
-            z-index: 12; font-size: 0.75rem; font-weight: 600;
-        }
-        .footer-link { color: var(--text); opacity: 0.6; text-decoration: none; cursor: pointer; transition: opacity 0.2s; }
-        .footer-link:hover { opacity: 1; }
-        .footer-divider { opacity: 0.2; height: 14px; width: 1px; background: var(--text); }
-        .powered-by-wrap { display: flex; align-items: center; gap: 6px; opacity: 0.5; }
-        .studio-logo { height: 24px; vertical-align: middle; }
+        .footer-branding {
+            position: absolute; bottom: 3vh; left: 3vw;
+            display: flex; align-items: center; gap: 12px;
+            z-index: 12; font-size: 0.75rem; font-weight: 600;
+        }
+        .footer-link { color: var(--text); opacity: 0.6; text-decoration: none; cursor: pointer; transition: opacity 0.2s; }
+        .footer-link:hover { opacity: 1; }
+        .footer-divider { opacity: 0.2; height: 14px; width: 1px; background: var(--text); }
+        .powered-by-wrap { display: flex; align-items: center; gap: 6px; opacity: 0.5; }
+        .studio-logo { height: 24px; vertical-align: middle; }
 
-        @media (max-width: 900px) {
-            .split-container { flex-direction: column; overflow-y: auto; }
-            .left-side, .right-side { width: 100%; flex: none; }
-            .right-side { height: 50vh; background-position: center center; }
-            .testimonials-wrapper, .carousel-title { transform: translateX(0); }
-            .footer-branding { position: relative; bottom: auto; left: auto; padding: 4vh 0; justify-content: center; flex-wrap: wrap; }
-            
-            /* התאמה נוספת למובייל כדי שהסנאי המוקטן לא יעלה על טקסטים */
-            .mascot-img { width: 100px; bottom: 0; right: 0; }
-        }
-    </style>
+        @media (max-width: 900px) {
+            .split-container { flex-direction: column; overflow-y: auto; }
+            .left-side, .right-side { width: 100%; flex: none; }
+            .right-side { height: 50vh; background-position: center center; }
+            .testimonials-wrapper, .carousel-title { transform: translateX(0); }
+            .footer-branding { position: relative; bottom: auto; left: auto; padding: 4vh 0; justify-content: center; flex-wrap: wrap; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="split-container">
-        <div class="left-side">
-            <div class="content-wrap">
-                <img src="icon.jpg" class="app-icon" alt="SquirrelTimer Icon">
-                <div class="text-block">
-                    <h1>SquirrelTimer</h1>
-                    <p class="tagline">Calm mornings. Playful routines.</p>
-                    <p class="description">Help your child transition from screen time without the tears. Designed for ADHD and sensitive souls.</p>
-                </div>
+    <div class="split-container">
+        <div class="left-side">
+            <div class="content-wrap">
+                <img src="icon.jpg" class="app-icon" alt="SquirrelTimer Icon">
+                <div class="text-block">
+                    <h1>SquirrelTimer</h1>
+                    <p class="tagline">Calm mornings. Playful routines.</p>
+                    <p class="description">Help your child transition from screen time without the tears. Designed for ADHD and sensitive souls.</p>
+                </div>
 
-                <div class="cta-box">
-                    <form name="submit-to-google-sheet" class="email-form">
-                        <input name="Email" type="email" placeholder="Enter email for early access..." required>
-                        <button type="submit" class="submit-btn">GET ACCESS</button>
-                    </form>
-                    
-                    <div class="coming-soon-container">
-                        <p class="coming-soon-text">Coming Soon</p>
-                        <div class="store-badges">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge" alt="App Store">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge" alt="Google Play">
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <div class="cta-box">
+                    <form name="submit-to-google-sheet" class="email-form">
+                        <input name="Email" type="email" placeholder="Enter email for early access..." required>
+                        <button type="submit" class="submit-btn">GET ACCESS</button>
+                    </form>
+                    
+                    <div class="coming-soon-container">
+                        <p class="coming-soon-text">Coming Soon</p>
+                        <div class="store-badges">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="badge" alt="App Store">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge" alt="Google Play">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <div class="footer-branding">
-                <a href="privacypolicy.html" target="_blank" class="footer-link">Privacy Policy</a>
-                <div class="footer-divider"></div>
-                <a href="mailto:fuzzlestudios.app@gmail.com" class="footer-link">Contact Us</a>
-                <div class="footer-divider"></div>
-                <div class="powered-by-wrap">
-                    <span style="font-size: 0.6rem; font-weight: 800; letter-spacing: 0.5px;">POWERED BY</span>
-                    <img src="logo.png" alt="Fuzzle Studio" class="studio-logo">
-                </div>
-            </div>
-        </div>
+            <div class="footer-branding">
+                <a href="privacypolicy.html" target="_blank" class="footer-link">Privacy Policy</a>
+                <div class="footer-divider"></div>
+                <a href="mailto:fuzzlestudios.app@gmail.com" class="footer-link">Contact Us</a>
+                <div class="footer-divider"></div>
+                <div class="powered-by-wrap">
+                    <span style="font-size: 0.6rem; font-weight: 800; letter-spacing: 0.5px;">POWERED BY</span>
+                    <img src="logo.png" alt="Fuzzle Studio" class="studio-logo">
+                </div>
+            </div>
+        </div>
 
-        <div class="right-side">
-            <div class="carousel-title">What Parents are Saying</div>
-            <div class="testimonials-wrapper">
-                <div class="slide active">
-                    <span class="quote">"Screen time transitions used to end in tears. Now he looks forward to finishing."</span>
-                    <span class="author">Sarah, Mom of a 5-year-old</span>
-                </div>
-                <div class="slide">
-                    <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock."</span>
-                    <span class="author">David, Occupational Therapist</span>
-                </div>
-                <div class="slide">
-                    <span class="quote">"Highly recommended for ADHD families looking for calm morning routines."</span>
-                    <span class="author">Michelle, Parenting Coach</span>
-                </div>
-            </div>
-            <img src="hello2.gif" class="mascot-img" alt="Squirrel Mascot">
-        </div>
-    </div>
+        <div class="right-side">
+            <div class="carousel-title">What Parents are Saying</div>
+            <div class="testimonials-wrapper">
+                <div class="slide active">
+                    <span class="quote">"Screen time transitions used to end in tears. Now he looks forward to finishing."</span>
+                    <span class="author">Sarah, Mom of a 5-year-old</span>
+                </div>
+                <div class="slide">
+                    <span class="quote">"Finally, a timer that provides a visual scaffold without the anxiety of a ticking clock."</span>
+                    <span class="author">David, Occupational Therapist</span>
+                </div>
+                <div class="slide">
+                    <span class="quote">"Highly recommended for ADHD families looking for calm morning routines."</span>
+                    <span class="author">Michelle, Parenting Coach</span>
+                </div>
+            </div>
+            <img src="hello2.gif" class="mascot-img" alt="Squirrel Mascot">
+        </div>
+    </div>
 
-    <script>
-        let index = 0;
-        const slides = document.querySelectorAll('.slide');
-        function moveSlide(n) {
-            slides[index].classList.remove('active');
-            index = (index + n + slides.length) % slides.length;
-            slides[index].classList.add('active');
-        }
-        setInterval(() => moveSlide(1), 5000);
+    <script>
+        let index = 0;
+        const slides = document.querySelectorAll('.slide');
+        function moveSlide(n) {
+            slides[index].classList.remove('active');
+            index = (index + n + slides.length) % slides.length;
+            slides[index].classList.add('active');
+        }
+        setInterval(() => moveSlide(1), 5000);
 
-        // Replace the URL below with your Google Apps Script Web App URL
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbz_YOUR_SCRIPT_ID/exec';
-        const form = document.forms['submit-to-google-sheet'];
+        // Replace the URL below with your Google Apps Script Web App URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbz_YOUR_SCRIPT_ID/exec';
+        const form = document.forms['submit-to-google-sheet'];
 
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            const btn = form.querySelector('.submit-btn');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = 'Sending...';
-            btn.disabled = true;
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const btn = form.querySelector('.submit-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Sending...';
+            btn.disabled = true;
 
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    if (response.ok) {
-                        alert("Success! You'll receive an email update when the app launches.");
-                        form.reset();
-                    } else {
-                        alert("Oops! Something went wrong. Please try again later.");
-                    }
-                })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    alert("Connection error. Please check your internet and try again.");
-                })
-                .finally(() => {
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                });
-        });
-    </script>
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    if (response.ok) {
+                        alert("Success! You'll receive an email update when the app launches.");
+                        form.reset();
+                    } else {
+                        alert("Oops! Something went wrong. Please try again later.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert("Connection error. Please check your internet and try again.");
+                })
+                .finally(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                });
+        });
+    </script>
 </body>
 </html>
